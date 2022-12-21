@@ -1,75 +1,28 @@
 pipeline {
-    agent sm5-dac1 
+    agent SM5-DAC1 
     parameters {
+        booleanParam(name: 'Basic_Task_Operations', defaultValue: true, description: 'Create task, edit task, add step and remove a step via enpoints')
     }
-    environment {
-        NEW_VERSION = '1.3.1'
-    }
-
     stages {
 
-        stage ("Permissions test cases") {
+        stage ("Basic_Task_Operations") {
                 when {
             expression {
-                params.PERMISSIONS == 'y'
+                params.Basic_Task_Operations == true
             }
-        }+
-/+--            steps {
+        }
+           steps {
                 script {
-                    echo 'hey permissions'
-                }
-
-            }
-
-        }
-        stage("Data Provider import without IDMap") {
-                when {
-            expression {
-                params.DPIwoMap == 'y'
-            }
-        }
-            steps {
-                script{
-                    echo 'hey data provider woMap'
+                    echo 'Running test: Basic_Task_Operations'
+                    sh 'robot -d results -l Basic_Task_Operations_log -r Basic_Task_Operations_report ./TestCases/Tasks/Basic_Task_Operations.robot'  
                 }
             }
-        }
-        stage ("Data Provider import with IDMap") {
-            when {
-            expression {
-                params.DPIwMap == 'y'
-            }
-        }
-            steps {
-                script{
-
-                    echo 'hey data provider woMap'
-                }
-            }
-        }
-        stage ("Deleting Data Provider import request") {
-            when {
-            expression {
-                params.DEL == 'y'
-            }
-        }
-            steps {
-                script{
-
-                    echo 'hey delete'
-
-                }
-
-
-
-            }
-
         }
     }
     post {
         always {
             script {
-                echo ':)'
+                echo 'Finished test'
             }
         }
     }

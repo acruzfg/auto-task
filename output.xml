@@ -1,0 +1,1511 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0.1 (Python 3.10.7 on win32)" generated="20221221 15:53:23.240" rpa="false" schemaversion="3">
+<suite id="s1" name="Basic Task Operations" source="C:\Users\acruz\OneDrive - Aspen Technology, Inc\Documents\AutoTasks\TestCases\Tasks\Basic_Task_Operations.robot">
+<test id="s1-t1" name="Basic Tasks Operations" line="28">
+<kw name="Create Session" library="RequestsLibrary" type="SETUP">
+<arg>Swagger</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20221221 15:53:23.449" level="INFO">Creating Session using : alias=Swagger, url=https://sm5-dac1:8443/eitk, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20221221 15:53:23.449" endtime="20221221 15:53:23.449"/>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<arg>${results}</arg>
+<arg>0</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<msg timestamp="20221221 15:53:23.449" level="INFO">${results} = 0</msg>
+<status status="PASS" starttime="20221221 15:53:23.449" endtime="20221221 15:53:23.449"/>
+</kw>
+<kw name="Make Sure Task Does Not Exist">
+<arg>${name}</arg>
+<kw name="GET-Tasks With Name Filter">
+<var>${response}</var>
+<arg>${task_name}</arg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${headers}</var>
+<arg>osiApiToken=${token}</arg>
+<arg>Content-Type=${JSON_format}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20221221 15:53:23.449" level="INFO">${headers} = {'osiApiToken': '60ddc80ae2381a658bf5d87e:e031c694fe4d499bab7730485b83ce2f02e310a5b5cd9acb13850615ec7b2657', 'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20221221 15:53:23.449" endtime="20221221 15:53:23.449"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${params}</var>
+<arg>filter=["name","=","${task_name}"]</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20221221 15:53:23.449" level="INFO">${params} = {'filter': '["name","=","Auto-Task"]'}</msg>
+<status status="PASS" starttime="20221221 15:53:23.449" endtime="20221221 15:53:23.449"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>Swagger</arg>
+<arg>url=/api/v1/taskconfig</arg>
+<arg>headers=${headers}</arg>
+<arg>params=${params}</arg>
+<arg>expected_status=Anything</arg>
+<arg>verify=${False}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20221221 15:53:23.823" level="INFO">GET Request : url=https://sm5-dac1:8443/eitk/api/v1/taskconfig?filter=%5B%22name%22%2C%22%3D%22%2C%22Auto-Task%22%5D 
+ path_url=/eitk/api/v1/taskconfig?filter=%5B%22name%22%2C%22%3D%22%2C%22Auto-Task%22%5D 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'osiApiToken': '60ddc80ae2381a658bf5d87e:e031c694fe4d499bab7730485b83ce2f02e310a5b5cd9acb13850615ec7b2657', 'Content-Type': 'application/json'} 
+ body=None 
+ </msg>
+<msg timestamp="20221221 15:53:23.823" level="INFO">GET Response : url=https://sm5-dac1:8443/eitk/api/v1/taskconfig?filter=%5B%22name%22%2C%22%3D%22%2C%22Auto-Task%22%5D 
+ status=200, reason=OK 
+ headers={'Server': 'nginx', 'Date': 'Wed, 21 Dec 2022 21:53:23 GMT', 'Content-Type': 'application/json', 'Content-Length': '133', 'Connection': 'keep-alive', 'X-Frame-Options': 'SAMEORIGIN', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '1; mode=block', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Pragma': 'no-cache', 'Cache-Control': 'no-cache, must-revalidate, private, no-store'} 
+ body=[ {
+  "id" : "63a3802d051b4e1a81cec592",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ ],
+  "createAuditCopies" : "Never"
+} ] 
+ </msg>
+<msg timestamp="20221221 15:53:23.823" level="INFO">C:\Users\acruz\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host 'sm5-dac1'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20221221 15:53:23.824" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221221 15:53:23.449" endtime="20221221 15:53:23.824"/>
+</kw>
+<kw name="Return From Keyword" library="BuiltIn">
+<arg>${response}</arg>
+<doc>Returns from the enclosing user keyword.</doc>
+<msg timestamp="20221221 15:53:23.824" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20221221 15:53:23.824" endtime="20221221 15:53:23.824"/>
+</kw>
+<msg timestamp="20221221 15:53:23.824" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221221 15:53:23.449" endtime="20221221 15:53:23.824"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${body}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20221221 15:53:23.824" level="INFO">${body} = [ {
+  "id" : "63a3802d051b4e1a81cec592",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ ],
+  "createAuditCopies" : "Never"
+} ]</msg>
+<status status="PASS" starttime="20221221 15:53:23.824" endtime="20221221 15:53:23.824"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${status}</var>
+<arg>'${task_name}' in '''${body}'''</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221221 15:53:23.824" level="INFO">${status} = True</msg>
+<status status="PASS" starttime="20221221 15:53:23.824" endtime="20221221 15:53:23.824"/>
+</kw>
+<if>
+<branch type="IF" condition="${status}">
+<kw name="DELETE-Task with Name">
+<var>${Delete_response}</var>
+<arg>${task_name}</arg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${headers}</var>
+<arg>osiApiToken=${token}</arg>
+<arg>Content-Type=${JSON_format}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20221221 15:53:23.824" level="INFO">${headers} = {'osiApiToken': '60ddc80ae2381a658bf5d87e:e031c694fe4d499bab7730485b83ce2f02e310a5b5cd9acb13850615ec7b2657', 'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20221221 15:53:23.824" endtime="20221221 15:53:23.824"/>
+</kw>
+<kw name="DELETE On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>Swagger</arg>
+<arg>url=/api/v1/taskconfig/${task_name}</arg>
+<arg>headers=${headers}</arg>
+<arg>verify=${False}</arg>
+<doc>Sends a DELETE request on a previously created HTTP Session.</doc>
+<msg timestamp="20221221 15:53:23.962" level="INFO">DELETE Request : url=https://sm5-dac1:8443/eitk/api/v1/taskconfig/Auto-Task 
+ path_url=/eitk/api/v1/taskconfig/Auto-Task 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'osiApiToken': '60ddc80ae2381a658bf5d87e:e031c694fe4d499bab7730485b83ce2f02e310a5b5cd9acb13850615ec7b2657', 'Content-Type': 'application/json', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg timestamp="20221221 15:53:23.962" level="INFO">DELETE Response : url=https://sm5-dac1:8443/eitk/api/v1/taskconfig/Auto-Task 
+ status=200, reason=OK 
+ headers={'Server': 'nginx', 'Date': 'Wed, 21 Dec 2022 21:53:23 GMT', 'Content-Type': 'application/json', 'Content-Length': '129', 'Connection': 'keep-alive', 'X-Frame-Options': 'SAMEORIGIN', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '1; mode=block', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Pragma': 'no-cache', 'Cache-Control': 'no-cache, must-revalidate, private, no-store'} 
+ body={
+  "id" : "63a3802d051b4e1a81cec592",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ ],
+  "createAuditCopies" : "Never"
+} 
+ </msg>
+<msg timestamp="20221221 15:53:23.962" level="INFO">C:\Users\acruz\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host 'sm5-dac1'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20221221 15:53:23.962" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221221 15:53:23.824" endtime="20221221 15:53:23.962"/>
+</kw>
+<kw name="Return From Keyword" library="BuiltIn">
+<arg>${response}</arg>
+<doc>Returns from the enclosing user keyword.</doc>
+<msg timestamp="20221221 15:53:23.962" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20221221 15:53:23.962" endtime="20221221 15:53:23.962"/>
+</kw>
+<msg timestamp="20221221 15:53:23.970" level="INFO">${Delete_response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221221 15:53:23.824" endtime="20221221 15:53:23.970"/>
+</kw>
+<kw name="Verify Successful Response">
+<arg>${DELETE_response}</arg>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>200</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" starttime="20221221 15:53:23.970" endtime="20221221 15:53:23.970"/>
+</kw>
+<status status="PASS" starttime="20221221 15:53:23.970" endtime="20221221 15:53:23.970"/>
+</kw>
+<status status="PASS" starttime="20221221 15:53:23.824" endtime="20221221 15:53:23.970"/>
+</branch>
+<status status="PASS" starttime="20221221 15:53:23.824" endtime="20221221 15:53:23.970"/>
+</if>
+<status status="PASS" starttime="20221221 15:53:23.449" endtime="20221221 15:53:23.970"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${createAuditCopies}</var>
+<arg>Always</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221221 15:53:23.970" level="INFO">${createAuditCopies} = Always</msg>
+<status status="PASS" starttime="20221221 15:53:23.970" endtime="20221221 15:53:23.970"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${task}</var>
+<arg>{"name": "${name}","createAuditCopies": "${createAuditCopies}"}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221221 15:53:23.970" level="INFO">${task} = {"name": "Auto-Task","createAuditCopies": "Always"}</msg>
+<status status="PASS" starttime="20221221 15:53:23.970" endtime="20221221 15:53:23.970"/>
+</kw>
+<kw name="POST-Create Task with Name">
+<var>${Create_task}</var>
+<arg>${task}</arg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${headers}</var>
+<arg>osiApiToken=${token}</arg>
+<arg>Content-Type=${JSON_format}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20221221 15:53:23.974" level="INFO">${headers} = {'osiApiToken': '60ddc80ae2381a658bf5d87e:e031c694fe4d499bab7730485b83ce2f02e310a5b5cd9acb13850615ec7b2657', 'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20221221 15:53:23.973" endtime="20221221 15:53:23.974"/>
+</kw>
+<kw name="POST On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>Swagger</arg>
+<arg>url=/api/v1/taskconfig</arg>
+<arg>data=${POST_body}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=Anything</arg>
+<arg>verify=${False}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<msg timestamp="20221221 15:53:24.090" level="INFO">POST Request : url=https://sm5-dac1:8443/eitk/api/v1/taskconfig 
+ path_url=/eitk/api/v1/taskconfig 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'osiApiToken': '60ddc80ae2381a658bf5d87e:e031c694fe4d499bab7730485b83ce2f02e310a5b5cd9acb13850615ec7b2657', 'Content-Type': 'application/json', 'Content-Length': '51'} 
+ body={"name": "Auto-Task","createAuditCopies": "Always"} 
+ </msg>
+<msg timestamp="20221221 15:53:24.090" level="INFO">POST Response : url=https://sm5-dac1:8443/eitk/api/v1/taskconfig 
+ status=201, reason=Created 
+ headers={'Server': 'nginx', 'Date': 'Wed, 21 Dec 2022 21:53:24 GMT', 'Content-Type': 'application/json', 'Content-Length': '130', 'Connection': 'keep-alive', 'Location': 'https://sm5-dac1:8443/eitk/api/v1/taskconfig/Auto-Task', 'X-Frame-Options': 'SAMEORIGIN', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '1; mode=block', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Pragma': 'no-cache', 'Cache-Control': 'no-cache, must-revalidate, private, no-store'} 
+ body={
+  "id" : "63a38054051b4e1a81cec5af",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ ],
+  "createAuditCopies" : "Always"
+} 
+ </msg>
+<msg timestamp="20221221 15:53:24.090" level="INFO">C:\Users\acruz\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host 'sm5-dac1'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20221221 15:53:24.090" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<status status="PASS" starttime="20221221 15:53:23.974" endtime="20221221 15:53:24.090"/>
+</kw>
+<kw name="Return From Keyword" library="BuiltIn">
+<arg>${response}</arg>
+<doc>Returns from the enclosing user keyword.</doc>
+<msg timestamp="20221221 15:53:24.090" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20221221 15:53:24.090" endtime="20221221 15:53:24.090"/>
+</kw>
+<msg timestamp="20221221 15:53:24.090" level="INFO">${Create_task} = &lt;Response [201]&gt;</msg>
+<status status="PASS" starttime="20221221 15:53:23.970" endtime="20221221 15:53:24.090"/>
+</kw>
+<kw name="Verify Successful Creation">
+<arg>${Create_task}</arg>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>201</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" starttime="20221221 15:53:24.090" endtime="20221221 15:53:24.090"/>
+</kw>
+<kw name="Verify Reason">
+<arg>${response}</arg>
+<arg>Created</arg>
+<kw name="Convert To String" library="BuiltIn">
+<var>${body}</var>
+<arg>${response.reason}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20221221 15:53:24.098" level="INFO">${body} = Created</msg>
+<status status="PASS" starttime="20221221 15:53:24.090" endtime="20221221 15:53:24.098"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${body}</arg>
+<arg>${reason}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20221221 15:53:24.098" endtime="20221221 15:53:24.098"/>
+</kw>
+<status status="PASS" starttime="20221221 15:53:24.090" endtime="20221221 15:53:24.098"/>
+</kw>
+<status status="PASS" starttime="20221221 15:53:24.090" endtime="20221221 15:53:24.098"/>
+</kw>
+<kw name="GET-Tasks With Name">
+<var>${Obtain_task_details}</var>
+<arg>${name}</arg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${headers}</var>
+<arg>osiApiToken=${token}</arg>
+<arg>Content-Type=${JSON_format}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20221221 15:53:24.098" level="INFO">${headers} = {'osiApiToken': '60ddc80ae2381a658bf5d87e:e031c694fe4d499bab7730485b83ce2f02e310a5b5cd9acb13850615ec7b2657', 'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20221221 15:53:24.098" endtime="20221221 15:53:24.098"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>Swagger</arg>
+<arg>url=/api/v1/taskconfig/${task_name}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=Anything</arg>
+<arg>verify=${False}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20221221 15:53:24.189" level="INFO">GET Request : url=https://sm5-dac1:8443/eitk/api/v1/taskconfig/Auto-Task 
+ path_url=/eitk/api/v1/taskconfig/Auto-Task 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'osiApiToken': '60ddc80ae2381a658bf5d87e:e031c694fe4d499bab7730485b83ce2f02e310a5b5cd9acb13850615ec7b2657', 'Content-Type': 'application/json'} 
+ body=None 
+ </msg>
+<msg timestamp="20221221 15:53:24.190" level="INFO">GET Response : url=https://sm5-dac1:8443/eitk/api/v1/taskconfig/Auto-Task 
+ status=200, reason=OK 
+ headers={'Server': 'nginx', 'Date': 'Wed, 21 Dec 2022 21:53:24 GMT', 'Content-Type': 'application/json', 'Content-Length': '130', 'Connection': 'keep-alive', 'X-Frame-Options': 'SAMEORIGIN', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '1; mode=block', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Pragma': 'no-cache', 'Cache-Control': 'no-cache, must-revalidate, private, no-store'} 
+ body={
+  "id" : "63a38054051b4e1a81cec5af",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ ],
+  "createAuditCopies" : "Always"
+} 
+ </msg>
+<msg timestamp="20221221 15:53:24.190" level="INFO">C:\Users\acruz\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host 'sm5-dac1'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20221221 15:53:24.190" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221221 15:53:24.098" endtime="20221221 15:53:24.190"/>
+</kw>
+<kw name="Return From Keyword" library="BuiltIn">
+<arg>${response}</arg>
+<doc>Returns from the enclosing user keyword.</doc>
+<msg timestamp="20221221 15:53:24.190" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20221221 15:53:24.190" endtime="20221221 15:53:24.190"/>
+</kw>
+<msg timestamp="20221221 15:53:24.190" level="INFO">${Obtain_task_details} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221221 15:53:24.098" endtime="20221221 15:53:24.190"/>
+</kw>
+<kw name="Verify Successful Response">
+<arg>${Obtain_task_details}</arg>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>200</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" starttime="20221221 15:53:24.190" endtime="20221221 15:53:24.190"/>
+</kw>
+<status status="PASS" starttime="20221221 15:53:24.190" endtime="20221221 15:53:24.190"/>
+</kw>
+<kw name="Check Task Details">
+<arg>${Obtain_task_details}</arg>
+<arg>${name}</arg>
+<arg>$.name</arg>
+<kw name="Convert To String" library="BuiltIn">
+<var>${string}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20221221 15:53:24.190" level="INFO">${string} = {
+  "id" : "63a38054051b4e1a81cec5af",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ ],
+  "createAuditCopies" : "Always"
+}</msg>
+<status status="PASS" starttime="20221221 15:53:24.190" endtime="20221221 15:53:24.190"/>
+</kw>
+<kw name="Convert String To Json" library="JSONLibrary">
+<var>${json_body}</var>
+<arg>${string}</arg>
+<doc>Convert String to JSON object</doc>
+<msg timestamp="20221221 15:53:24.190" level="INFO">${json_body} = {'id': '63a38054051b4e1a81cec5af', 'saveID': 1, 'name': 'Auto-Task', 'steps': [], 'createAuditCopies': 'Always'}</msg>
+<status status="PASS" starttime="20221221 15:53:24.190" endtime="20221221 15:53:24.190"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${task_attribute}</var>
+<arg>${json_body}</arg>
+<arg>${json_path}</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20221221 15:53:24.208" level="INFO">${task_attribute} = ['Auto-Task']</msg>
+<status status="PASS" starttime="20221221 15:53:24.190" endtime="20221221 15:53:24.208"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${task_detail}</arg>
+<arg>${task_attribute[0]}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20221221 15:53:24.208" endtime="20221221 15:53:24.208"/>
+</kw>
+<status status="PASS" starttime="20221221 15:53:24.190" endtime="20221221 15:53:24.208"/>
+</kw>
+<kw name="Check Task Details">
+<arg>${Obtain_task_details}</arg>
+<arg>${createAuditCopies}</arg>
+<arg>$.createAuditCopies</arg>
+<kw name="Convert To String" library="BuiltIn">
+<var>${string}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20221221 15:53:24.208" level="INFO">${string} = {
+  "id" : "63a38054051b4e1a81cec5af",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ ],
+  "createAuditCopies" : "Always"
+}</msg>
+<status status="PASS" starttime="20221221 15:53:24.208" endtime="20221221 15:53:24.208"/>
+</kw>
+<kw name="Convert String To Json" library="JSONLibrary">
+<var>${json_body}</var>
+<arg>${string}</arg>
+<doc>Convert String to JSON object</doc>
+<msg timestamp="20221221 15:53:24.208" level="INFO">${json_body} = {'id': '63a38054051b4e1a81cec5af', 'saveID': 1, 'name': 'Auto-Task', 'steps': [], 'createAuditCopies': 'Always'}</msg>
+<status status="PASS" starttime="20221221 15:53:24.208" endtime="20221221 15:53:24.208"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${task_attribute}</var>
+<arg>${json_body}</arg>
+<arg>${json_path}</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20221221 15:53:24.224" level="INFO">${task_attribute} = ['Always']</msg>
+<status status="PASS" starttime="20221221 15:53:24.208" endtime="20221221 15:53:24.224"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${task_detail}</arg>
+<arg>${task_attribute[0]}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20221221 15:53:24.224" endtime="20221221 15:53:24.224"/>
+</kw>
+<status status="PASS" starttime="20221221 15:53:24.208" endtime="20221221 15:53:24.224"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${createAuditCopies}</var>
+<arg>OnError</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221221 15:53:24.224" level="INFO">${createAuditCopies} = OnError</msg>
+<status status="PASS" starttime="20221221 15:53:24.224" endtime="20221221 15:53:24.224"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${task}</var>
+<arg>{"name": "${name}","createAuditCopies": "${createAuditCopies}"}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221221 15:53:24.224" level="INFO">${task} = {"name": "Auto-Task","createAuditCopies": "OnError"}</msg>
+<status status="PASS" starttime="20221221 15:53:24.224" endtime="20221221 15:53:24.224"/>
+</kw>
+<kw name="PUT-Update Task with Name">
+<var>${Edit_task}</var>
+<arg>${name}</arg>
+<arg>${task}</arg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${headers}</var>
+<arg>osiApiToken=${token}</arg>
+<arg>Content-Type=${JSON_format}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20221221 15:53:24.224" level="INFO">${headers} = {'osiApiToken': '60ddc80ae2381a658bf5d87e:e031c694fe4d499bab7730485b83ce2f02e310a5b5cd9acb13850615ec7b2657', 'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20221221 15:53:24.224" endtime="20221221 15:53:24.224"/>
+</kw>
+<kw name="PUT On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>Swagger</arg>
+<arg>url=/api/v1/taskconfig/${task_name}</arg>
+<arg>data=${PUT_body}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=Anything</arg>
+<arg>verify=${False}</arg>
+<doc>Sends a PUT request on a previously created HTTP Session.</doc>
+<msg timestamp="20221221 15:53:24.325" level="INFO">PUT Request : url=https://sm5-dac1:8443/eitk/api/v1/taskconfig/Auto-Task 
+ path_url=/eitk/api/v1/taskconfig/Auto-Task 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'osiApiToken': '60ddc80ae2381a658bf5d87e:e031c694fe4d499bab7730485b83ce2f02e310a5b5cd9acb13850615ec7b2657', 'Content-Type': 'application/json', 'Content-Length': '52'} 
+ body={"name": "Auto-Task","createAuditCopies": "OnError"} 
+ </msg>
+<msg timestamp="20221221 15:53:24.325" level="INFO">PUT Response : url=https://sm5-dac1:8443/eitk/api/v1/taskconfig/Auto-Task 
+ status=200, reason=OK 
+ headers={'Server': 'nginx', 'Date': 'Wed, 21 Dec 2022 21:53:24 GMT', 'Content-Type': 'application/json', 'Content-Length': '131', 'Connection': 'keep-alive', 'X-Frame-Options': 'SAMEORIGIN', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '1; mode=block', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Pragma': 'no-cache', 'Cache-Control': 'no-cache, must-revalidate, private, no-store'} 
+ body={
+  "id" : "63a38054051b4e1a81cec5af",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ ],
+  "createAuditCopies" : "OnError"
+} 
+ </msg>
+<msg timestamp="20221221 15:53:24.325" level="INFO">C:\Users\acruz\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host 'sm5-dac1'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20221221 15:53:24.325" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221221 15:53:24.224" endtime="20221221 15:53:24.325"/>
+</kw>
+<kw name="Return From Keyword" library="BuiltIn">
+<arg>${response}</arg>
+<doc>Returns from the enclosing user keyword.</doc>
+<msg timestamp="20221221 15:53:24.325" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20221221 15:53:24.325" endtime="20221221 15:53:24.325"/>
+</kw>
+<msg timestamp="20221221 15:53:24.325" level="INFO">${Edit_task} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221221 15:53:24.224" endtime="20221221 15:53:24.325"/>
+</kw>
+<kw name="Verify Successful Response">
+<arg>${Edit_task}</arg>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>200</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" starttime="20221221 15:53:24.325" endtime="20221221 15:53:24.333"/>
+</kw>
+<status status="PASS" starttime="20221221 15:53:24.325" endtime="20221221 15:53:24.333"/>
+</kw>
+<kw name="GET-Tasks With Name">
+<var>${Obtain_task_details}</var>
+<arg>${name}</arg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${headers}</var>
+<arg>osiApiToken=${token}</arg>
+<arg>Content-Type=${JSON_format}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20221221 15:53:24.333" level="INFO">${headers} = {'osiApiToken': '60ddc80ae2381a658bf5d87e:e031c694fe4d499bab7730485b83ce2f02e310a5b5cd9acb13850615ec7b2657', 'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20221221 15:53:24.333" endtime="20221221 15:53:24.333"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>Swagger</arg>
+<arg>url=/api/v1/taskconfig/${task_name}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=Anything</arg>
+<arg>verify=${False}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20221221 15:53:24.440" level="INFO">GET Request : url=https://sm5-dac1:8443/eitk/api/v1/taskconfig/Auto-Task 
+ path_url=/eitk/api/v1/taskconfig/Auto-Task 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'osiApiToken': '60ddc80ae2381a658bf5d87e:e031c694fe4d499bab7730485b83ce2f02e310a5b5cd9acb13850615ec7b2657', 'Content-Type': 'application/json'} 
+ body=None 
+ </msg>
+<msg timestamp="20221221 15:53:24.440" level="INFO">GET Response : url=https://sm5-dac1:8443/eitk/api/v1/taskconfig/Auto-Task 
+ status=200, reason=OK 
+ headers={'Server': 'nginx', 'Date': 'Wed, 21 Dec 2022 21:53:24 GMT', 'Content-Type': 'application/json', 'Content-Length': '131', 'Connection': 'keep-alive', 'X-Frame-Options': 'SAMEORIGIN', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '1; mode=block', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Pragma': 'no-cache', 'Cache-Control': 'no-cache, must-revalidate, private, no-store'} 
+ body={
+  "id" : "63a38054051b4e1a81cec5af",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ ],
+  "createAuditCopies" : "OnError"
+} 
+ </msg>
+<msg timestamp="20221221 15:53:24.440" level="INFO">C:\Users\acruz\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host 'sm5-dac1'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20221221 15:53:24.440" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221221 15:53:24.333" endtime="20221221 15:53:24.440"/>
+</kw>
+<kw name="Return From Keyword" library="BuiltIn">
+<arg>${response}</arg>
+<doc>Returns from the enclosing user keyword.</doc>
+<msg timestamp="20221221 15:53:24.440" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20221221 15:53:24.440" endtime="20221221 15:53:24.440"/>
+</kw>
+<msg timestamp="20221221 15:53:24.440" level="INFO">${Obtain_task_details} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221221 15:53:24.333" endtime="20221221 15:53:24.440"/>
+</kw>
+<kw name="Verify Successful Response">
+<arg>${Obtain_task_details}</arg>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>200</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" starttime="20221221 15:53:24.440" endtime="20221221 15:53:24.440"/>
+</kw>
+<status status="PASS" starttime="20221221 15:53:24.440" endtime="20221221 15:53:24.440"/>
+</kw>
+<kw name="Check Task Details">
+<arg>${Obtain_task_details}</arg>
+<arg>${name}</arg>
+<arg>$.name</arg>
+<kw name="Convert To String" library="BuiltIn">
+<var>${string}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20221221 15:53:24.440" level="INFO">${string} = {
+  "id" : "63a38054051b4e1a81cec5af",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ ],
+  "createAuditCopies" : "OnError"
+}</msg>
+<status status="PASS" starttime="20221221 15:53:24.440" endtime="20221221 15:53:24.440"/>
+</kw>
+<kw name="Convert String To Json" library="JSONLibrary">
+<var>${json_body}</var>
+<arg>${string}</arg>
+<doc>Convert String to JSON object</doc>
+<msg timestamp="20221221 15:53:24.440" level="INFO">${json_body} = {'id': '63a38054051b4e1a81cec5af', 'saveID': 1, 'name': 'Auto-Task', 'steps': [], 'createAuditCopies': 'OnError'}</msg>
+<status status="PASS" starttime="20221221 15:53:24.440" endtime="20221221 15:53:24.440"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${task_attribute}</var>
+<arg>${json_body}</arg>
+<arg>${json_path}</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20221221 15:53:24.463" level="INFO">${task_attribute} = ['Auto-Task']</msg>
+<status status="PASS" starttime="20221221 15:53:24.440" endtime="20221221 15:53:24.463"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${task_detail}</arg>
+<arg>${task_attribute[0]}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20221221 15:53:24.463" endtime="20221221 15:53:24.463"/>
+</kw>
+<status status="PASS" starttime="20221221 15:53:24.440" endtime="20221221 15:53:24.463"/>
+</kw>
+<kw name="Check Task Details">
+<arg>${Obtain_task_details}</arg>
+<arg>${createAuditCopies}</arg>
+<arg>$.createAuditCopies</arg>
+<kw name="Convert To String" library="BuiltIn">
+<var>${string}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20221221 15:53:24.463" level="INFO">${string} = {
+  "id" : "63a38054051b4e1a81cec5af",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ ],
+  "createAuditCopies" : "OnError"
+}</msg>
+<status status="PASS" starttime="20221221 15:53:24.463" endtime="20221221 15:53:24.463"/>
+</kw>
+<kw name="Convert String To Json" library="JSONLibrary">
+<var>${json_body}</var>
+<arg>${string}</arg>
+<doc>Convert String to JSON object</doc>
+<msg timestamp="20221221 15:53:24.463" level="INFO">${json_body} = {'id': '63a38054051b4e1a81cec5af', 'saveID': 1, 'name': 'Auto-Task', 'steps': [], 'createAuditCopies': 'OnError'}</msg>
+<status status="PASS" starttime="20221221 15:53:24.463" endtime="20221221 15:53:24.463"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${task_attribute}</var>
+<arg>${json_body}</arg>
+<arg>${json_path}</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20221221 15:53:24.473" level="INFO">${task_attribute} = ['OnError']</msg>
+<status status="PASS" starttime="20221221 15:53:24.463" endtime="20221221 15:53:24.473"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${task_detail}</arg>
+<arg>${task_attribute[0]}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20221221 15:53:24.473" endtime="20221221 15:53:24.473"/>
+</kw>
+<status status="PASS" starttime="20221221 15:53:24.463" endtime="20221221 15:53:24.473"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${createAuditCopies}</var>
+<arg>Never</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221221 15:53:24.473" level="INFO">${createAuditCopies} = Never</msg>
+<status status="PASS" starttime="20221221 15:53:24.473" endtime="20221221 15:53:24.473"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${steps}</var>
+<arg>[{"type": "${type}","hostname": "${hostname}","processName": "${processName}","args": "${args}","envArgs": "${envArgs}","expectedExitCode": [${expectedExitCode}],"timeout": 5000}]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221221 15:53:24.473" level="INFO">${steps} = [{"type": "EXE","hostname": "sm5-dac1","processName": "osii_file_adaptor","args": "-i 33 --domain ASSASSIN","envArgs": "33","expectedExitCode": [0],"timeout": 5000}]</msg>
+<status status="PASS" starttime="20221221 15:53:24.473" endtime="20221221 15:53:24.473"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${task}</var>
+<arg>{"name": "${name}", "createAuditCopies": "${createAuditCopies}","steps": ${steps}}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221221 15:53:24.473" level="INFO">${task} = {"name": "Auto-Task", "createAuditCopies": "Never","steps": [{"type": "EXE","hostname": "sm5-dac1","processName": "osii_file_adaptor","args": "-i 33 --domain ASSASSIN","envArgs": "33","expectedExitCod...</msg>
+<status status="PASS" starttime="20221221 15:53:24.473" endtime="20221221 15:53:24.473"/>
+</kw>
+<kw name="PUT-Update Task with Name">
+<var>${Add_Step}</var>
+<arg>${name}</arg>
+<arg>${task}</arg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${headers}</var>
+<arg>osiApiToken=${token}</arg>
+<arg>Content-Type=${JSON_format}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20221221 15:53:24.473" level="INFO">${headers} = {'osiApiToken': '60ddc80ae2381a658bf5d87e:e031c694fe4d499bab7730485b83ce2f02e310a5b5cd9acb13850615ec7b2657', 'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20221221 15:53:24.473" endtime="20221221 15:53:24.473"/>
+</kw>
+<kw name="PUT On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>Swagger</arg>
+<arg>url=/api/v1/taskconfig/${task_name}</arg>
+<arg>data=${PUT_body}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=Anything</arg>
+<arg>verify=${False}</arg>
+<doc>Sends a PUT request on a previously created HTTP Session.</doc>
+<msg timestamp="20221221 15:53:24.598" level="INFO">PUT Request : url=https://sm5-dac1:8443/eitk/api/v1/taskconfig/Auto-Task 
+ path_url=/eitk/api/v1/taskconfig/Auto-Task 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'osiApiToken': '60ddc80ae2381a658bf5d87e:e031c694fe4d499bab7730485b83ce2f02e310a5b5cd9acb13850615ec7b2657', 'Content-Type': 'application/json', 'Content-Length': '226'} 
+ body={"name": "Auto-Task", "createAuditCopies": "Never","steps": [{"type": "EXE","hostname": "sm5-dac1","processName": "osii_file_adaptor","args": "-i 33 --domain ASSASSIN","envArgs": "33","expectedExitCode": [0],"timeout": 5000}]} 
+ </msg>
+<msg timestamp="20221221 15:53:24.598" level="INFO">PUT Response : url=https://sm5-dac1:8443/eitk/api/v1/taskconfig/Auto-Task 
+ status=200, reason=OK 
+ headers={'Server': 'nginx', 'Date': 'Wed, 21 Dec 2022 21:53:24 GMT', 'Content-Type': 'application/json', 'Content-Length': '360', 'Connection': 'keep-alive', 'X-Frame-Options': 'SAMEORIGIN', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '1; mode=block', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Pragma': 'no-cache', 'Cache-Control': 'no-cache, must-revalidate, private, no-store'} 
+ body={
+  "id" : "63a38054051b4e1a81cec5af",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ {
+    "type" : "EXE",
+    "hostname" : "sm5-dac1",
+    "processName" : "osii_file_adaptor",
+    "args" : "-i 33 --domain ASSASSIN",
+    "envArgs" : "33",
+    "expectedExitCode" : [ 0 ],
+    "timeout" : 5000,
+    "type" : "EXE"
+  } ],
+  "createAuditCopies" : "Never"
+} 
+ </msg>
+<msg timestamp="20221221 15:53:24.598" level="INFO">C:\Users\acruz\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host 'sm5-dac1'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20221221 15:53:24.598" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221221 15:53:24.473" endtime="20221221 15:53:24.598"/>
+</kw>
+<kw name="Return From Keyword" library="BuiltIn">
+<arg>${response}</arg>
+<doc>Returns from the enclosing user keyword.</doc>
+<msg timestamp="20221221 15:53:24.598" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20221221 15:53:24.598" endtime="20221221 15:53:24.598"/>
+</kw>
+<msg timestamp="20221221 15:53:24.598" level="INFO">${Add_Step} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221221 15:53:24.473" endtime="20221221 15:53:24.598"/>
+</kw>
+<kw name="Verify Successful Response">
+<arg>${Add_Step}</arg>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>200</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" starttime="20221221 15:53:24.598" endtime="20221221 15:53:24.598"/>
+</kw>
+<status status="PASS" starttime="20221221 15:53:24.598" endtime="20221221 15:53:24.598"/>
+</kw>
+<kw name="GET-Tasks With Name">
+<var>${Obtain_task_details}</var>
+<arg>${name}</arg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${headers}</var>
+<arg>osiApiToken=${token}</arg>
+<arg>Content-Type=${JSON_format}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20221221 15:53:24.598" level="INFO">${headers} = {'osiApiToken': '60ddc80ae2381a658bf5d87e:e031c694fe4d499bab7730485b83ce2f02e310a5b5cd9acb13850615ec7b2657', 'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20221221 15:53:24.598" endtime="20221221 15:53:24.598"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>Swagger</arg>
+<arg>url=/api/v1/taskconfig/${task_name}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=Anything</arg>
+<arg>verify=${False}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20221221 15:53:24.671" level="INFO">GET Request : url=https://sm5-dac1:8443/eitk/api/v1/taskconfig/Auto-Task 
+ path_url=/eitk/api/v1/taskconfig/Auto-Task 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'osiApiToken': '60ddc80ae2381a658bf5d87e:e031c694fe4d499bab7730485b83ce2f02e310a5b5cd9acb13850615ec7b2657', 'Content-Type': 'application/json'} 
+ body=None 
+ </msg>
+<msg timestamp="20221221 15:53:24.671" level="INFO">GET Response : url=https://sm5-dac1:8443/eitk/api/v1/taskconfig/Auto-Task 
+ status=200, reason=OK 
+ headers={'Server': 'nginx', 'Date': 'Wed, 21 Dec 2022 21:53:24 GMT', 'Content-Type': 'application/json', 'Content-Length': '360', 'Connection': 'keep-alive', 'X-Frame-Options': 'SAMEORIGIN', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '1; mode=block', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Pragma': 'no-cache', 'Cache-Control': 'no-cache, must-revalidate, private, no-store'} 
+ body={
+  "id" : "63a38054051b4e1a81cec5af",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ {
+    "type" : "EXE",
+    "hostname" : "sm5-dac1",
+    "processName" : "osii_file_adaptor",
+    "args" : "-i 33 --domain ASSASSIN",
+    "envArgs" : "33",
+    "expectedExitCode" : [ 0 ],
+    "timeout" : 5000,
+    "type" : "EXE"
+  } ],
+  "createAuditCopies" : "Never"
+} 
+ </msg>
+<msg timestamp="20221221 15:53:24.671" level="INFO">C:\Users\acruz\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host 'sm5-dac1'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20221221 15:53:24.671" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221221 15:53:24.598" endtime="20221221 15:53:24.671"/>
+</kw>
+<kw name="Return From Keyword" library="BuiltIn">
+<arg>${response}</arg>
+<doc>Returns from the enclosing user keyword.</doc>
+<msg timestamp="20221221 15:53:24.671" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20221221 15:53:24.671" endtime="20221221 15:53:24.671"/>
+</kw>
+<msg timestamp="20221221 15:53:24.671" level="INFO">${Obtain_task_details} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221221 15:53:24.598" endtime="20221221 15:53:24.671"/>
+</kw>
+<kw name="Verify Successful Response">
+<arg>${Obtain_task_details}</arg>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>200</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" starttime="20221221 15:53:24.671" endtime="20221221 15:53:24.671"/>
+</kw>
+<status status="PASS" starttime="20221221 15:53:24.671" endtime="20221221 15:53:24.671"/>
+</kw>
+<kw name="Check Task Details">
+<arg>${Obtain_task_details}</arg>
+<arg>${name}</arg>
+<arg>$.name</arg>
+<kw name="Convert To String" library="BuiltIn">
+<var>${string}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20221221 15:53:24.671" level="INFO">${string} = {
+  "id" : "63a38054051b4e1a81cec5af",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ {
+    "type" : "EXE",
+    "hostname" : "sm5-dac1",
+    "processName" : "osii_file_adaptor",
+    "args" : "-...</msg>
+<status status="PASS" starttime="20221221 15:53:24.671" endtime="20221221 15:53:24.671"/>
+</kw>
+<kw name="Convert String To Json" library="JSONLibrary">
+<var>${json_body}</var>
+<arg>${string}</arg>
+<doc>Convert String to JSON object</doc>
+<msg timestamp="20221221 15:53:24.671" level="INFO">${json_body} = {'id': '63a38054051b4e1a81cec5af', 'saveID': 1, 'name': 'Auto-Task', 'steps': [{'type': 'EXE', 'hostname': 'sm5-dac1', 'processName': 'osii_file_adaptor', 'args': '-i 33 --domain ASSASSIN', 'envArgs':...</msg>
+<status status="PASS" starttime="20221221 15:53:24.671" endtime="20221221 15:53:24.671"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${task_attribute}</var>
+<arg>${json_body}</arg>
+<arg>${json_path}</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20221221 15:53:24.687" level="INFO">${task_attribute} = ['Auto-Task']</msg>
+<status status="PASS" starttime="20221221 15:53:24.671" endtime="20221221 15:53:24.687"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${task_detail}</arg>
+<arg>${task_attribute[0]}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20221221 15:53:24.687" endtime="20221221 15:53:24.687"/>
+</kw>
+<status status="PASS" starttime="20221221 15:53:24.671" endtime="20221221 15:53:24.687"/>
+</kw>
+<kw name="Check Task Details">
+<arg>${Obtain_task_details}</arg>
+<arg>${createAuditCopies}</arg>
+<arg>$.createAuditCopies</arg>
+<kw name="Convert To String" library="BuiltIn">
+<var>${string}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20221221 15:53:24.687" level="INFO">${string} = {
+  "id" : "63a38054051b4e1a81cec5af",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ {
+    "type" : "EXE",
+    "hostname" : "sm5-dac1",
+    "processName" : "osii_file_adaptor",
+    "args" : "-...</msg>
+<status status="PASS" starttime="20221221 15:53:24.687" endtime="20221221 15:53:24.687"/>
+</kw>
+<kw name="Convert String To Json" library="JSONLibrary">
+<var>${json_body}</var>
+<arg>${string}</arg>
+<doc>Convert String to JSON object</doc>
+<msg timestamp="20221221 15:53:24.687" level="INFO">${json_body} = {'id': '63a38054051b4e1a81cec5af', 'saveID': 1, 'name': 'Auto-Task', 'steps': [{'type': 'EXE', 'hostname': 'sm5-dac1', 'processName': 'osii_file_adaptor', 'args': '-i 33 --domain ASSASSIN', 'envArgs':...</msg>
+<status status="PASS" starttime="20221221 15:53:24.687" endtime="20221221 15:53:24.687"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${task_attribute}</var>
+<arg>${json_body}</arg>
+<arg>${json_path}</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20221221 15:53:24.712" level="INFO">${task_attribute} = ['Never']</msg>
+<status status="PASS" starttime="20221221 15:53:24.687" endtime="20221221 15:53:24.712"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${task_detail}</arg>
+<arg>${task_attribute[0]}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20221221 15:53:24.712" endtime="20221221 15:53:24.712"/>
+</kw>
+<status status="PASS" starttime="20221221 15:53:24.687" endtime="20221221 15:53:24.712"/>
+</kw>
+<kw name="Check Task Details">
+<arg>${Obtain_task_details}</arg>
+<arg>${type}</arg>
+<arg>$.steps[0].type</arg>
+<kw name="Convert To String" library="BuiltIn">
+<var>${string}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20221221 15:53:24.712" level="INFO">${string} = {
+  "id" : "63a38054051b4e1a81cec5af",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ {
+    "type" : "EXE",
+    "hostname" : "sm5-dac1",
+    "processName" : "osii_file_adaptor",
+    "args" : "-...</msg>
+<status status="PASS" starttime="20221221 15:53:24.712" endtime="20221221 15:53:24.712"/>
+</kw>
+<kw name="Convert String To Json" library="JSONLibrary">
+<var>${json_body}</var>
+<arg>${string}</arg>
+<doc>Convert String to JSON object</doc>
+<msg timestamp="20221221 15:53:24.712" level="INFO">${json_body} = {'id': '63a38054051b4e1a81cec5af', 'saveID': 1, 'name': 'Auto-Task', 'steps': [{'type': 'EXE', 'hostname': 'sm5-dac1', 'processName': 'osii_file_adaptor', 'args': '-i 33 --domain ASSASSIN', 'envArgs':...</msg>
+<status status="PASS" starttime="20221221 15:53:24.712" endtime="20221221 15:53:24.712"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${task_attribute}</var>
+<arg>${json_body}</arg>
+<arg>${json_path}</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20221221 15:53:24.723" level="INFO">${task_attribute} = ['EXE']</msg>
+<status status="PASS" starttime="20221221 15:53:24.712" endtime="20221221 15:53:24.723"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${task_detail}</arg>
+<arg>${task_attribute[0]}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20221221 15:53:24.723" endtime="20221221 15:53:24.723"/>
+</kw>
+<status status="PASS" starttime="20221221 15:53:24.712" endtime="20221221 15:53:24.723"/>
+</kw>
+<kw name="Check Task Details">
+<arg>${Obtain_task_details}</arg>
+<arg>${hostname}</arg>
+<arg>$.steps[0].hostname</arg>
+<kw name="Convert To String" library="BuiltIn">
+<var>${string}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20221221 15:53:24.723" level="INFO">${string} = {
+  "id" : "63a38054051b4e1a81cec5af",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ {
+    "type" : "EXE",
+    "hostname" : "sm5-dac1",
+    "processName" : "osii_file_adaptor",
+    "args" : "-...</msg>
+<status status="PASS" starttime="20221221 15:53:24.723" endtime="20221221 15:53:24.723"/>
+</kw>
+<kw name="Convert String To Json" library="JSONLibrary">
+<var>${json_body}</var>
+<arg>${string}</arg>
+<doc>Convert String to JSON object</doc>
+<msg timestamp="20221221 15:53:24.723" level="INFO">${json_body} = {'id': '63a38054051b4e1a81cec5af', 'saveID': 1, 'name': 'Auto-Task', 'steps': [{'type': 'EXE', 'hostname': 'sm5-dac1', 'processName': 'osii_file_adaptor', 'args': '-i 33 --domain ASSASSIN', 'envArgs':...</msg>
+<status status="PASS" starttime="20221221 15:53:24.723" endtime="20221221 15:53:24.723"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${task_attribute}</var>
+<arg>${json_body}</arg>
+<arg>${json_path}</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20221221 15:53:24.741" level="INFO">${task_attribute} = ['sm5-dac1']</msg>
+<status status="PASS" starttime="20221221 15:53:24.723" endtime="20221221 15:53:24.741"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${task_detail}</arg>
+<arg>${task_attribute[0]}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20221221 15:53:24.741" endtime="20221221 15:53:24.741"/>
+</kw>
+<status status="PASS" starttime="20221221 15:53:24.723" endtime="20221221 15:53:24.741"/>
+</kw>
+<kw name="Check Task Details">
+<arg>${Obtain_task_details}</arg>
+<arg>${processName}</arg>
+<arg>$.steps[0].processName</arg>
+<kw name="Convert To String" library="BuiltIn">
+<var>${string}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20221221 15:53:24.741" level="INFO">${string} = {
+  "id" : "63a38054051b4e1a81cec5af",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ {
+    "type" : "EXE",
+    "hostname" : "sm5-dac1",
+    "processName" : "osii_file_adaptor",
+    "args" : "-...</msg>
+<status status="PASS" starttime="20221221 15:53:24.741" endtime="20221221 15:53:24.741"/>
+</kw>
+<kw name="Convert String To Json" library="JSONLibrary">
+<var>${json_body}</var>
+<arg>${string}</arg>
+<doc>Convert String to JSON object</doc>
+<msg timestamp="20221221 15:53:24.741" level="INFO">${json_body} = {'id': '63a38054051b4e1a81cec5af', 'saveID': 1, 'name': 'Auto-Task', 'steps': [{'type': 'EXE', 'hostname': 'sm5-dac1', 'processName': 'osii_file_adaptor', 'args': '-i 33 --domain ASSASSIN', 'envArgs':...</msg>
+<status status="PASS" starttime="20221221 15:53:24.741" endtime="20221221 15:53:24.741"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${task_attribute}</var>
+<arg>${json_body}</arg>
+<arg>${json_path}</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20221221 15:53:24.756" level="INFO">${task_attribute} = ['osii_file_adaptor']</msg>
+<status status="PASS" starttime="20221221 15:53:24.741" endtime="20221221 15:53:24.756"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${task_detail}</arg>
+<arg>${task_attribute[0]}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20221221 15:53:24.756" endtime="20221221 15:53:24.756"/>
+</kw>
+<status status="PASS" starttime="20221221 15:53:24.741" endtime="20221221 15:53:24.756"/>
+</kw>
+<kw name="Check Task Details">
+<arg>${Obtain_task_details}</arg>
+<arg>${args}</arg>
+<arg>$.steps[0].args</arg>
+<kw name="Convert To String" library="BuiltIn">
+<var>${string}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20221221 15:53:24.756" level="INFO">${string} = {
+  "id" : "63a38054051b4e1a81cec5af",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ {
+    "type" : "EXE",
+    "hostname" : "sm5-dac1",
+    "processName" : "osii_file_adaptor",
+    "args" : "-...</msg>
+<status status="PASS" starttime="20221221 15:53:24.756" endtime="20221221 15:53:24.756"/>
+</kw>
+<kw name="Convert String To Json" library="JSONLibrary">
+<var>${json_body}</var>
+<arg>${string}</arg>
+<doc>Convert String to JSON object</doc>
+<msg timestamp="20221221 15:53:24.756" level="INFO">${json_body} = {'id': '63a38054051b4e1a81cec5af', 'saveID': 1, 'name': 'Auto-Task', 'steps': [{'type': 'EXE', 'hostname': 'sm5-dac1', 'processName': 'osii_file_adaptor', 'args': '-i 33 --domain ASSASSIN', 'envArgs':...</msg>
+<status status="PASS" starttime="20221221 15:53:24.756" endtime="20221221 15:53:24.756"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${task_attribute}</var>
+<arg>${json_body}</arg>
+<arg>${json_path}</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20221221 15:53:24.772" level="INFO">${task_attribute} = ['-i 33 --domain ASSASSIN']</msg>
+<status status="PASS" starttime="20221221 15:53:24.756" endtime="20221221 15:53:24.772"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${task_detail}</arg>
+<arg>${task_attribute[0]}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20221221 15:53:24.772" endtime="20221221 15:53:24.772"/>
+</kw>
+<status status="PASS" starttime="20221221 15:53:24.756" endtime="20221221 15:53:24.772"/>
+</kw>
+<kw name="Check Task Details">
+<arg>${Obtain_task_details}</arg>
+<arg>${envArgs}</arg>
+<arg>$.steps[0].envArgs</arg>
+<kw name="Convert To String" library="BuiltIn">
+<var>${string}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20221221 15:53:24.772" level="INFO">${string} = {
+  "id" : "63a38054051b4e1a81cec5af",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ {
+    "type" : "EXE",
+    "hostname" : "sm5-dac1",
+    "processName" : "osii_file_adaptor",
+    "args" : "-...</msg>
+<status status="PASS" starttime="20221221 15:53:24.772" endtime="20221221 15:53:24.772"/>
+</kw>
+<kw name="Convert String To Json" library="JSONLibrary">
+<var>${json_body}</var>
+<arg>${string}</arg>
+<doc>Convert String to JSON object</doc>
+<msg timestamp="20221221 15:53:24.772" level="INFO">${json_body} = {'id': '63a38054051b4e1a81cec5af', 'saveID': 1, 'name': 'Auto-Task', 'steps': [{'type': 'EXE', 'hostname': 'sm5-dac1', 'processName': 'osii_file_adaptor', 'args': '-i 33 --domain ASSASSIN', 'envArgs':...</msg>
+<status status="PASS" starttime="20221221 15:53:24.772" endtime="20221221 15:53:24.772"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${task_attribute}</var>
+<arg>${json_body}</arg>
+<arg>${json_path}</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20221221 15:53:24.788" level="INFO">${task_attribute} = ['33']</msg>
+<status status="PASS" starttime="20221221 15:53:24.772" endtime="20221221 15:53:24.788"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${task_detail}</arg>
+<arg>${task_attribute[0]}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20221221 15:53:24.788" endtime="20221221 15:53:24.790"/>
+</kw>
+<status status="PASS" starttime="20221221 15:53:24.772" endtime="20221221 15:53:24.790"/>
+</kw>
+<kw name="Check Task Details">
+<arg>${Obtain_task_details}</arg>
+<arg>${expectedExitCode}</arg>
+<arg>$.steps[0].expectedExitCode[0]</arg>
+<kw name="Convert To String" library="BuiltIn">
+<var>${string}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20221221 15:53:24.790" level="INFO">${string} = {
+  "id" : "63a38054051b4e1a81cec5af",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ {
+    "type" : "EXE",
+    "hostname" : "sm5-dac1",
+    "processName" : "osii_file_adaptor",
+    "args" : "-...</msg>
+<status status="PASS" starttime="20221221 15:53:24.790" endtime="20221221 15:53:24.790"/>
+</kw>
+<kw name="Convert String To Json" library="JSONLibrary">
+<var>${json_body}</var>
+<arg>${string}</arg>
+<doc>Convert String to JSON object</doc>
+<msg timestamp="20221221 15:53:24.790" level="INFO">${json_body} = {'id': '63a38054051b4e1a81cec5af', 'saveID': 1, 'name': 'Auto-Task', 'steps': [{'type': 'EXE', 'hostname': 'sm5-dac1', 'processName': 'osii_file_adaptor', 'args': '-i 33 --domain ASSASSIN', 'envArgs':...</msg>
+<status status="PASS" starttime="20221221 15:53:24.790" endtime="20221221 15:53:24.790"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${task_attribute}</var>
+<arg>${json_body}</arg>
+<arg>${json_path}</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20221221 15:53:24.806" level="INFO">${task_attribute} = [0]</msg>
+<status status="PASS" starttime="20221221 15:53:24.790" endtime="20221221 15:53:24.806"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${task_detail}</arg>
+<arg>${task_attribute[0]}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20221221 15:53:24.806" level="INFO">Argument types are:
+&lt;class 'str'&gt;
+&lt;class 'int'&gt;</msg>
+<status status="PASS" starttime="20221221 15:53:24.806" endtime="20221221 15:53:24.806"/>
+</kw>
+<status status="PASS" starttime="20221221 15:53:24.790" endtime="20221221 15:53:24.806"/>
+</kw>
+<kw name="Check Task Details">
+<arg>${Obtain_task_details}</arg>
+<arg>${timeout}</arg>
+<arg>$.steps[0].timeout</arg>
+<kw name="Convert To String" library="BuiltIn">
+<var>${string}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20221221 15:53:24.806" level="INFO">${string} = {
+  "id" : "63a38054051b4e1a81cec5af",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ {
+    "type" : "EXE",
+    "hostname" : "sm5-dac1",
+    "processName" : "osii_file_adaptor",
+    "args" : "-...</msg>
+<status status="PASS" starttime="20221221 15:53:24.806" endtime="20221221 15:53:24.806"/>
+</kw>
+<kw name="Convert String To Json" library="JSONLibrary">
+<var>${json_body}</var>
+<arg>${string}</arg>
+<doc>Convert String to JSON object</doc>
+<msg timestamp="20221221 15:53:24.806" level="INFO">${json_body} = {'id': '63a38054051b4e1a81cec5af', 'saveID': 1, 'name': 'Auto-Task', 'steps': [{'type': 'EXE', 'hostname': 'sm5-dac1', 'processName': 'osii_file_adaptor', 'args': '-i 33 --domain ASSASSIN', 'envArgs':...</msg>
+<status status="PASS" starttime="20221221 15:53:24.806" endtime="20221221 15:53:24.806"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${task_attribute}</var>
+<arg>${json_body}</arg>
+<arg>${json_path}</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20221221 15:53:24.815" level="INFO">${task_attribute} = [5000]</msg>
+<status status="PASS" starttime="20221221 15:53:24.806" endtime="20221221 15:53:24.815"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${task_detail}</arg>
+<arg>${task_attribute[0]}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20221221 15:53:24.823" level="INFO">Argument types are:
+&lt;class 'str'&gt;
+&lt;class 'int'&gt;</msg>
+<status status="PASS" starttime="20221221 15:53:24.815" endtime="20221221 15:53:24.823"/>
+</kw>
+<status status="PASS" starttime="20221221 15:53:24.806" endtime="20221221 15:53:24.823"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${steps}</var>
+<arg>[${EMPTY}]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221221 15:53:24.823" level="INFO">${steps} = []</msg>
+<status status="PASS" starttime="20221221 15:53:24.823" endtime="20221221 15:53:24.823"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${task}</var>
+<arg>{"name": "${name}", "createAuditCopies": "${createAuditCopies}","steps": ${steps}}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221221 15:53:24.823" level="INFO">${task} = {"name": "Auto-Task", "createAuditCopies": "Never","steps": []}</msg>
+<status status="PASS" starttime="20221221 15:53:24.823" endtime="20221221 15:53:24.823"/>
+</kw>
+<kw name="PUT-Update Task with Name">
+<var>${Remove_Step}</var>
+<arg>${name}</arg>
+<arg>${task}</arg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${headers}</var>
+<arg>osiApiToken=${token}</arg>
+<arg>Content-Type=${JSON_format}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20221221 15:53:24.823" level="INFO">${headers} = {'osiApiToken': '60ddc80ae2381a658bf5d87e:e031c694fe4d499bab7730485b83ce2f02e310a5b5cd9acb13850615ec7b2657', 'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20221221 15:53:24.823" endtime="20221221 15:53:24.823"/>
+</kw>
+<kw name="PUT On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>Swagger</arg>
+<arg>url=/api/v1/taskconfig/${task_name}</arg>
+<arg>data=${PUT_body}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=Anything</arg>
+<arg>verify=${False}</arg>
+<doc>Sends a PUT request on a previously created HTTP Session.</doc>
+<msg timestamp="20221221 15:53:24.964" level="INFO">PUT Request : url=https://sm5-dac1:8443/eitk/api/v1/taskconfig/Auto-Task 
+ path_url=/eitk/api/v1/taskconfig/Auto-Task 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'osiApiToken': '60ddc80ae2381a658bf5d87e:e031c694fe4d499bab7730485b83ce2f02e310a5b5cd9acb13850615ec7b2657', 'Content-Type': 'application/json', 'Content-Length': '63'} 
+ body={"name": "Auto-Task", "createAuditCopies": "Never","steps": []} 
+ </msg>
+<msg timestamp="20221221 15:53:24.964" level="INFO">PUT Response : url=https://sm5-dac1:8443/eitk/api/v1/taskconfig/Auto-Task 
+ status=200, reason=OK 
+ headers={'Server': 'nginx', 'Date': 'Wed, 21 Dec 2022 21:53:24 GMT', 'Content-Type': 'application/json', 'Content-Length': '129', 'Connection': 'keep-alive', 'X-Frame-Options': 'SAMEORIGIN', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '1; mode=block', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Pragma': 'no-cache', 'Cache-Control': 'no-cache, must-revalidate, private, no-store'} 
+ body={
+  "id" : "63a38054051b4e1a81cec5af",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ ],
+  "createAuditCopies" : "Never"
+} 
+ </msg>
+<msg timestamp="20221221 15:53:24.964" level="INFO">C:\Users\acruz\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host 'sm5-dac1'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20221221 15:53:24.964" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221221 15:53:24.823" endtime="20221221 15:53:24.964"/>
+</kw>
+<kw name="Return From Keyword" library="BuiltIn">
+<arg>${response}</arg>
+<doc>Returns from the enclosing user keyword.</doc>
+<msg timestamp="20221221 15:53:24.964" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20221221 15:53:24.964" endtime="20221221 15:53:24.964"/>
+</kw>
+<msg timestamp="20221221 15:53:24.964" level="INFO">${Remove_Step} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221221 15:53:24.823" endtime="20221221 15:53:24.964"/>
+</kw>
+<kw name="Verify Successful Response">
+<arg>${Remove_Step}</arg>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>200</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" starttime="20221221 15:53:24.964" endtime="20221221 15:53:24.964"/>
+</kw>
+<status status="PASS" starttime="20221221 15:53:24.964" endtime="20221221 15:53:24.964"/>
+</kw>
+<kw name="GET-Tasks With Name">
+<var>${Obtain_task_details}</var>
+<arg>${name}</arg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${headers}</var>
+<arg>osiApiToken=${token}</arg>
+<arg>Content-Type=${JSON_format}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20221221 15:53:24.964" level="INFO">${headers} = {'osiApiToken': '60ddc80ae2381a658bf5d87e:e031c694fe4d499bab7730485b83ce2f02e310a5b5cd9acb13850615ec7b2657', 'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20221221 15:53:24.964" endtime="20221221 15:53:24.964"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>Swagger</arg>
+<arg>url=/api/v1/taskconfig/${task_name}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=Anything</arg>
+<arg>verify=${False}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20221221 15:53:25.173" level="INFO">GET Request : url=https://sm5-dac1:8443/eitk/api/v1/taskconfig/Auto-Task 
+ path_url=/eitk/api/v1/taskconfig/Auto-Task 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'osiApiToken': '60ddc80ae2381a658bf5d87e:e031c694fe4d499bab7730485b83ce2f02e310a5b5cd9acb13850615ec7b2657', 'Content-Type': 'application/json'} 
+ body=None 
+ </msg>
+<msg timestamp="20221221 15:53:25.173" level="INFO">GET Response : url=https://sm5-dac1:8443/eitk/api/v1/taskconfig/Auto-Task 
+ status=200, reason=OK 
+ headers={'Server': 'nginx', 'Date': 'Wed, 21 Dec 2022 21:53:25 GMT', 'Content-Type': 'application/json', 'Content-Length': '129', 'Connection': 'keep-alive', 'X-Frame-Options': 'SAMEORIGIN', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '1; mode=block', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Pragma': 'no-cache', 'Cache-Control': 'no-cache, must-revalidate, private, no-store'} 
+ body={
+  "id" : "63a38054051b4e1a81cec5af",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ ],
+  "createAuditCopies" : "Never"
+} 
+ </msg>
+<msg timestamp="20221221 15:53:25.173" level="INFO">C:\Users\acruz\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host 'sm5-dac1'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20221221 15:53:25.173" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221221 15:53:24.964" endtime="20221221 15:53:25.173"/>
+</kw>
+<kw name="Return From Keyword" library="BuiltIn">
+<arg>${response}</arg>
+<doc>Returns from the enclosing user keyword.</doc>
+<msg timestamp="20221221 15:53:25.173" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20221221 15:53:25.173" endtime="20221221 15:53:25.173"/>
+</kw>
+<msg timestamp="20221221 15:53:25.173" level="INFO">${Obtain_task_details} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221221 15:53:24.964" endtime="20221221 15:53:25.173"/>
+</kw>
+<kw name="Verify Successful Response">
+<arg>${Obtain_task_details}</arg>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>200</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" starttime="20221221 15:53:25.173" endtime="20221221 15:53:25.173"/>
+</kw>
+<status status="PASS" starttime="20221221 15:53:25.173" endtime="20221221 15:53:25.173"/>
+</kw>
+<kw name="Check Task Details">
+<arg>${Obtain_task_details}</arg>
+<arg>${name}</arg>
+<arg>$.name</arg>
+<kw name="Convert To String" library="BuiltIn">
+<var>${string}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20221221 15:53:25.173" level="INFO">${string} = {
+  "id" : "63a38054051b4e1a81cec5af",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ ],
+  "createAuditCopies" : "Never"
+}</msg>
+<status status="PASS" starttime="20221221 15:53:25.173" endtime="20221221 15:53:25.173"/>
+</kw>
+<kw name="Convert String To Json" library="JSONLibrary">
+<var>${json_body}</var>
+<arg>${string}</arg>
+<doc>Convert String to JSON object</doc>
+<msg timestamp="20221221 15:53:25.173" level="INFO">${json_body} = {'id': '63a38054051b4e1a81cec5af', 'saveID': 1, 'name': 'Auto-Task', 'steps': [], 'createAuditCopies': 'Never'}</msg>
+<status status="PASS" starttime="20221221 15:53:25.173" endtime="20221221 15:53:25.173"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${task_attribute}</var>
+<arg>${json_body}</arg>
+<arg>${json_path}</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20221221 15:53:25.189" level="INFO">${task_attribute} = ['Auto-Task']</msg>
+<status status="PASS" starttime="20221221 15:53:25.173" endtime="20221221 15:53:25.189"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${task_detail}</arg>
+<arg>${task_attribute[0]}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20221221 15:53:25.189" endtime="20221221 15:53:25.189"/>
+</kw>
+<status status="PASS" starttime="20221221 15:53:25.173" endtime="20221221 15:53:25.189"/>
+</kw>
+<kw name="Check Task Details">
+<arg>${Obtain_task_details}</arg>
+<arg>${createAuditCopies}</arg>
+<arg>$.createAuditCopies</arg>
+<kw name="Convert To String" library="BuiltIn">
+<var>${string}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20221221 15:53:25.189" level="INFO">${string} = {
+  "id" : "63a38054051b4e1a81cec5af",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ ],
+  "createAuditCopies" : "Never"
+}</msg>
+<status status="PASS" starttime="20221221 15:53:25.189" endtime="20221221 15:53:25.189"/>
+</kw>
+<kw name="Convert String To Json" library="JSONLibrary">
+<var>${json_body}</var>
+<arg>${string}</arg>
+<doc>Convert String to JSON object</doc>
+<msg timestamp="20221221 15:53:25.189" level="INFO">${json_body} = {'id': '63a38054051b4e1a81cec5af', 'saveID': 1, 'name': 'Auto-Task', 'steps': [], 'createAuditCopies': 'Never'}</msg>
+<status status="PASS" starttime="20221221 15:53:25.189" endtime="20221221 15:53:25.189"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${task_attribute}</var>
+<arg>${json_body}</arg>
+<arg>${json_path}</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20221221 15:53:25.206" level="INFO">${task_attribute} = ['Never']</msg>
+<status status="PASS" starttime="20221221 15:53:25.189" endtime="20221221 15:53:25.206"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${task_detail}</arg>
+<arg>${task_attribute[0]}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20221221 15:53:25.206" endtime="20221221 15:53:25.206"/>
+</kw>
+<status status="PASS" starttime="20221221 15:53:25.189" endtime="20221221 15:53:25.206"/>
+</kw>
+<kw name="Check Task Details">
+<arg>${Obtain_task_details}</arg>
+<arg>${steps}</arg>
+<arg>$.steps</arg>
+<kw name="Convert To String" library="BuiltIn">
+<var>${string}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20221221 15:53:25.206" level="INFO">${string} = {
+  "id" : "63a38054051b4e1a81cec5af",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ ],
+  "createAuditCopies" : "Never"
+}</msg>
+<status status="PASS" starttime="20221221 15:53:25.206" endtime="20221221 15:53:25.206"/>
+</kw>
+<kw name="Convert String To Json" library="JSONLibrary">
+<var>${json_body}</var>
+<arg>${string}</arg>
+<doc>Convert String to JSON object</doc>
+<msg timestamp="20221221 15:53:25.206" level="INFO">${json_body} = {'id': '63a38054051b4e1a81cec5af', 'saveID': 1, 'name': 'Auto-Task', 'steps': [], 'createAuditCopies': 'Never'}</msg>
+<status status="PASS" starttime="20221221 15:53:25.206" endtime="20221221 15:53:25.206"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${task_attribute}</var>
+<arg>${json_body}</arg>
+<arg>${json_path}</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20221221 15:53:25.223" level="INFO">${task_attribute} = [[]]</msg>
+<status status="PASS" starttime="20221221 15:53:25.206" endtime="20221221 15:53:25.223"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${task_detail}</arg>
+<arg>${task_attribute[0]}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20221221 15:53:25.223" level="INFO">Argument types are:
+&lt;class 'str'&gt;
+&lt;class 'list'&gt;</msg>
+<status status="PASS" starttime="20221221 15:53:25.223" endtime="20221221 15:53:25.223"/>
+</kw>
+<status status="PASS" starttime="20221221 15:53:25.206" endtime="20221221 15:53:25.223"/>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<arg>${results}</arg>
+<arg>1</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<msg timestamp="20221221 15:53:25.223" level="INFO">${results} = 1</msg>
+<status status="PASS" starttime="20221221 15:53:25.223" endtime="20221221 15:53:25.223"/>
+</kw>
+<kw name="Delete All Sessions" library="RequestsLibrary" type="TEARDOWN">
+<doc>Removes all the session objects</doc>
+<msg timestamp="20221221 15:53:25.223" level="INFO">Deleting All Sessions</msg>
+<status status="PASS" starttime="20221221 15:53:25.223" endtime="20221221 15:53:25.223"/>
+</kw>
+<status status="PASS" starttime="20221221 15:53:23.449" endtime="20221221 15:53:25.223"/>
+</test>
+<test id="s1-t2" name="Jama Report" line="92">
+<kw name="Create Session" library="RequestsLibrary" type="SETUP">
+<arg>Swagger</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20221221 15:53:25.223" level="INFO">Creating Session using : alias=Swagger, url=https://sm5-dac1:8443/eitk, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20221221 15:53:25.223" endtime="20221221 15:53:25.223"/>
+</kw>
+<kw name="Run" library="OperatingSystem">
+<var>${jama}</var>
+<arg>pip install py-jama-rest-client</arg>
+<doc>Runs the given command in the system and returns the output.</doc>
+<msg timestamp="20221221 15:53:25.230" level="INFO">Running command 'pip install py-jama-rest-client 2&gt;&amp;1'.</msg>
+<msg timestamp="20221221 15:53:26.550" level="INFO">${jama} = Requirement already satisfied: py-jama-rest-client in c:\users\acruz\appdata\local\programs\python\python310\lib\site-packages (1.16.0)
+Requirement already satisfied: requests in c:\users\acruz\appdat...</msg>
+<status status="PASS" starttime="20221221 15:53:25.223" endtime="20221221 15:53:26.550"/>
+</kw>
+<kw name="Run" library="OperatingSystem">
+<var>${jama_id}</var>
+<arg>python TestCaseResults.py "Automated - Basic Task Operations"</arg>
+<doc>Runs the given command in the system and returns the output.</doc>
+<msg timestamp="20221221 15:53:26.555" level="INFO">Running command 'python TestCaseResults.py "Automated - Basic Task Operations" 2&gt;&amp;1'.</msg>
+<msg timestamp="20221221 15:53:26.560" level="INFO">${jama_id} = 'python' is not recognized as an internal or external command,
+operable program or batch file.</msg>
+<status status="PASS" starttime="20221221 15:53:26.550" endtime="20221221 15:53:26.560"/>
+</kw>
+<if>
+<branch type="IF" condition="${results} == 1">
+<kw name="Jama Passed Test">
+<arg>run_id=${jama_id}</arg>
+<kw name="Set Variable" library="BuiltIn">
+<var>${curl}</var>
+<arg>curl -u auto_sysman:OSISysman -X PUT "https://osi.jamacloud.com/rest/v1/testruns/${run_id}" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \\"fields\\": { \\"testRunStatus\\": \\"PASSED\\", \\"automated$37\\": false }}"</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221221 15:53:26.560" level="INFO">${curl} = curl -u auto_sysman:OSISysman -X PUT "https://osi.jamacloud.com/rest/v1/testruns/'python' is not recognized as an internal or external command,
+operable program or batch file." -H "accept: application...</msg>
+<status status="PASS" starttime="20221221 15:53:26.560" endtime="20221221 15:53:26.560"/>
+</kw>
+<kw name="Run" library="OperatingSystem">
+<var>${jama_id}</var>
+<arg>${curl}</arg>
+<doc>Runs the given command in the system and returns the output.</doc>
+<msg timestamp="20221221 15:53:26.560" level="INFO">Running command 'curl -u auto_sysman:OSISysman -X PUT "https://osi.jamacloud.com/rest/v1/testruns/'python' is not recognized as an internal or external command,
+operable program or batch file." -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"fields\": { \"testRunStatus\": \"PASSED\", \"automated$37\": false }}" 2&gt;&amp;1'.</msg>
+<msg timestamp="20221221 15:53:26.580" level="INFO">${jama_id} = </msg>
+<status status="PASS" starttime="20221221 15:53:26.560" endtime="20221221 15:53:26.580"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${jama_id}</arg>
+<arg>"OK"</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<msg timestamp="20221221 15:53:26.580" level="FAIL">'' does not contain '"OK"'</msg>
+<status status="FAIL" starttime="20221221 15:53:26.580" endtime="20221221 15:53:26.580"/>
+</kw>
+<status status="FAIL" starttime="20221221 15:53:26.560" endtime="20221221 15:53:26.580"/>
+</kw>
+<status status="FAIL" starttime="20221221 15:53:26.560" endtime="20221221 15:53:26.580"/>
+</branch>
+<branch type="ELSE">
+<kw name="Jama Failed Test">
+<arg>run_id=${jama_id}</arg>
+<status status="NOT RUN" starttime="20221221 15:53:26.580" endtime="20221221 15:53:26.580"/>
+</kw>
+<status status="NOT RUN" starttime="20221221 15:53:26.580" endtime="20221221 15:53:26.580"/>
+</branch>
+<status status="FAIL" starttime="20221221 15:53:26.560" endtime="20221221 15:53:26.580"/>
+</if>
+<kw name="Delete All Sessions" library="RequestsLibrary" type="TEARDOWN">
+<doc>Removes all the session objects</doc>
+<msg timestamp="20221221 15:53:26.580" level="INFO">Deleting All Sessions</msg>
+<status status="PASS" starttime="20221221 15:53:26.580" endtime="20221221 15:53:26.580"/>
+</kw>
+<status status="FAIL" starttime="20221221 15:53:25.223" endtime="20221221 15:53:26.580">'' does not contain '"OK"'</status>
+</test>
+<status status="FAIL" starttime="20221221 15:53:23.243" endtime="20221221 15:53:26.580"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="1" skip="0" id="s1" name="Basic Task Operations">Basic Task Operations</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
