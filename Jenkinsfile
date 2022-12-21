@@ -1,5 +1,5 @@
 pipeline {
-    agent 172.17.81.2
+    agent any
     parameters {
         booleanParam(name: 'Basic_Task_Operations', defaultValue: true, description: 'Create task, edit task, add step and remove a step via enpoints')
     }
