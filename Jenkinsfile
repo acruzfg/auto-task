@@ -1,5 +1,5 @@
 pipeline {
-    agent {label 'sm5-dac1'}
+    agent {label '172.17.81.1'}
     parameters {
         booleanParam(name: 'Basic_Task_Operations', defaultValue: true, description: 'Create task, edit task, add step and remove a step via enpoints')
     }
