@@ -146,10 +146,8 @@ Make Sure Task Does Not Exist    [Arguments]    ${task_name}
     ${response}=    GET-Tasks With Name Filter    ${task_name}
     ${body}=    Convert To String    ${response.content}
     ${status}=    Evaluate    '${task_name}' in '''${body}'''
-    IF    ${status}
-        ${Delete_response}=    DELETE-Task with Name    ${task_name}
-        Verify Successful Response    ${DELETE_response}
-    END
+    ${Delete_response}=    Run Keyword If    ${status} == ${True}    DELETE-Task with Name    ${task_name}
+
 
 Check Task Details    [Arguments]    ${response}    ${task_detail}    ${json_path}    ${list}=False
     ${string}=    Convert To String    ${response.content}
