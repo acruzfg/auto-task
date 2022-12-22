@@ -13,6 +13,7 @@ pipeline {
         }
            steps {
                 script {
+                    bat 'run.bat'
                     echo 'Running test: Basic_Task_Operations'
                 }
             }
