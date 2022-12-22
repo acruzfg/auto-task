@@ -13,6 +13,8 @@ pipeline {
         }
            steps {
                 script {
+                    cd C:\Program Files (x86)\Jenkins\workspace\estCase_Jobs_EITK_Auto_Task_main
+                    .\run.bat
                     echo 'Running test: Basic_Task_Operations'
                 }
             }
