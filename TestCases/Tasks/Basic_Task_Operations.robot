@@ -92,12 +92,10 @@ Basic Tasks Operations
 Jama Report
     ${jama}=    Run    pip install py-jama-rest-client    #installs the jama rest client to e used
     ${jama_id}=    Run    python TestCaseResults.py "Automated - Basic Task Operations"    #Gets the ID from the actual test run based in the testname 
-
-    IF    ${results} == 1
-        Jama Passed Test    run_id=${jama_id}    #if result=1, then places the result as "passed"
-    ELSE
-        Jama Failed Test    run_id=${jama_id}    #if result=0, then places the result as "failed"  
-    END
+    
+    Run Keyword If    ${results} == 1    Jama Passed Test    run_id=${jama_id}
+    ...  ELSE
+    ...    Jama Failed Test    run_id=${jama_id}
 
 
 
