@@ -5,7 +5,7 @@ pipeline {
     }
     stages {
 
-        stage ("Basic_Task_Operations") {
+        stage ("Testing") {
                 when {
             expression {
                 params.Basic_Task_Operations == true
@@ -13,8 +13,8 @@ pipeline {
         }
            steps {
                 script {
-                    bat 'run.bat'
                     echo 'Running test: Basic_Task_Operations'
+                    bat 'run.bat'
                 }
             }
         }
