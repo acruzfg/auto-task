@@ -4,7 +4,13 @@ pipeline {
         booleanParam(name: 'Basic_Task_Operations', defaultValue: true, description: 'Create task, edit task, add step and remove a step via enpoints')
     }
     stages {
-
+        stage('Checking libraries and set up'){
+            steps{
+                script{
+                    bat'pip install py-jama-rest-client'
+                }
+            }
+        }
         stage ("Testing") {
                 when {
             expression {
