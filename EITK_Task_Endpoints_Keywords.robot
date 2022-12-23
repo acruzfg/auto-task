@@ -38,7 +38,6 @@ Make Sure Task Does Not Exist    [Arguments]    ${task_name}
     ${status}=    Evaluate    '${task_name}' in '''${body}'''
     ${Delete_response}=    Run Keyword If    ${status} == ${True}    DELETE-Task with Name    ${task_name}
 
-
 Check Task Details    [Arguments]    ${response}    ${task_detail}    ${json_path}    
     ${string}=    Convert To String    ${response.content}
     ${json_body}=    Convert String To Json    ${string}

@@ -94,5 +94,3 @@ Jama Report
     Run Keyword If    ${results} == 1    Jama-Report Passed Test    run_id=${jama_id}
     ...  ELSE
     ...    Jama-Report Failed Test    run_id=${jama_id}
-
-    
