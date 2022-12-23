@@ -9,11 +9,6 @@ pipeline {
             }
         }
         stage ("Testing") {
-                when {
-            expression {
-                params.Basic_Task_Operations == true
-            }
-        }
            steps {
                 script {
                     echo 'Running test: Basic_Task_Operations'
