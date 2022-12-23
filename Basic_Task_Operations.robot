@@ -1,8 +1,4 @@
 *** Settings ***
-Library    RequestsLibrary
-Library    Collections
-Library    OperatingSystem
-Library    JSONLibrary
 Resource   EITK_Task_Endpoints_Keywords.robot
 Resource   Report_to_Jama.robot
 Resource   ${testsystem}_API_Variables.robot   
