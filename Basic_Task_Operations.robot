@@ -23,7 +23,6 @@ ${envArgs}=    33
 ${expectedExitCode}=   0
 ${timeout}=    5000
 
-
 *** Test Cases ***
 Basic Tasks Operations
     Set Suite Variable    ${results}    0    ### Report to Jama
