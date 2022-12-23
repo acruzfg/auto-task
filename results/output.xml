@@ -1,0 +1,1439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0.1 (Python 3.10.7 on win32)" generated="20221223 12:40:44.185" rpa="false" schemaversion="3">
+<suite id="s1" name="Basic Task Operations" source="C:\Users\acruz\OneDrive - Aspen Technology, Inc\Documents\AutoTasks\Basic_Task_Operations.robot">
+<test id="s1-t1" name="Basic Tasks Operations" line="23">
+<kw name="Create Session" library="RequestsLibrary" type="SETUP">
+<arg>Swagger</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20221223 12:40:44.358" level="INFO">Creating Session using : alias=Swagger, url=https://172.17.82.129:8443/, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20221223 12:40:44.358" endtime="20221223 12:40:44.358"/>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<arg>${results}</arg>
+<arg>0</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<msg timestamp="20221223 12:40:44.359" level="INFO">${results} = 0</msg>
+<status status="PASS" starttime="20221223 12:40:44.359" endtime="20221223 12:40:44.359"/>
+</kw>
+<kw name="Make Sure Task Does Not Exist" library="EITK_Task_Endpoints_Keywords">
+<arg>${name}</arg>
+<kw name="GET-Tasks With Name Filter" library="EITK_Task_Endpoints_Keywords">
+<var>${response}</var>
+<arg>${task_name}</arg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${headers}</var>
+<arg>osiApiToken=${token}</arg>
+<arg>Content-Type=${JSON_format}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20221223 12:40:44.359" level="INFO">${headers} = {'osiApiToken': '60ddc80ae2381a658bf5d87e:e031c694fe4d499bab7730485b83ce2f02e310a5b5cd9acb13850615ec7b2657', 'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20221223 12:40:44.359" endtime="20221223 12:40:44.359"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${params}</var>
+<arg>filter=["name","=","${task_name}"]</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20221223 12:40:44.359" level="INFO">${params} = {'filter': '["name","=","Auto-Task"]'}</msg>
+<status status="PASS" starttime="20221223 12:40:44.359" endtime="20221223 12:40:44.359"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>Swagger</arg>
+<arg>url=/eitk/api/v1/taskconfig</arg>
+<arg>headers=${headers}</arg>
+<arg>params=${params}</arg>
+<arg>expected_status=Anything</arg>
+<arg>verify=${False}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20221223 12:40:44.801" level="INFO">GET Request : url=https://172.17.82.129:8443/eitk/api/v1/taskconfig?filter=%5B%22name%22%2C%22%3D%22%2C%22Auto-Task%22%5D 
+ path_url=/eitk/api/v1/taskconfig?filter=%5B%22name%22%2C%22%3D%22%2C%22Auto-Task%22%5D 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'osiApiToken': '60ddc80ae2381a658bf5d87e:e031c694fe4d499bab7730485b83ce2f02e310a5b5cd9acb13850615ec7b2657', 'Content-Type': 'application/json'} 
+ body=None 
+ </msg>
+<msg timestamp="20221223 12:40:44.801" level="INFO">GET Response : url=https://172.17.82.129:8443/eitk/api/v1/taskconfig?filter=%5B%22name%22%2C%22%3D%22%2C%22Auto-Task%22%5D 
+ status=200, reason=OK 
+ headers={'Server': 'nginx', 'Date': 'Fri, 23 Dec 2022 18:40:44 GMT', 'Content-Type': 'application/json', 'Content-Length': '133', 'Connection': 'keep-alive', 'X-Frame-Options': 'SAMEORIGIN', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '1; mode=block', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Pragma': 'no-cache', 'Cache-Control': 'no-cache, must-revalidate, private, no-store'} 
+ body=[ {
+  "id" : "63a5f16e051b4e1a81d068fe",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ ],
+  "createAuditCopies" : "Never"
+} ] 
+ </msg>
+<msg timestamp="20221223 12:40:44.801" level="INFO">C:\Users\acruz\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host '172.17.82.129'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20221223 12:40:44.802" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221223 12:40:44.359" endtime="20221223 12:40:44.802"/>
+</kw>
+<kw name="Return From Keyword" library="BuiltIn">
+<arg>${response}</arg>
+<doc>Returns from the enclosing user keyword.</doc>
+<msg timestamp="20221223 12:40:44.802" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20221223 12:40:44.802" endtime="20221223 12:40:44.803"/>
+</kw>
+<msg timestamp="20221223 12:40:44.803" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221223 12:40:44.359" endtime="20221223 12:40:44.803"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${body}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20221223 12:40:44.804" level="INFO">${body} = [ {
+  "id" : "63a5f16e051b4e1a81d068fe",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ ],
+  "createAuditCopies" : "Never"
+} ]</msg>
+<status status="PASS" starttime="20221223 12:40:44.803" endtime="20221223 12:40:44.804"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${status}</var>
+<arg>'${task_name}' in '''${body}'''</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221223 12:40:44.804" level="INFO">${status} = True</msg>
+<status status="PASS" starttime="20221223 12:40:44.804" endtime="20221223 12:40:44.804"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<var>${Delete_response}</var>
+<arg>${status} == ${True}</arg>
+<arg>DELETE-Task with Name</arg>
+<arg>${task_name}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<kw name="DELETE-Task with Name" library="EITK_Task_Endpoints_Keywords">
+<arg>${task_name}</arg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${headers}</var>
+<arg>osiApiToken=${token}</arg>
+<arg>Content-Type=${JSON_format}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20221223 12:40:44.805" level="INFO">${headers} = {'osiApiToken': '60ddc80ae2381a658bf5d87e:e031c694fe4d499bab7730485b83ce2f02e310a5b5cd9acb13850615ec7b2657', 'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20221223 12:40:44.804" endtime="20221223 12:40:44.805"/>
+</kw>
+<kw name="DELETE On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>Swagger</arg>
+<arg>url=/eitk/api/v1/taskconfig/${task_name}</arg>
+<arg>headers=${headers}</arg>
+<arg>verify=${False}</arg>
+<doc>Sends a DELETE request on a previously created HTTP Session.</doc>
+<msg timestamp="20221223 12:40:44.901" level="INFO">DELETE Request : url=https://172.17.82.129:8443/eitk/api/v1/taskconfig/Auto-Task 
+ path_url=/eitk/api/v1/taskconfig/Auto-Task 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'osiApiToken': '60ddc80ae2381a658bf5d87e:e031c694fe4d499bab7730485b83ce2f02e310a5b5cd9acb13850615ec7b2657', 'Content-Type': 'application/json', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg timestamp="20221223 12:40:44.901" level="INFO">DELETE Response : url=https://172.17.82.129:8443/eitk/api/v1/taskconfig/Auto-Task 
+ status=200, reason=OK 
+ headers={'Server': 'nginx', 'Date': 'Fri, 23 Dec 2022 18:40:44 GMT', 'Content-Type': 'application/json', 'Content-Length': '129', 'Connection': 'keep-alive', 'X-Frame-Options': 'SAMEORIGIN', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '1; mode=block', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Pragma': 'no-cache', 'Cache-Control': 'no-cache, must-revalidate, private, no-store'} 
+ body={
+  "id" : "63a5f16e051b4e1a81d068fe",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ ],
+  "createAuditCopies" : "Never"
+} 
+ </msg>
+<msg timestamp="20221223 12:40:44.901" level="INFO">C:\Users\acruz\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host '172.17.82.129'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20221223 12:40:44.901" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221223 12:40:44.805" endtime="20221223 12:40:44.901"/>
+</kw>
+<kw name="Return From Keyword" library="BuiltIn">
+<arg>${response}</arg>
+<doc>Returns from the enclosing user keyword.</doc>
+<msg timestamp="20221223 12:40:44.901" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20221223 12:40:44.901" endtime="20221223 12:40:44.915"/>
+</kw>
+<status status="PASS" starttime="20221223 12:40:44.804" endtime="20221223 12:40:44.915"/>
+</kw>
+<msg timestamp="20221223 12:40:44.915" level="INFO">${Delete_response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221223 12:40:44.804" endtime="20221223 12:40:44.915"/>
+</kw>
+<status status="PASS" starttime="20221223 12:40:44.359" endtime="20221223 12:40:44.915"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${createAuditCopies}</var>
+<arg>Always</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221223 12:40:44.916" level="INFO">${createAuditCopies} = Always</msg>
+<status status="PASS" starttime="20221223 12:40:44.915" endtime="20221223 12:40:44.916"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${task}</var>
+<arg>{"name": "${name}","createAuditCopies": "${createAuditCopies}"}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221223 12:40:44.917" level="INFO">${task} = {"name": "Auto-Task","createAuditCopies": "Always"}</msg>
+<status status="PASS" starttime="20221223 12:40:44.917" endtime="20221223 12:40:44.917"/>
+</kw>
+<kw name="POST-Create Task with Name" library="EITK_Task_Endpoints_Keywords">
+<var>${Create_task}</var>
+<arg>${task}</arg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${headers}</var>
+<arg>osiApiToken=${token}</arg>
+<arg>Content-Type=${JSON_format}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20221223 12:40:44.918" level="INFO">${headers} = {'osiApiToken': '60ddc80ae2381a658bf5d87e:e031c694fe4d499bab7730485b83ce2f02e310a5b5cd9acb13850615ec7b2657', 'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20221223 12:40:44.918" endtime="20221223 12:40:44.918"/>
+</kw>
+<kw name="POST On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>Swagger</arg>
+<arg>url=/eitk/api/v1/taskconfig</arg>
+<arg>data=${POST_body}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=Anything</arg>
+<arg>verify=${False}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<msg timestamp="20221223 12:40:45.012" level="INFO">POST Request : url=https://172.17.82.129:8443/eitk/api/v1/taskconfig 
+ path_url=/eitk/api/v1/taskconfig 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'osiApiToken': '60ddc80ae2381a658bf5d87e:e031c694fe4d499bab7730485b83ce2f02e310a5b5cd9acb13850615ec7b2657', 'Content-Type': 'application/json', 'Content-Length': '51'} 
+ body={"name": "Auto-Task","createAuditCopies": "Always"} 
+ </msg>
+<msg timestamp="20221223 12:40:45.012" level="INFO">POST Response : url=https://172.17.82.129:8443/eitk/api/v1/taskconfig 
+ status=201, reason=Created 
+ headers={'Server': 'nginx', 'Date': 'Fri, 23 Dec 2022 18:40:44 GMT', 'Content-Type': 'application/json', 'Content-Length': '130', 'Connection': 'keep-alive', 'Location': 'https://172.17.82.129:8443/eitk/api/v1/taskconfig/Auto-Task', 'X-Frame-Options': 'SAMEORIGIN', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '1; mode=block', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Pragma': 'no-cache', 'Cache-Control': 'no-cache, must-revalidate, private, no-store'} 
+ body={
+  "id" : "63a5f62c051b4e1a81d06c27",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ ],
+  "createAuditCopies" : "Always"
+} 
+ </msg>
+<msg timestamp="20221223 12:40:45.012" level="INFO">C:\Users\acruz\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host '172.17.82.129'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20221223 12:40:45.013" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<status status="PASS" starttime="20221223 12:40:44.918" endtime="20221223 12:40:45.013"/>
+</kw>
+<kw name="Return From Keyword" library="BuiltIn">
+<arg>${response}</arg>
+<doc>Returns from the enclosing user keyword.</doc>
+<msg timestamp="20221223 12:40:45.014" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20221223 12:40:45.013" endtime="20221223 12:40:45.014"/>
+</kw>
+<msg timestamp="20221223 12:40:45.014" level="INFO">${Create_task} = &lt;Response [201]&gt;</msg>
+<status status="PASS" starttime="20221223 12:40:44.917" endtime="20221223 12:40:45.014"/>
+</kw>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>201</arg>
+<arg>${Create_task}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" starttime="20221223 12:40:45.015" endtime="20221223 12:40:45.015"/>
+</kw>
+<kw name="GET-Tasks With Name" library="EITK_Task_Endpoints_Keywords">
+<var>${Task_details}</var>
+<arg>${name}</arg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${headers}</var>
+<arg>osiApiToken=${token}</arg>
+<arg>Content-Type=${JSON_format}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20221223 12:40:45.016" level="INFO">${headers} = {'osiApiToken': '60ddc80ae2381a658bf5d87e:e031c694fe4d499bab7730485b83ce2f02e310a5b5cd9acb13850615ec7b2657', 'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20221223 12:40:45.016" endtime="20221223 12:40:45.016"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>Swagger</arg>
+<arg>url=/eitk/api/v1/taskconfig/${task_name}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=Anything</arg>
+<arg>verify=${False}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20221223 12:40:45.118" level="INFO">GET Request : url=https://172.17.82.129:8443/eitk/api/v1/taskconfig/Auto-Task 
+ path_url=/eitk/api/v1/taskconfig/Auto-Task 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'osiApiToken': '60ddc80ae2381a658bf5d87e:e031c694fe4d499bab7730485b83ce2f02e310a5b5cd9acb13850615ec7b2657', 'Content-Type': 'application/json'} 
+ body=None 
+ </msg>
+<msg timestamp="20221223 12:40:45.118" level="INFO">GET Response : url=https://172.17.82.129:8443/eitk/api/v1/taskconfig/Auto-Task 
+ status=200, reason=OK 
+ headers={'Server': 'nginx', 'Date': 'Fri, 23 Dec 2022 18:40:45 GMT', 'Content-Type': 'application/json', 'Content-Length': '130', 'Connection': 'keep-alive', 'X-Frame-Options': 'SAMEORIGIN', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '1; mode=block', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Pragma': 'no-cache', 'Cache-Control': 'no-cache, must-revalidate, private, no-store'} 
+ body={
+  "id" : "63a5f62c051b4e1a81d06c27",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ ],
+  "createAuditCopies" : "Always"
+} 
+ </msg>
+<msg timestamp="20221223 12:40:45.118" level="INFO">C:\Users\acruz\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host '172.17.82.129'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20221223 12:40:45.118" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221223 12:40:45.016" endtime="20221223 12:40:45.118"/>
+</kw>
+<kw name="Return From Keyword" library="BuiltIn">
+<arg>${response}</arg>
+<doc>Returns from the enclosing user keyword.</doc>
+<msg timestamp="20221223 12:40:45.118" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20221223 12:40:45.118" endtime="20221223 12:40:45.118"/>
+</kw>
+<msg timestamp="20221223 12:40:45.131" level="INFO">${Task_details} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221223 12:40:45.015" endtime="20221223 12:40:45.131"/>
+</kw>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>200</arg>
+<arg>${Task_details}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" starttime="20221223 12:40:45.131" endtime="20221223 12:40:45.131"/>
+</kw>
+<kw name="Check Task Details" library="EITK_Task_Endpoints_Keywords">
+<arg>${Task_details}</arg>
+<arg>${name}</arg>
+<arg>$.name</arg>
+<kw name="Convert To String" library="BuiltIn">
+<var>${string}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20221223 12:40:45.132" level="INFO">${string} = {
+  "id" : "63a5f62c051b4e1a81d06c27",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ ],
+  "createAuditCopies" : "Always"
+}</msg>
+<status status="PASS" starttime="20221223 12:40:45.132" endtime="20221223 12:40:45.132"/>
+</kw>
+<kw name="Convert String To Json" library="JSONLibrary">
+<var>${json_body}</var>
+<arg>${string}</arg>
+<doc>Convert String to JSON object</doc>
+<msg timestamp="20221223 12:40:45.132" level="INFO">${json_body} = {'id': '63a5f62c051b4e1a81d06c27', 'saveID': 1, 'name': 'Auto-Task', 'steps': [], 'createAuditCopies': 'Always'}</msg>
+<status status="PASS" starttime="20221223 12:40:45.132" endtime="20221223 12:40:45.133"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${task_attribute}</var>
+<arg>${json_body}</arg>
+<arg>${json_path}</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20221223 12:40:45.149" level="INFO">${task_attribute} = ['Auto-Task']</msg>
+<status status="PASS" starttime="20221223 12:40:45.133" endtime="20221223 12:40:45.149"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${task_detail}</arg>
+<arg>${task_attribute[0]}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20221223 12:40:45.149" endtime="20221223 12:40:45.150"/>
+</kw>
+<status status="PASS" starttime="20221223 12:40:45.132" endtime="20221223 12:40:45.150"/>
+</kw>
+<kw name="Check Task Details" library="EITK_Task_Endpoints_Keywords">
+<arg>${Task_details}</arg>
+<arg>${createAuditCopies}</arg>
+<arg>$.createAuditCopies</arg>
+<kw name="Convert To String" library="BuiltIn">
+<var>${string}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20221223 12:40:45.151" level="INFO">${string} = {
+  "id" : "63a5f62c051b4e1a81d06c27",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ ],
+  "createAuditCopies" : "Always"
+}</msg>
+<status status="PASS" starttime="20221223 12:40:45.151" endtime="20221223 12:40:45.151"/>
+</kw>
+<kw name="Convert String To Json" library="JSONLibrary">
+<var>${json_body}</var>
+<arg>${string}</arg>
+<doc>Convert String to JSON object</doc>
+<msg timestamp="20221223 12:40:45.151" level="INFO">${json_body} = {'id': '63a5f62c051b4e1a81d06c27', 'saveID': 1, 'name': 'Auto-Task', 'steps': [], 'createAuditCopies': 'Always'}</msg>
+<status status="PASS" starttime="20221223 12:40:45.151" endtime="20221223 12:40:45.151"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${task_attribute}</var>
+<arg>${json_body}</arg>
+<arg>${json_path}</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20221223 12:40:45.164" level="INFO">${task_attribute} = ['Always']</msg>
+<status status="PASS" starttime="20221223 12:40:45.152" endtime="20221223 12:40:45.164"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${task_detail}</arg>
+<arg>${task_attribute[0]}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20221223 12:40:45.164" endtime="20221223 12:40:45.164"/>
+</kw>
+<status status="PASS" starttime="20221223 12:40:45.150" endtime="20221223 12:40:45.164"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${createAuditCopies}</var>
+<arg>OnError</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221223 12:40:45.165" level="INFO">${createAuditCopies} = OnError</msg>
+<status status="PASS" starttime="20221223 12:40:45.165" endtime="20221223 12:40:45.165"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${task}</var>
+<arg>{"name": "${name}","createAuditCopies": "${createAuditCopies}"}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221223 12:40:45.166" level="INFO">${task} = {"name": "Auto-Task","createAuditCopies": "OnError"}</msg>
+<status status="PASS" starttime="20221223 12:40:45.166" endtime="20221223 12:40:45.166"/>
+</kw>
+<kw name="PUT-Update Task with Name" library="EITK_Task_Endpoints_Keywords">
+<var>${Edit_task}</var>
+<arg>${name}</arg>
+<arg>${task}</arg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${headers}</var>
+<arg>osiApiToken=${token}</arg>
+<arg>Content-Type=${JSON_format}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20221223 12:40:45.167" level="INFO">${headers} = {'osiApiToken': '60ddc80ae2381a658bf5d87e:e031c694fe4d499bab7730485b83ce2f02e310a5b5cd9acb13850615ec7b2657', 'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20221223 12:40:45.167" endtime="20221223 12:40:45.167"/>
+</kw>
+<kw name="PUT On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>Swagger</arg>
+<arg>url=/eitk/api/v1/taskconfig/${task_name}</arg>
+<arg>data=${PUT_body}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=Anything</arg>
+<arg>verify=${False}</arg>
+<doc>Sends a PUT request on a previously created HTTP Session.</doc>
+<msg timestamp="20221223 12:40:45.250" level="INFO">PUT Request : url=https://172.17.82.129:8443/eitk/api/v1/taskconfig/Auto-Task 
+ path_url=/eitk/api/v1/taskconfig/Auto-Task 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'osiApiToken': '60ddc80ae2381a658bf5d87e:e031c694fe4d499bab7730485b83ce2f02e310a5b5cd9acb13850615ec7b2657', 'Content-Type': 'application/json', 'Content-Length': '52'} 
+ body={"name": "Auto-Task","createAuditCopies": "OnError"} 
+ </msg>
+<msg timestamp="20221223 12:40:45.250" level="INFO">PUT Response : url=https://172.17.82.129:8443/eitk/api/v1/taskconfig/Auto-Task 
+ status=200, reason=OK 
+ headers={'Server': 'nginx', 'Date': 'Fri, 23 Dec 2022 18:40:45 GMT', 'Content-Type': 'application/json', 'Content-Length': '131', 'Connection': 'keep-alive', 'X-Frame-Options': 'SAMEORIGIN', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '1; mode=block', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Pragma': 'no-cache', 'Cache-Control': 'no-cache, must-revalidate, private, no-store'} 
+ body={
+  "id" : "63a5f62c051b4e1a81d06c27",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ ],
+  "createAuditCopies" : "OnError"
+} 
+ </msg>
+<msg timestamp="20221223 12:40:45.250" level="INFO">C:\Users\acruz\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host '172.17.82.129'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20221223 12:40:45.251" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221223 12:40:45.167" endtime="20221223 12:40:45.251"/>
+</kw>
+<kw name="Return From Keyword" library="BuiltIn">
+<arg>${response}</arg>
+<doc>Returns from the enclosing user keyword.</doc>
+<msg timestamp="20221223 12:40:45.252" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20221223 12:40:45.251" endtime="20221223 12:40:45.252"/>
+</kw>
+<msg timestamp="20221223 12:40:45.252" level="INFO">${Edit_task} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221223 12:40:45.167" endtime="20221223 12:40:45.252"/>
+</kw>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>200</arg>
+<arg>${Edit_task}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" starttime="20221223 12:40:45.252" endtime="20221223 12:40:45.253"/>
+</kw>
+<kw name="GET-Tasks With Name" library="EITK_Task_Endpoints_Keywords">
+<var>${Task_details}</var>
+<arg>${name}</arg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${headers}</var>
+<arg>osiApiToken=${token}</arg>
+<arg>Content-Type=${JSON_format}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20221223 12:40:45.253" level="INFO">${headers} = {'osiApiToken': '60ddc80ae2381a658bf5d87e:e031c694fe4d499bab7730485b83ce2f02e310a5b5cd9acb13850615ec7b2657', 'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20221223 12:40:45.253" endtime="20221223 12:40:45.253"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>Swagger</arg>
+<arg>url=/eitk/api/v1/taskconfig/${task_name}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=Anything</arg>
+<arg>verify=${False}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20221223 12:40:45.327" level="INFO">GET Request : url=https://172.17.82.129:8443/eitk/api/v1/taskconfig/Auto-Task 
+ path_url=/eitk/api/v1/taskconfig/Auto-Task 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'osiApiToken': '60ddc80ae2381a658bf5d87e:e031c694fe4d499bab7730485b83ce2f02e310a5b5cd9acb13850615ec7b2657', 'Content-Type': 'application/json'} 
+ body=None 
+ </msg>
+<msg timestamp="20221223 12:40:45.327" level="INFO">GET Response : url=https://172.17.82.129:8443/eitk/api/v1/taskconfig/Auto-Task 
+ status=200, reason=OK 
+ headers={'Server': 'nginx', 'Date': 'Fri, 23 Dec 2022 18:40:45 GMT', 'Content-Type': 'application/json', 'Content-Length': '131', 'Connection': 'keep-alive', 'X-Frame-Options': 'SAMEORIGIN', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '1; mode=block', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Pragma': 'no-cache', 'Cache-Control': 'no-cache, must-revalidate, private, no-store'} 
+ body={
+  "id" : "63a5f62c051b4e1a81d06c27",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ ],
+  "createAuditCopies" : "OnError"
+} 
+ </msg>
+<msg timestamp="20221223 12:40:45.327" level="INFO">C:\Users\acruz\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host '172.17.82.129'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20221223 12:40:45.328" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221223 12:40:45.253" endtime="20221223 12:40:45.328"/>
+</kw>
+<kw name="Return From Keyword" library="BuiltIn">
+<arg>${response}</arg>
+<doc>Returns from the enclosing user keyword.</doc>
+<msg timestamp="20221223 12:40:45.328" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20221223 12:40:45.328" endtime="20221223 12:40:45.329"/>
+</kw>
+<msg timestamp="20221223 12:40:45.329" level="INFO">${Task_details} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221223 12:40:45.253" endtime="20221223 12:40:45.329"/>
+</kw>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>200</arg>
+<arg>${Task_details}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" starttime="20221223 12:40:45.329" endtime="20221223 12:40:45.330"/>
+</kw>
+<kw name="Check Task Details" library="EITK_Task_Endpoints_Keywords">
+<arg>${Task_details}</arg>
+<arg>${name}</arg>
+<arg>$.name</arg>
+<kw name="Convert To String" library="BuiltIn">
+<var>${string}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20221223 12:40:45.332" level="INFO">${string} = {
+  "id" : "63a5f62c051b4e1a81d06c27",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ ],
+  "createAuditCopies" : "OnError"
+}</msg>
+<status status="PASS" starttime="20221223 12:40:45.331" endtime="20221223 12:40:45.332"/>
+</kw>
+<kw name="Convert String To Json" library="JSONLibrary">
+<var>${json_body}</var>
+<arg>${string}</arg>
+<doc>Convert String to JSON object</doc>
+<msg timestamp="20221223 12:40:45.332" level="INFO">${json_body} = {'id': '63a5f62c051b4e1a81d06c27', 'saveID': 1, 'name': 'Auto-Task', 'steps': [], 'createAuditCopies': 'OnError'}</msg>
+<status status="PASS" starttime="20221223 12:40:45.332" endtime="20221223 12:40:45.332"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${task_attribute}</var>
+<arg>${json_body}</arg>
+<arg>${json_path}</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20221223 12:40:45.345" level="INFO">${task_attribute} = ['Auto-Task']</msg>
+<status status="PASS" starttime="20221223 12:40:45.332" endtime="20221223 12:40:45.345"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${task_detail}</arg>
+<arg>${task_attribute[0]}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20221223 12:40:45.346" endtime="20221223 12:40:45.346"/>
+</kw>
+<status status="PASS" starttime="20221223 12:40:45.330" endtime="20221223 12:40:45.346"/>
+</kw>
+<kw name="Check Task Details" library="EITK_Task_Endpoints_Keywords">
+<arg>${Task_details}</arg>
+<arg>${createAuditCopies}</arg>
+<arg>$.createAuditCopies</arg>
+<kw name="Convert To String" library="BuiltIn">
+<var>${string}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20221223 12:40:45.348" level="INFO">${string} = {
+  "id" : "63a5f62c051b4e1a81d06c27",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ ],
+  "createAuditCopies" : "OnError"
+}</msg>
+<status status="PASS" starttime="20221223 12:40:45.347" endtime="20221223 12:40:45.348"/>
+</kw>
+<kw name="Convert String To Json" library="JSONLibrary">
+<var>${json_body}</var>
+<arg>${string}</arg>
+<doc>Convert String to JSON object</doc>
+<msg timestamp="20221223 12:40:45.348" level="INFO">${json_body} = {'id': '63a5f62c051b4e1a81d06c27', 'saveID': 1, 'name': 'Auto-Task', 'steps': [], 'createAuditCopies': 'OnError'}</msg>
+<status status="PASS" starttime="20221223 12:40:45.348" endtime="20221223 12:40:45.348"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${task_attribute}</var>
+<arg>${json_body}</arg>
+<arg>${json_path}</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20221223 12:40:45.370" level="INFO">${task_attribute} = ['OnError']</msg>
+<status status="PASS" starttime="20221223 12:40:45.348" endtime="20221223 12:40:45.370"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${task_detail}</arg>
+<arg>${task_attribute[0]}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20221223 12:40:45.370" endtime="20221223 12:40:45.371"/>
+</kw>
+<status status="PASS" starttime="20221223 12:40:45.347" endtime="20221223 12:40:45.372"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${createAuditCopies}</var>
+<arg>Never</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221223 12:40:45.372" level="INFO">${createAuditCopies} = Never</msg>
+<status status="PASS" starttime="20221223 12:40:45.372" endtime="20221223 12:40:45.372"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${steps}</var>
+<arg>[{"type": "${type}","hostname": "${hostname}","processName": "${processName}","args": "${args}","envArgs": "${envArgs}","expectedExitCode": [${expectedExitCode}],"timeout": ${timeout} }]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221223 12:40:45.373" level="INFO">${steps} = [{"type": "EXE","hostname": "sm5-dac1","processName": "osii_file_adaptor","args": "-i 33 --domain CC","envArgs": "33","expectedExitCode": [0],"timeout": 5000 }]</msg>
+<status status="PASS" starttime="20221223 12:40:45.373" endtime="20221223 12:40:45.373"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${task}</var>
+<arg>{"name": "${name}", "createAuditCopies": "${createAuditCopies}","steps": ${steps}}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221223 12:40:45.373" level="INFO">${task} = {"name": "Auto-Task", "createAuditCopies": "Never","steps": [{"type": "EXE","hostname": "sm5-dac1","processName": "osii_file_adaptor","args": "-i 33 --domain CC","envArgs": "33","expectedExitCode": [0...</msg>
+<status status="PASS" starttime="20221223 12:40:45.373" endtime="20221223 12:40:45.373"/>
+</kw>
+<kw name="PUT-Update Task with Name" library="EITK_Task_Endpoints_Keywords">
+<var>${Add_Step}</var>
+<arg>${name}</arg>
+<arg>${task}</arg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${headers}</var>
+<arg>osiApiToken=${token}</arg>
+<arg>Content-Type=${JSON_format}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20221223 12:40:45.374" level="INFO">${headers} = {'osiApiToken': '60ddc80ae2381a658bf5d87e:e031c694fe4d499bab7730485b83ce2f02e310a5b5cd9acb13850615ec7b2657', 'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20221223 12:40:45.374" endtime="20221223 12:40:45.374"/>
+</kw>
+<kw name="PUT On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>Swagger</arg>
+<arg>url=/eitk/api/v1/taskconfig/${task_name}</arg>
+<arg>data=${PUT_body}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=Anything</arg>
+<arg>verify=${False}</arg>
+<doc>Sends a PUT request on a previously created HTTP Session.</doc>
+<msg timestamp="20221223 12:40:45.453" level="INFO">PUT Request : url=https://172.17.82.129:8443/eitk/api/v1/taskconfig/Auto-Task 
+ path_url=/eitk/api/v1/taskconfig/Auto-Task 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'osiApiToken': '60ddc80ae2381a658bf5d87e:e031c694fe4d499bab7730485b83ce2f02e310a5b5cd9acb13850615ec7b2657', 'Content-Type': 'application/json', 'Content-Length': '221'} 
+ body={"name": "Auto-Task", "createAuditCopies": "Never","steps": [{"type": "EXE","hostname": "sm5-dac1","processName": "osii_file_adaptor","args": "-i 33 --domain CC","envArgs": "33","expectedExitCode": [0],"timeout": 5000 }]} 
+ </msg>
+<msg timestamp="20221223 12:40:45.453" level="INFO">PUT Response : url=https://172.17.82.129:8443/eitk/api/v1/taskconfig/Auto-Task 
+ status=200, reason=OK 
+ headers={'Server': 'nginx', 'Date': 'Fri, 23 Dec 2022 18:40:45 GMT', 'Content-Type': 'application/json', 'Content-Length': '354', 'Connection': 'keep-alive', 'X-Frame-Options': 'SAMEORIGIN', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '1; mode=block', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Pragma': 'no-cache', 'Cache-Control': 'no-cache, must-revalidate, private, no-store'} 
+ body={
+  "id" : "63a5f62c051b4e1a81d06c27",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ {
+    "type" : "EXE",
+    "hostname" : "sm5-dac1",
+    "processName" : "osii_file_adaptor",
+    "args" : "-i 33 --domain CC",
+    "envArgs" : "33",
+    "expectedExitCode" : [ 0 ],
+    "timeout" : 5000,
+    "type" : "EXE"
+  } ],
+  "createAuditCopies" : "Never"
+} 
+ </msg>
+<msg timestamp="20221223 12:40:45.453" level="INFO">C:\Users\acruz\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host '172.17.82.129'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20221223 12:40:45.455" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221223 12:40:45.374" endtime="20221223 12:40:45.455"/>
+</kw>
+<kw name="Return From Keyword" library="BuiltIn">
+<arg>${response}</arg>
+<doc>Returns from the enclosing user keyword.</doc>
+<msg timestamp="20221223 12:40:45.455" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20221223 12:40:45.455" endtime="20221223 12:40:45.456"/>
+</kw>
+<msg timestamp="20221223 12:40:45.456" level="INFO">${Add_Step} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221223 12:40:45.374" endtime="20221223 12:40:45.456"/>
+</kw>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>200</arg>
+<arg>${Add_Step}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" starttime="20221223 12:40:45.456" endtime="20221223 12:40:45.456"/>
+</kw>
+<kw name="GET-Tasks With Name" library="EITK_Task_Endpoints_Keywords">
+<var>${Task_details}</var>
+<arg>${name}</arg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${headers}</var>
+<arg>osiApiToken=${token}</arg>
+<arg>Content-Type=${JSON_format}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20221223 12:40:45.458" level="INFO">${headers} = {'osiApiToken': '60ddc80ae2381a658bf5d87e:e031c694fe4d499bab7730485b83ce2f02e310a5b5cd9acb13850615ec7b2657', 'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20221223 12:40:45.457" endtime="20221223 12:40:45.458"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>Swagger</arg>
+<arg>url=/eitk/api/v1/taskconfig/${task_name}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=Anything</arg>
+<arg>verify=${False}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20221223 12:40:45.532" level="INFO">GET Request : url=https://172.17.82.129:8443/eitk/api/v1/taskconfig/Auto-Task 
+ path_url=/eitk/api/v1/taskconfig/Auto-Task 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'osiApiToken': '60ddc80ae2381a658bf5d87e:e031c694fe4d499bab7730485b83ce2f02e310a5b5cd9acb13850615ec7b2657', 'Content-Type': 'application/json'} 
+ body=None 
+ </msg>
+<msg timestamp="20221223 12:40:45.533" level="INFO">GET Response : url=https://172.17.82.129:8443/eitk/api/v1/taskconfig/Auto-Task 
+ status=200, reason=OK 
+ headers={'Server': 'nginx', 'Date': 'Fri, 23 Dec 2022 18:40:45 GMT', 'Content-Type': 'application/json', 'Content-Length': '354', 'Connection': 'keep-alive', 'X-Frame-Options': 'SAMEORIGIN', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '1; mode=block', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Pragma': 'no-cache', 'Cache-Control': 'no-cache, must-revalidate, private, no-store'} 
+ body={
+  "id" : "63a5f62c051b4e1a81d06c27",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ {
+    "type" : "EXE",
+    "hostname" : "sm5-dac1",
+    "processName" : "osii_file_adaptor",
+    "args" : "-i 33 --domain CC",
+    "envArgs" : "33",
+    "expectedExitCode" : [ 0 ],
+    "timeout" : 5000,
+    "type" : "EXE"
+  } ],
+  "createAuditCopies" : "Never"
+} 
+ </msg>
+<msg timestamp="20221223 12:40:45.533" level="INFO">C:\Users\acruz\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host '172.17.82.129'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20221223 12:40:45.534" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221223 12:40:45.458" endtime="20221223 12:40:45.534"/>
+</kw>
+<kw name="Return From Keyword" library="BuiltIn">
+<arg>${response}</arg>
+<doc>Returns from the enclosing user keyword.</doc>
+<msg timestamp="20221223 12:40:45.534" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20221223 12:40:45.534" endtime="20221223 12:40:45.534"/>
+</kw>
+<msg timestamp="20221223 12:40:45.534" level="INFO">${Task_details} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221223 12:40:45.457" endtime="20221223 12:40:45.535"/>
+</kw>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>200</arg>
+<arg>${Task_details}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" starttime="20221223 12:40:45.535" endtime="20221223 12:40:45.536"/>
+</kw>
+<kw name="Check Task Details" library="EITK_Task_Endpoints_Keywords">
+<arg>${Task_details}</arg>
+<arg>${name}</arg>
+<arg>$.name</arg>
+<kw name="Convert To String" library="BuiltIn">
+<var>${string}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20221223 12:40:45.537" level="INFO">${string} = {
+  "id" : "63a5f62c051b4e1a81d06c27",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ {
+    "type" : "EXE",
+    "hostname" : "sm5-dac1",
+    "processName" : "osii_file_adaptor",
+    "args" : "-...</msg>
+<status status="PASS" starttime="20221223 12:40:45.537" endtime="20221223 12:40:45.537"/>
+</kw>
+<kw name="Convert String To Json" library="JSONLibrary">
+<var>${json_body}</var>
+<arg>${string}</arg>
+<doc>Convert String to JSON object</doc>
+<msg timestamp="20221223 12:40:45.537" level="INFO">${json_body} = {'id': '63a5f62c051b4e1a81d06c27', 'saveID': 1, 'name': 'Auto-Task', 'steps': [{'type': 'EXE', 'hostname': 'sm5-dac1', 'processName': 'osii_file_adaptor', 'args': '-i 33 --domain CC', 'envArgs': '33',...</msg>
+<status status="PASS" starttime="20221223 12:40:45.537" endtime="20221223 12:40:45.537"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${task_attribute}</var>
+<arg>${json_body}</arg>
+<arg>${json_path}</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20221223 12:40:45.551" level="INFO">${task_attribute} = ['Auto-Task']</msg>
+<status status="PASS" starttime="20221223 12:40:45.538" endtime="20221223 12:40:45.551"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${task_detail}</arg>
+<arg>${task_attribute[0]}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20221223 12:40:45.551" endtime="20221223 12:40:45.551"/>
+</kw>
+<status status="PASS" starttime="20221223 12:40:45.536" endtime="20221223 12:40:45.551"/>
+</kw>
+<kw name="Check Task Details" library="EITK_Task_Endpoints_Keywords">
+<arg>${Task_details}</arg>
+<arg>${createAuditCopies}</arg>
+<arg>$.createAuditCopies</arg>
+<kw name="Convert To String" library="BuiltIn">
+<var>${string}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20221223 12:40:45.553" level="INFO">${string} = {
+  "id" : "63a5f62c051b4e1a81d06c27",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ {
+    "type" : "EXE",
+    "hostname" : "sm5-dac1",
+    "processName" : "osii_file_adaptor",
+    "args" : "-...</msg>
+<status status="PASS" starttime="20221223 12:40:45.553" endtime="20221223 12:40:45.553"/>
+</kw>
+<kw name="Convert String To Json" library="JSONLibrary">
+<var>${json_body}</var>
+<arg>${string}</arg>
+<doc>Convert String to JSON object</doc>
+<msg timestamp="20221223 12:40:45.554" level="INFO">${json_body} = {'id': '63a5f62c051b4e1a81d06c27', 'saveID': 1, 'name': 'Auto-Task', 'steps': [{'type': 'EXE', 'hostname': 'sm5-dac1', 'processName': 'osii_file_adaptor', 'args': '-i 33 --domain CC', 'envArgs': '33',...</msg>
+<status status="PASS" starttime="20221223 12:40:45.553" endtime="20221223 12:40:45.554"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${task_attribute}</var>
+<arg>${json_body}</arg>
+<arg>${json_path}</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20221223 12:40:45.566" level="INFO">${task_attribute} = ['Never']</msg>
+<status status="PASS" starttime="20221223 12:40:45.554" endtime="20221223 12:40:45.566"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${task_detail}</arg>
+<arg>${task_attribute[0]}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20221223 12:40:45.566" endtime="20221223 12:40:45.567"/>
+</kw>
+<status status="PASS" starttime="20221223 12:40:45.552" endtime="20221223 12:40:45.567"/>
+</kw>
+<kw name="Check Task Details" library="EITK_Task_Endpoints_Keywords">
+<arg>${Task_details}</arg>
+<arg>${type}</arg>
+<arg>$.steps[0].type</arg>
+<kw name="Convert To String" library="BuiltIn">
+<var>${string}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20221223 12:40:45.568" level="INFO">${string} = {
+  "id" : "63a5f62c051b4e1a81d06c27",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ {
+    "type" : "EXE",
+    "hostname" : "sm5-dac1",
+    "processName" : "osii_file_adaptor",
+    "args" : "-...</msg>
+<status status="PASS" starttime="20221223 12:40:45.568" endtime="20221223 12:40:45.568"/>
+</kw>
+<kw name="Convert String To Json" library="JSONLibrary">
+<var>${json_body}</var>
+<arg>${string}</arg>
+<doc>Convert String to JSON object</doc>
+<msg timestamp="20221223 12:40:45.568" level="INFO">${json_body} = {'id': '63a5f62c051b4e1a81d06c27', 'saveID': 1, 'name': 'Auto-Task', 'steps': [{'type': 'EXE', 'hostname': 'sm5-dac1', 'processName': 'osii_file_adaptor', 'args': '-i 33 --domain CC', 'envArgs': '33',...</msg>
+<status status="PASS" starttime="20221223 12:40:45.568" endtime="20221223 12:40:45.568"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${task_attribute}</var>
+<arg>${json_body}</arg>
+<arg>${json_path}</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20221223 12:40:45.582" level="INFO">${task_attribute} = ['EXE']</msg>
+<status status="PASS" starttime="20221223 12:40:45.568" endtime="20221223 12:40:45.582"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${task_detail}</arg>
+<arg>${task_attribute[0]}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20221223 12:40:45.583" endtime="20221223 12:40:45.583"/>
+</kw>
+<status status="PASS" starttime="20221223 12:40:45.567" endtime="20221223 12:40:45.583"/>
+</kw>
+<kw name="Check Task Details" library="EITK_Task_Endpoints_Keywords">
+<arg>${Task_details}</arg>
+<arg>${hostname}</arg>
+<arg>$.steps[0].hostname</arg>
+<kw name="Convert To String" library="BuiltIn">
+<var>${string}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20221223 12:40:45.584" level="INFO">${string} = {
+  "id" : "63a5f62c051b4e1a81d06c27",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ {
+    "type" : "EXE",
+    "hostname" : "sm5-dac1",
+    "processName" : "osii_file_adaptor",
+    "args" : "-...</msg>
+<status status="PASS" starttime="20221223 12:40:45.584" endtime="20221223 12:40:45.584"/>
+</kw>
+<kw name="Convert String To Json" library="JSONLibrary">
+<var>${json_body}</var>
+<arg>${string}</arg>
+<doc>Convert String to JSON object</doc>
+<msg timestamp="20221223 12:40:45.585" level="INFO">${json_body} = {'id': '63a5f62c051b4e1a81d06c27', 'saveID': 1, 'name': 'Auto-Task', 'steps': [{'type': 'EXE', 'hostname': 'sm5-dac1', 'processName': 'osii_file_adaptor', 'args': '-i 33 --domain CC', 'envArgs': '33',...</msg>
+<status status="PASS" starttime="20221223 12:40:45.585" endtime="20221223 12:40:45.585"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${task_attribute}</var>
+<arg>${json_body}</arg>
+<arg>${json_path}</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20221223 12:40:45.599" level="INFO">${task_attribute} = ['sm5-dac1']</msg>
+<status status="PASS" starttime="20221223 12:40:45.585" endtime="20221223 12:40:45.599"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${task_detail}</arg>
+<arg>${task_attribute[0]}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20221223 12:40:45.599" endtime="20221223 12:40:45.599"/>
+</kw>
+<status status="PASS" starttime="20221223 12:40:45.584" endtime="20221223 12:40:45.600"/>
+</kw>
+<kw name="Check Task Details" library="EITK_Task_Endpoints_Keywords">
+<arg>${Task_details}</arg>
+<arg>${processName}</arg>
+<arg>$.steps[0].processName</arg>
+<kw name="Convert To String" library="BuiltIn">
+<var>${string}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20221223 12:40:45.601" level="INFO">${string} = {
+  "id" : "63a5f62c051b4e1a81d06c27",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ {
+    "type" : "EXE",
+    "hostname" : "sm5-dac1",
+    "processName" : "osii_file_adaptor",
+    "args" : "-...</msg>
+<status status="PASS" starttime="20221223 12:40:45.600" endtime="20221223 12:40:45.601"/>
+</kw>
+<kw name="Convert String To Json" library="JSONLibrary">
+<var>${json_body}</var>
+<arg>${string}</arg>
+<doc>Convert String to JSON object</doc>
+<msg timestamp="20221223 12:40:45.601" level="INFO">${json_body} = {'id': '63a5f62c051b4e1a81d06c27', 'saveID': 1, 'name': 'Auto-Task', 'steps': [{'type': 'EXE', 'hostname': 'sm5-dac1', 'processName': 'osii_file_adaptor', 'args': '-i 33 --domain CC', 'envArgs': '33',...</msg>
+<status status="PASS" starttime="20221223 12:40:45.601" endtime="20221223 12:40:45.601"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${task_attribute}</var>
+<arg>${json_body}</arg>
+<arg>${json_path}</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20221223 12:40:45.615" level="INFO">${task_attribute} = ['osii_file_adaptor']</msg>
+<status status="PASS" starttime="20221223 12:40:45.601" endtime="20221223 12:40:45.615"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${task_detail}</arg>
+<arg>${task_attribute[0]}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20221223 12:40:45.615" endtime="20221223 12:40:45.615"/>
+</kw>
+<status status="PASS" starttime="20221223 12:40:45.600" endtime="20221223 12:40:45.615"/>
+</kw>
+<kw name="Check Task Details" library="EITK_Task_Endpoints_Keywords">
+<arg>${Task_details}</arg>
+<arg>${args}</arg>
+<arg>$.steps[0].args</arg>
+<kw name="Convert To String" library="BuiltIn">
+<var>${string}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20221223 12:40:45.617" level="INFO">${string} = {
+  "id" : "63a5f62c051b4e1a81d06c27",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ {
+    "type" : "EXE",
+    "hostname" : "sm5-dac1",
+    "processName" : "osii_file_adaptor",
+    "args" : "-...</msg>
+<status status="PASS" starttime="20221223 12:40:45.616" endtime="20221223 12:40:45.617"/>
+</kw>
+<kw name="Convert String To Json" library="JSONLibrary">
+<var>${json_body}</var>
+<arg>${string}</arg>
+<doc>Convert String to JSON object</doc>
+<msg timestamp="20221223 12:40:45.617" level="INFO">${json_body} = {'id': '63a5f62c051b4e1a81d06c27', 'saveID': 1, 'name': 'Auto-Task', 'steps': [{'type': 'EXE', 'hostname': 'sm5-dac1', 'processName': 'osii_file_adaptor', 'args': '-i 33 --domain CC', 'envArgs': '33',...</msg>
+<status status="PASS" starttime="20221223 12:40:45.617" endtime="20221223 12:40:45.617"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${task_attribute}</var>
+<arg>${json_body}</arg>
+<arg>${json_path}</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20221223 12:40:45.630" level="INFO">${task_attribute} = ['-i 33 --domain CC']</msg>
+<status status="PASS" starttime="20221223 12:40:45.617" endtime="20221223 12:40:45.630"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${task_detail}</arg>
+<arg>${task_attribute[0]}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20221223 12:40:45.630" endtime="20221223 12:40:45.631"/>
+</kw>
+<status status="PASS" starttime="20221223 12:40:45.616" endtime="20221223 12:40:45.631"/>
+</kw>
+<kw name="Check Task Details" library="EITK_Task_Endpoints_Keywords">
+<arg>${Task_details}</arg>
+<arg>${envArgs}</arg>
+<arg>$.steps[0].envArgs</arg>
+<kw name="Convert To String" library="BuiltIn">
+<var>${string}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20221223 12:40:45.632" level="INFO">${string} = {
+  "id" : "63a5f62c051b4e1a81d06c27",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ {
+    "type" : "EXE",
+    "hostname" : "sm5-dac1",
+    "processName" : "osii_file_adaptor",
+    "args" : "-...</msg>
+<status status="PASS" starttime="20221223 12:40:45.632" endtime="20221223 12:40:45.632"/>
+</kw>
+<kw name="Convert String To Json" library="JSONLibrary">
+<var>${json_body}</var>
+<arg>${string}</arg>
+<doc>Convert String to JSON object</doc>
+<msg timestamp="20221223 12:40:45.632" level="INFO">${json_body} = {'id': '63a5f62c051b4e1a81d06c27', 'saveID': 1, 'name': 'Auto-Task', 'steps': [{'type': 'EXE', 'hostname': 'sm5-dac1', 'processName': 'osii_file_adaptor', 'args': '-i 33 --domain CC', 'envArgs': '33',...</msg>
+<status status="PASS" starttime="20221223 12:40:45.632" endtime="20221223 12:40:45.632"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${task_attribute}</var>
+<arg>${json_body}</arg>
+<arg>${json_path}</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20221223 12:40:45.646" level="INFO">${task_attribute} = ['33']</msg>
+<status status="PASS" starttime="20221223 12:40:45.633" endtime="20221223 12:40:45.646"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${task_detail}</arg>
+<arg>${task_attribute[0]}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20221223 12:40:45.646" endtime="20221223 12:40:45.647"/>
+</kw>
+<status status="PASS" starttime="20221223 12:40:45.632" endtime="20221223 12:40:45.647"/>
+</kw>
+<kw name="Check Task Details" library="EITK_Task_Endpoints_Keywords">
+<arg>${Task_details}</arg>
+<arg>${expectedExitCode}</arg>
+<arg>$.steps[0].expectedExitCode[0]</arg>
+<kw name="Convert To String" library="BuiltIn">
+<var>${string}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20221223 12:40:45.648" level="INFO">${string} = {
+  "id" : "63a5f62c051b4e1a81d06c27",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ {
+    "type" : "EXE",
+    "hostname" : "sm5-dac1",
+    "processName" : "osii_file_adaptor",
+    "args" : "-...</msg>
+<status status="PASS" starttime="20221223 12:40:45.648" endtime="20221223 12:40:45.648"/>
+</kw>
+<kw name="Convert String To Json" library="JSONLibrary">
+<var>${json_body}</var>
+<arg>${string}</arg>
+<doc>Convert String to JSON object</doc>
+<msg timestamp="20221223 12:40:45.648" level="INFO">${json_body} = {'id': '63a5f62c051b4e1a81d06c27', 'saveID': 1, 'name': 'Auto-Task', 'steps': [{'type': 'EXE', 'hostname': 'sm5-dac1', 'processName': 'osii_file_adaptor', 'args': '-i 33 --domain CC', 'envArgs': '33',...</msg>
+<status status="PASS" starttime="20221223 12:40:45.648" endtime="20221223 12:40:45.648"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${task_attribute}</var>
+<arg>${json_body}</arg>
+<arg>${json_path}</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20221223 12:40:45.662" level="INFO">${task_attribute} = [0]</msg>
+<status status="PASS" starttime="20221223 12:40:45.648" endtime="20221223 12:40:45.662"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${task_detail}</arg>
+<arg>${task_attribute[0]}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20221223 12:40:45.663" level="INFO">Argument types are:
+&lt;class 'str'&gt;
+&lt;class 'int'&gt;</msg>
+<status status="PASS" starttime="20221223 12:40:45.662" endtime="20221223 12:40:45.663"/>
+</kw>
+<status status="PASS" starttime="20221223 12:40:45.648" endtime="20221223 12:40:45.663"/>
+</kw>
+<kw name="Check Task Details" library="EITK_Task_Endpoints_Keywords">
+<arg>${Task_details}</arg>
+<arg>${timeout}</arg>
+<arg>$.steps[0].timeout</arg>
+<kw name="Convert To String" library="BuiltIn">
+<var>${string}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20221223 12:40:45.664" level="INFO">${string} = {
+  "id" : "63a5f62c051b4e1a81d06c27",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ {
+    "type" : "EXE",
+    "hostname" : "sm5-dac1",
+    "processName" : "osii_file_adaptor",
+    "args" : "-...</msg>
+<status status="PASS" starttime="20221223 12:40:45.664" endtime="20221223 12:40:45.664"/>
+</kw>
+<kw name="Convert String To Json" library="JSONLibrary">
+<var>${json_body}</var>
+<arg>${string}</arg>
+<doc>Convert String to JSON object</doc>
+<msg timestamp="20221223 12:40:45.664" level="INFO">${json_body} = {'id': '63a5f62c051b4e1a81d06c27', 'saveID': 1, 'name': 'Auto-Task', 'steps': [{'type': 'EXE', 'hostname': 'sm5-dac1', 'processName': 'osii_file_adaptor', 'args': '-i 33 --domain CC', 'envArgs': '33',...</msg>
+<status status="PASS" starttime="20221223 12:40:45.664" endtime="20221223 12:40:45.664"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${task_attribute}</var>
+<arg>${json_body}</arg>
+<arg>${json_path}</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20221223 12:40:45.677" level="INFO">${task_attribute} = [5000]</msg>
+<status status="PASS" starttime="20221223 12:40:45.664" endtime="20221223 12:40:45.677"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${task_detail}</arg>
+<arg>${task_attribute[0]}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20221223 12:40:45.678" level="INFO">Argument types are:
+&lt;class 'str'&gt;
+&lt;class 'int'&gt;</msg>
+<status status="PASS" starttime="20221223 12:40:45.677" endtime="20221223 12:40:45.678"/>
+</kw>
+<status status="PASS" starttime="20221223 12:40:45.664" endtime="20221223 12:40:45.678"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${steps}</var>
+<arg>[${EMPTY}]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221223 12:40:45.679" level="INFO">${steps} = []</msg>
+<status status="PASS" starttime="20221223 12:40:45.679" endtime="20221223 12:40:45.679"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${task}</var>
+<arg>{"name": "${name}", "createAuditCopies": "${createAuditCopies}","steps": ${steps}}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221223 12:40:45.680" level="INFO">${task} = {"name": "Auto-Task", "createAuditCopies": "Never","steps": []}</msg>
+<status status="PASS" starttime="20221223 12:40:45.680" endtime="20221223 12:40:45.680"/>
+</kw>
+<kw name="PUT-Update Task with Name" library="EITK_Task_Endpoints_Keywords">
+<var>${Remove_Step}</var>
+<arg>${name}</arg>
+<arg>${task}</arg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${headers}</var>
+<arg>osiApiToken=${token}</arg>
+<arg>Content-Type=${JSON_format}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20221223 12:40:45.681" level="INFO">${headers} = {'osiApiToken': '60ddc80ae2381a658bf5d87e:e031c694fe4d499bab7730485b83ce2f02e310a5b5cd9acb13850615ec7b2657', 'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20221223 12:40:45.681" endtime="20221223 12:40:45.681"/>
+</kw>
+<kw name="PUT On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>Swagger</arg>
+<arg>url=/eitk/api/v1/taskconfig/${task_name}</arg>
+<arg>data=${PUT_body}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=Anything</arg>
+<arg>verify=${False}</arg>
+<doc>Sends a PUT request on a previously created HTTP Session.</doc>
+<msg timestamp="20221223 12:40:45.768" level="INFO">PUT Request : url=https://172.17.82.129:8443/eitk/api/v1/taskconfig/Auto-Task 
+ path_url=/eitk/api/v1/taskconfig/Auto-Task 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'osiApiToken': '60ddc80ae2381a658bf5d87e:e031c694fe4d499bab7730485b83ce2f02e310a5b5cd9acb13850615ec7b2657', 'Content-Type': 'application/json', 'Content-Length': '63'} 
+ body={"name": "Auto-Task", "createAuditCopies": "Never","steps": []} 
+ </msg>
+<msg timestamp="20221223 12:40:45.768" level="INFO">PUT Response : url=https://172.17.82.129:8443/eitk/api/v1/taskconfig/Auto-Task 
+ status=200, reason=OK 
+ headers={'Server': 'nginx', 'Date': 'Fri, 23 Dec 2022 18:40:45 GMT', 'Content-Type': 'application/json', 'Content-Length': '129', 'Connection': 'keep-alive', 'X-Frame-Options': 'SAMEORIGIN', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '1; mode=block', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Pragma': 'no-cache', 'Cache-Control': 'no-cache, must-revalidate, private, no-store'} 
+ body={
+  "id" : "63a5f62c051b4e1a81d06c27",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ ],
+  "createAuditCopies" : "Never"
+} 
+ </msg>
+<msg timestamp="20221223 12:40:45.768" level="INFO">C:\Users\acruz\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host '172.17.82.129'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20221223 12:40:45.769" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221223 12:40:45.681" endtime="20221223 12:40:45.769"/>
+</kw>
+<kw name="Return From Keyword" library="BuiltIn">
+<arg>${response}</arg>
+<doc>Returns from the enclosing user keyword.</doc>
+<msg timestamp="20221223 12:40:45.770" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20221223 12:40:45.770" endtime="20221223 12:40:45.770"/>
+</kw>
+<msg timestamp="20221223 12:40:45.770" level="INFO">${Remove_Step} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221223 12:40:45.681" endtime="20221223 12:40:45.770"/>
+</kw>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>200</arg>
+<arg>${Remove_Step}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" starttime="20221223 12:40:45.771" endtime="20221223 12:40:45.771"/>
+</kw>
+<kw name="GET-Tasks With Name" library="EITK_Task_Endpoints_Keywords">
+<var>${Task_details}</var>
+<arg>${name}</arg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${headers}</var>
+<arg>osiApiToken=${token}</arg>
+<arg>Content-Type=${JSON_format}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20221223 12:40:45.772" level="INFO">${headers} = {'osiApiToken': '60ddc80ae2381a658bf5d87e:e031c694fe4d499bab7730485b83ce2f02e310a5b5cd9acb13850615ec7b2657', 'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20221223 12:40:45.772" endtime="20221223 12:40:45.772"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>Swagger</arg>
+<arg>url=/eitk/api/v1/taskconfig/${task_name}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=Anything</arg>
+<arg>verify=${False}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20221223 12:40:45.848" level="INFO">GET Request : url=https://172.17.82.129:8443/eitk/api/v1/taskconfig/Auto-Task 
+ path_url=/eitk/api/v1/taskconfig/Auto-Task 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'osiApiToken': '60ddc80ae2381a658bf5d87e:e031c694fe4d499bab7730485b83ce2f02e310a5b5cd9acb13850615ec7b2657', 'Content-Type': 'application/json'} 
+ body=None 
+ </msg>
+<msg timestamp="20221223 12:40:45.848" level="INFO">GET Response : url=https://172.17.82.129:8443/eitk/api/v1/taskconfig/Auto-Task 
+ status=200, reason=OK 
+ headers={'Server': 'nginx', 'Date': 'Fri, 23 Dec 2022 18:40:45 GMT', 'Content-Type': 'application/json', 'Content-Length': '129', 'Connection': 'keep-alive', 'X-Frame-Options': 'SAMEORIGIN', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '1; mode=block', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Pragma': 'no-cache', 'Cache-Control': 'no-cache, must-revalidate, private, no-store'} 
+ body={
+  "id" : "63a5f62c051b4e1a81d06c27",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ ],
+  "createAuditCopies" : "Never"
+} 
+ </msg>
+<msg timestamp="20221223 12:40:45.848" level="INFO">C:\Users\acruz\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host '172.17.82.129'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20221223 12:40:45.850" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221223 12:40:45.772" endtime="20221223 12:40:45.850"/>
+</kw>
+<kw name="Return From Keyword" library="BuiltIn">
+<arg>${response}</arg>
+<doc>Returns from the enclosing user keyword.</doc>
+<msg timestamp="20221223 12:40:45.851" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20221223 12:40:45.850" endtime="20221223 12:40:45.851"/>
+</kw>
+<msg timestamp="20221223 12:40:45.851" level="INFO">${Task_details} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221223 12:40:45.772" endtime="20221223 12:40:45.851"/>
+</kw>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>200</arg>
+<arg>${Task_details}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" starttime="20221223 12:40:45.852" endtime="20221223 12:40:45.852"/>
+</kw>
+<kw name="Check Task Details" library="EITK_Task_Endpoints_Keywords">
+<arg>${Task_details}</arg>
+<arg>${name}</arg>
+<arg>$.name</arg>
+<kw name="Convert To String" library="BuiltIn">
+<var>${string}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20221223 12:40:45.854" level="INFO">${string} = {
+  "id" : "63a5f62c051b4e1a81d06c27",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ ],
+  "createAuditCopies" : "Never"
+}</msg>
+<status status="PASS" starttime="20221223 12:40:45.853" endtime="20221223 12:40:45.854"/>
+</kw>
+<kw name="Convert String To Json" library="JSONLibrary">
+<var>${json_body}</var>
+<arg>${string}</arg>
+<doc>Convert String to JSON object</doc>
+<msg timestamp="20221223 12:40:45.854" level="INFO">${json_body} = {'id': '63a5f62c051b4e1a81d06c27', 'saveID': 1, 'name': 'Auto-Task', 'steps': [], 'createAuditCopies': 'Never'}</msg>
+<status status="PASS" starttime="20221223 12:40:45.854" endtime="20221223 12:40:45.854"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${task_attribute}</var>
+<arg>${json_body}</arg>
+<arg>${json_path}</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20221223 12:40:45.867" level="INFO">${task_attribute} = ['Auto-Task']</msg>
+<status status="PASS" starttime="20221223 12:40:45.854" endtime="20221223 12:40:45.867"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${task_detail}</arg>
+<arg>${task_attribute[0]}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20221223 12:40:45.867" endtime="20221223 12:40:45.868"/>
+</kw>
+<status status="PASS" starttime="20221223 12:40:45.853" endtime="20221223 12:40:45.868"/>
+</kw>
+<kw name="Check Task Details" library="EITK_Task_Endpoints_Keywords">
+<arg>${Task_details}</arg>
+<arg>${createAuditCopies}</arg>
+<arg>$.createAuditCopies</arg>
+<kw name="Convert To String" library="BuiltIn">
+<var>${string}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20221223 12:40:45.869" level="INFO">${string} = {
+  "id" : "63a5f62c051b4e1a81d06c27",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ ],
+  "createAuditCopies" : "Never"
+}</msg>
+<status status="PASS" starttime="20221223 12:40:45.869" endtime="20221223 12:40:45.869"/>
+</kw>
+<kw name="Convert String To Json" library="JSONLibrary">
+<var>${json_body}</var>
+<arg>${string}</arg>
+<doc>Convert String to JSON object</doc>
+<msg timestamp="20221223 12:40:45.869" level="INFO">${json_body} = {'id': '63a5f62c051b4e1a81d06c27', 'saveID': 1, 'name': 'Auto-Task', 'steps': [], 'createAuditCopies': 'Never'}</msg>
+<status status="PASS" starttime="20221223 12:40:45.869" endtime="20221223 12:40:45.870"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${task_attribute}</var>
+<arg>${json_body}</arg>
+<arg>${json_path}</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20221223 12:40:45.882" level="INFO">${task_attribute} = ['Never']</msg>
+<status status="PASS" starttime="20221223 12:40:45.870" endtime="20221223 12:40:45.882"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${task_detail}</arg>
+<arg>${task_attribute[0]}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20221223 12:40:45.882" endtime="20221223 12:40:45.883"/>
+</kw>
+<status status="PASS" starttime="20221223 12:40:45.868" endtime="20221223 12:40:45.883"/>
+</kw>
+<kw name="Check Task Details" library="EITK_Task_Endpoints_Keywords">
+<arg>${Task_details}</arg>
+<arg>${steps}</arg>
+<arg>$.steps</arg>
+<kw name="Convert To String" library="BuiltIn">
+<var>${string}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20221223 12:40:45.884" level="INFO">${string} = {
+  "id" : "63a5f62c051b4e1a81d06c27",
+  "saveID" : 1,
+  "name" : "Auto-Task",
+  "steps" : [ ],
+  "createAuditCopies" : "Never"
+}</msg>
+<status status="PASS" starttime="20221223 12:40:45.884" endtime="20221223 12:40:45.884"/>
+</kw>
+<kw name="Convert String To Json" library="JSONLibrary">
+<var>${json_body}</var>
+<arg>${string}</arg>
+<doc>Convert String to JSON object</doc>
+<msg timestamp="20221223 12:40:45.884" level="INFO">${json_body} = {'id': '63a5f62c051b4e1a81d06c27', 'saveID': 1, 'name': 'Auto-Task', 'steps': [], 'createAuditCopies': 'Never'}</msg>
+<status status="PASS" starttime="20221223 12:40:45.884" endtime="20221223 12:40:45.884"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${task_attribute}</var>
+<arg>${json_body}</arg>
+<arg>${json_path}</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20221223 12:40:45.897" level="INFO">${task_attribute} = [[]]</msg>
+<status status="PASS" starttime="20221223 12:40:45.884" endtime="20221223 12:40:45.897"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${task_detail}</arg>
+<arg>${task_attribute[0]}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20221223 12:40:45.898" level="INFO">Argument types are:
+&lt;class 'str'&gt;
+&lt;class 'list'&gt;</msg>
+<status status="PASS" starttime="20221223 12:40:45.897" endtime="20221223 12:40:45.898"/>
+</kw>
+<status status="PASS" starttime="20221223 12:40:45.883" endtime="20221223 12:40:45.898"/>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<arg>${results}</arg>
+<arg>1</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<msg timestamp="20221223 12:40:45.899" level="INFO">${results} = 1</msg>
+<status status="PASS" starttime="20221223 12:40:45.899" endtime="20221223 12:40:45.899"/>
+</kw>
+<kw name="Delete All Sessions" library="RequestsLibrary" type="TEARDOWN">
+<doc>Removes all the session objects</doc>
+<msg timestamp="20221223 12:40:45.899" level="INFO">Deleting All Sessions</msg>
+<status status="PASS" starttime="20221223 12:40:45.899" endtime="20221223 12:40:45.900"/>
+</kw>
+<status status="PASS" starttime="20221223 12:40:44.358" endtime="20221223 12:40:45.900"/>
+</test>
+<test id="s1-t2" name="Jama Report" line="87">
+<kw name="Create Session" library="RequestsLibrary" type="SETUP">
+<arg>Swagger</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20221223 12:40:45.903" level="INFO">Creating Session using : alias=Swagger, url=https://172.17.82.129:8443/, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20221223 12:40:45.902" endtime="20221223 12:40:45.903"/>
+</kw>
+<kw name="Run" library="OperatingSystem">
+<var>${jama_id}</var>
+<arg>python TestCaseResults.py "Automated - Basic Task Operations"</arg>
+<doc>Runs the given command in the system and returns the output.</doc>
+<msg timestamp="20221223 12:40:45.908" level="INFO">Running command 'python TestCaseResults.py "Automated - Basic Task Operations" 2&gt;&amp;1'.</msg>
+<msg timestamp="20221223 12:40:48.103" level="INFO">${jama_id} = 9373537</msg>
+<status status="PASS" starttime="20221223 12:40:45.903" endtime="20221223 12:40:48.103"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>${results} == 1</arg>
+<arg>Jama-Report Passed Test</arg>
+<arg>run_id=${jama_id}</arg>
+<arg>ELSE</arg>
+<arg>Jama-Report Failed Test</arg>
+<arg>run_id=${jama_id}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<kw name="Jama-Report Passed Test" library="Report_to_Jama">
+<arg>run_id=${jama_id}</arg>
+<kw name="Set Variable" library="BuiltIn">
+<var>${curl}</var>
+<arg>curl -u auto_sysman:OSISysman -X PUT "https://osi.jamacloud.com/rest/v1/testruns/${run_id}" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \\"fields\\": { \\"testRunStatus\\": \\"PASSED\\", \\"automated$37\\": false }}"</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221223 12:40:48.107" level="INFO">${curl} = curl -u auto_sysman:OSISysman -X PUT "https://osi.jamacloud.com/rest/v1/testruns/9373537" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"fields\": { \"testRunStatus\": \"PAS...</msg>
+<status status="PASS" starttime="20221223 12:40:48.107" endtime="20221223 12:40:48.107"/>
+</kw>
+<kw name="Run" library="OperatingSystem">
+<var>${jama_id}</var>
+<arg>${curl}</arg>
+<doc>Runs the given command in the system and returns the output.</doc>
+<msg timestamp="20221223 12:40:48.111" level="INFO">Running command 'curl -u auto_sysman:OSISysman -X PUT "https://osi.jamacloud.com/rest/v1/testruns/9373537" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"fields\": { \"testRunStatus\": \"PASSED\", \"automated$37\": false }}" 2&gt;&amp;1'.</msg>
+<msg timestamp="20221223 12:40:49.629" level="INFO">${jama_id} =   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+  0     0    0     0    0     0      0   ...</msg>
+<status status="PASS" starttime="20221223 12:40:48.107" endtime="20221223 12:40:49.629"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${jama_id}</arg>
+<arg>"OK"</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20221223 12:40:49.629" endtime="20221223 12:40:49.629"/>
+</kw>
+<status status="PASS" starttime="20221223 12:40:48.103" endtime="20221223 12:40:49.629"/>
+</kw>
+<status status="PASS" starttime="20221223 12:40:48.103" endtime="20221223 12:40:49.629"/>
+</kw>
+<kw name="Delete All Sessions" library="RequestsLibrary" type="TEARDOWN">
+<doc>Removes all the session objects</doc>
+<msg timestamp="20221223 12:40:49.629" level="INFO">Deleting All Sessions</msg>
+<status status="PASS" starttime="20221223 12:40:49.629" endtime="20221223 12:40:49.629"/>
+</kw>
+<status status="PASS" starttime="20221223 12:40:45.902" endtime="20221223 12:40:49.629"/>
+</test>
+<status status="PASS" starttime="20221223 12:40:44.189" endtime="20221223 12:40:49.644"/>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="2" fail="0" skip="0" id="s1" name="Basic Task Operations">Basic Task Operations</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
