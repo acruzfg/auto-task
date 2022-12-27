@@ -16,7 +16,7 @@ pipeline {
                 script {
 
                     echo 'Running test: Basic_Task_Operations'
-                    bat 'robot -d results -l Basic_Task_Operations_log -r Basic_Task_Operations_report --variable testsystem:${params.TEST_SYSTEM} ./Basic_Task_Operations.robot'
+                    echo "${params.TEST_SYSTEM}"
                 }
             }
         }
