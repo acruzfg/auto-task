@@ -2,10 +2,8 @@
 Library    RequestsLibrary
 Library    Collections
 Library    JSONLibrary
-Resource    SM5_DAC1_API_Variables.robot
 
 *** Keywords ***
-
 POST-Create Task with Name    [Arguments]    ${POST_body}
     ${headers}=    Create Dictionary    osiApiToken=${token}    Content-Type=${JSON_format}
     ${response}=    POST On Session    Swagger    url=/eitk/api/v1/taskconfig    data=${POST_body}    headers=${headers}    expected_status=Anything    verify=${False}

@@ -7,23 +7,26 @@ Test Teardown    Delete All Sessions
 
 *** Variables ***
 ### BASIC TASK SET UP ###
-${name}=    Auto-Task
-${testsystem}=    SM5_DAC1
+${name}=          Auto-Task
+${testsystem}=    SM5_DAC1    ### By default but can be changed during execution
 
 ### STEP SET UP ###
-${type}=    EXE
-${hostname}=    sm5-dac1
-${processName}=    osii_file_adaptor
-${args}=    -i 33 --domain CC
-${envArgs}=    33
+${type}=               EXE
+${hostname}=           sm5-dac1
+${processName}=        osii_file_adaptor
+${args}=               -i 33 --domain CC
+${envArgs}=            33
 ${expectedExitCode}=   0
-${timeout}=    5000
+${timeout}=            5000
 
 *** Test Cases ***
 Basic Tasks Operations
-    Set Suite Variable    ${results}    0    ### Report to Jama
+### the "results" variable will be used to report to Jama. We set to 0 so if the test fails, it will report 'FAILED' to jama ###
+    Set Suite Variable    ${results}    0    
+
 ### Ensure task does not exist to obtain accurate results ###
     Make Sure Task Does Not Exist    ${name}
+    Log    ${base_url}
 ### Create task details ###
     ${createAuditCopies}=    Set Variable    Always
     ${task}=    Set Variable    {"name": "${name}","createAuditCopies": "${createAuditCopies}"}
@@ -36,6 +39,7 @@ Basic Tasks Operations
 ### Check task details are as configured for creation ###
     Check Task Details    ${Task_details}    ${name}    $.name
     Check Task Details    ${Task_details}    ${createAuditCopies}    $.createAuditCopies
+
 ### Edit task details ###
     ${createAuditCopies}=    Set Variable    OnError
     ${task}=    Set Variable    {"name": "${name}","createAuditCopies": "${createAuditCopies}"}
@@ -48,6 +52,7 @@ Basic Tasks Operations
 ### Check task details are as edited ###
     Check Task Details    ${Task_details}    ${name}    $.name
     Check Task Details    ${Task_details}    ${createAuditCopies}    $.createAuditCopies
+
 ### Create step set up ###
     ${createAuditCopies}=    Set Variable    Never
     ${steps}=    Set Variable    [{"type": "${type}","hostname": "${hostname}","processName": "${processName}","args": "${args}","envArgs": "${envArgs}","expectedExitCode": [${expectedExitCode}],"timeout": ${timeout} }]
@@ -68,6 +73,7 @@ Basic Tasks Operations
     Check Task Details    ${Task_details}    ${envArgs}    $.steps[0].envArgs
     Check Task Details    ${Task_details}    ${expectedExitCode}    $.steps[0].expectedExitCode[0]
     Check Task Details    ${Task_details}    ${timeout}    $.steps[0].timeout
+
 ### Edit step details ###
     ${steps}=    Set Variable    [${EMPTY}]
     ${task}=    Set Variable    {"name": "${name}", "createAuditCopies": "${createAuditCopies}","steps": ${steps}}
@@ -81,10 +87,11 @@ Basic Tasks Operations
     Check Task Details    ${Task_details}    ${name}    $.name
     Check Task Details    ${Task_details}    ${createAuditCopies}    $.createAuditCopies
     Check Task Details    ${Task_details}    ${steps}    $.steps
+
 ### Set Results to Successful ###
     Set Suite Variable    ${results}    1
 
-Jama Report   
+### Report to JAMA test results ###   
     ${jama_id}=    Run    python TestCaseResults.py "Automated - Basic Task Operations"     
     Run Keyword If    ${results} == 1    Jama-Report Passed Test    run_id=${jama_id}
     ...  ELSE
