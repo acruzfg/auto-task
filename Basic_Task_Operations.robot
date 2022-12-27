@@ -91,6 +91,7 @@ Basic Tasks Operations
 ### Set Results to Successful ###
     Set Suite Variable    ${results}    1
 
+Report to JAMA
 ### Report to JAMA test results ###   
     ${jama_id}=    Run    python TestCaseResults.py "Automated - Basic Task Operations"     
     Run Keyword If    ${results} == 1    Jama-Report Passed Test    run_id=${jama_id}
