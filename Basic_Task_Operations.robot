@@ -26,7 +26,6 @@ Basic Tasks Operations
 
 ### Ensure task does not exist to obtain accurate results ###
     Make Sure Task Does Not Exist    ${name}
-    Log    ${base_url}
 ### Create task details ###
     ${createAuditCopies}=    Set Variable    Always
     ${task}=    Set Variable    {"name": "${name}","createAuditCopies": "${createAuditCopies}"}
