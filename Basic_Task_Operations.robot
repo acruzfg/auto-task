@@ -6,9 +6,11 @@ Test Setup    Create Session    Swagger    ${base_url}
 Test Teardown    Delete All Sessions
 
 *** Variables ***
+### TEST CYCLE TO REPORT IN JAMA ###
+${testcycle}
 ### BASIC TASK SET UP ###
 ${name}=          Auto-Task
-${testsystem}=    SM5_DAC1    ### By default but can be changed during execution
+${testsystem}=    SM5-DAC1      ###by default but can be changed during execution
 
 ### STEP SET UP ###
 ${type}=               EXE
@@ -92,7 +94,7 @@ Basic Tasks Operations
 
 Report to JAMA
 ### Report to JAMA test results ###   
-    ${jama_id}=    Run    python TestCaseResults.py "Automated - Basic Task Operations"     
-    Run Keyword If    ${results} == 1    Jama-Report Passed Test    run_id=${jama_id}
-    ...  ELSE
-    ...    Jama-Report Failed Test    run_id=${jama_id}
+    ${jama_id}=    Run    python TestCaseResults.py "Automated - Basic Task Operations" ${testcycle}  
+#    Run Keyword If    ${results} == 1    Jama-Report Passed Test    run_id=${jama_id}
+#    ...  ELSE
+#    ...    Jama-Report Failed Test    run_id=${jama_id}
