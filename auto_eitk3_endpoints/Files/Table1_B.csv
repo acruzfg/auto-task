@@ -1,0 +1,10 @@
+v1
+Table1_B
+c0,c1,c3
+Column 0,Column 1,Column 3
+Key,None,None
+k0,"Col 1, Row 0","Col 3, Row 0"
+k1,"Col 1, Row 1","Col 3, Row 1"
+k2,"Col 1, Row 2","Col 3, Row 2"
+k3,"Col 1, Row 3","Col 3, Row 3"
+k4,"Col 1, Row 4","Col 3, Row 4"

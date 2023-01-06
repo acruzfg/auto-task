@@ -1,0 +1,15 @@
+{
+    "columns": [
+    {
+    "name": "Key",
+    "id": "key",
+    "type": "Key"
+    },
+    {
+    "name": "Unique",
+    "id": "unique",
+    "type": "None"
+    }
+    ],
+    "id": "ChangeTest1"
+    }
