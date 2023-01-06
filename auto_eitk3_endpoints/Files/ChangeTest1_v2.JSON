@@ -1,0 +1,16 @@
+{
+    "columns": [
+    {
+    "name": "Key",
+    "id": "key",
+    "type": "Key"
+    },
+    {
+    "name": "Unique",
+    "id": "unique",
+    "type": "Unique"
+    }
+    ],
+    "id": "ChangeTest1"
+}
+    

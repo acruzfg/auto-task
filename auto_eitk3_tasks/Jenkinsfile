@@ -1,23 +1,32 @@
 pipeline {
-    agent {label 'master'}
+    agent any
     parameters {
-        string(name: 'TEST_SYSTEM', defaultValue: 'SM5-DAC1', description: 'System to which endpoints will make the API requests. Default is SM5-DAC1.')
+        string(name: 'TEST_SYSTEM', defaultValue: 'sm5-dac1', description: 'System hosting the EITK3 instance.')
         string(name: 'TEST_CYCLE', description: 'JAMA test cycle API ID')
+        string(name: 'File_Age', defaultValue: '1', description: 'Maximum age (in days) of a file before is cleaned up.')
+        string(name: 'Payloads_Stored_Per_Task', defaultValue: '100', description: 'Maximum number of task payload files that can be stored at once for each Task.')
+        string(name: 'Task_History_Age', defaultValue: '60', description: 'Maximum age (in days) of a task history before it is cleaned up.')
+        string(name: 'Task_Run_Request_Age', defaultValue:'30', description: 'Maximum age (in days) of a task run request before it is cleaned up.')
     }
     stages {
-        stage('Installingt jama-rest-client'){
+        stage('Creating files to clean up'){
+            agent{label 'sm5-dac1'}
             steps{
                 script{
-                    bat 'pip install py-jama-rest-client'
-                }
-            }
-        }
-        stage ("Testing") {
-           steps {
-                script {
-                    echo "Testing on ${params.TEST_SYSTEM}"
-                    echo 'Running test: Basic_Task_Operations'
-                    bat "robot -d results -l Basic_Task_Operations_log -r Basic_Task_Operations_report --variable testsystem:${params.TEST_SYSTEM} --variable testcycle:${params.TEST_CYCLE} ./Basic_Task_Operations.robot"
+                    echo "On node ${params.TEST_SYSTEM}"
+                    sh '''
+                    cd $OSI/log/eitk && mkdir folder1 folder2
+                    touch -d "2 days ago" folder1
+                    touch -d "2 days ago" file3.txt && touch file4.txt
+                    cd $OSI/log/eitk/folder1 
+                    touch -d "2 days ago" file1.txt
+                    cd $OSI/log/eitk/folder2 
+                    touch file2.txt
+                    pkill osii_eitkd
+                    cd $OSI/bin
+                    $OSI/bin/osii_eitkd
+                    sleep 10s
+                    '''
                 }
             }
         }

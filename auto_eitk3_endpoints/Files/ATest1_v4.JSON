@@ -1,0 +1,20 @@
+{
+"columns": [
+{
+"name": "Key",
+"id": "key",
+"type": "None"
+},
+{
+"name": "Unique",
+"id": "unique",
+"type": "None"
+},
+{
+"name": "None",
+"id": "none",
+"type": "Unique"
+}
+],
+"id": "ATest1"
+}

@@ -1,0 +1,13 @@
+{
+  "idMapName": "invalid",
+  "columns": {
+  "1": {
+  "sourceId": "1",
+  "type": "Key"
+  },
+  "2": {
+  "sourceId": "2",
+  "type": "None"
+  }
+  }
+  }

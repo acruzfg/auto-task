@@ -1,0 +1,20 @@
+[
+  {
+  "sources": [
+  {
+  "id":"source2_id",
+  "sourceID": "2",
+  "sourceName": "2",
+  "uniqueItems": true
+  },
+  {
+  "id":"source1_id",
+  "sourceID": "1",
+  "sourceName": "1",
+  "uniqueItems": true
+  }
+  ],
+  "name": "map1",
+  "id": "map_id"
+  }
+  ]

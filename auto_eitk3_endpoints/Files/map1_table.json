@@ -1,0 +1,23 @@
+{
+  "idMapName": "map1",
+  "columns": {
+  "1a": {
+  "sourceId": "1",
+  "type": "Key"
+  },
+  "1b": {
+  "sourceId": "1",
+  "itemIndex": 1,
+  "type": "None"
+  },
+  "2a": {
+  "sourceId": "2",
+  "type": "None"
+  },
+  "2b": {
+  "sourceId": "2",
+  "itemIndex": 1,
+  "type": "None"
+  }
+  }
+  }

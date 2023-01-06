@@ -1,0 +1,8 @@
+v1
+ATable1
+c1 ,c2 ,c3 ,c5
+CHANGED ,C 2 ,C 3, C 5
+Key ,None ,None ,None
+R1 C1 ,R1 C2 ,R1 C3 ,R1 C5
+R2 C1 ,R2 C2 ,R2 C3 ,R2 C5
+R3 C1 ,R3 C2 ,R3 C3 ,R3 C5
