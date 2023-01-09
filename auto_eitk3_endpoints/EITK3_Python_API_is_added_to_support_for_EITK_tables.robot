@@ -34,7 +34,7 @@ Python API is added to support for EITK tables
 
 Report to JAMA
 ### Report to JAMA test results ###   
-    ${jama_id}=    Run    python TestCaseResults.py "Automated - Python API is added to support for EITK tables" "${testcycle}" 
+    ${jama_id}=    Run    python .\\auto_eitk3_endpoints\\TestCaseResults.py "Automated - Python API is added to support for EITK tables" "${testcycle}" 
     Run Keyword If    ${results} == 1    Jama-Report Passed Test    run_id=${jama_id}
     ...  ELSE
     ...    Jama-Report Failed Test    run_id=${jama_id}
