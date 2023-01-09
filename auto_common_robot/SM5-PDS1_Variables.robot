@@ -5,7 +5,7 @@
 
 # Web Browser Variable:
 
-${URL}  https://172.17.82.129:8443/platform/page/signin.html
+${URL}  https://172.17.82.163:8443/platform/page/signin.html
 
 # Jama Test Plan ID Variable:
 
@@ -13,11 +13,11 @@ ${JamaPlan_ID}  7228323
 
 #Base URL for API use
 
-${Base_URL}=    https://172.17.82.129:8443/
+${Base_URL}=    https://172.17.82.163:8443/
 
 # API Authorization Token
 
-${Token}    60ddc80ae2381a658bf5d87e:e031c694fe4d499bab7730485b83ce2f02e310a5b5cd9acb13850615ec7b2657
+${Token}    635013fd363f8026d4ab486d:381e1474b6298a09583807b55b520e6dc67f44e84fcd3ff72c9d883c9f4dbb60
 
 ########################################################################################################################
 ########################################################################################################################
