@@ -196,22 +196,57 @@ Basic Table Operations
     Verify Event Exists in Tables-Events    ${delete_id}    ${events_response}
 Import Tables
 ### Ensure the table name isn't occupied already, if the name is used, the table will be deleted ###
+    ${Table_ID}=    Set Variable    ATable1
     Make Sure Table Does Not Exist    ${Table_ID}
 ### Obtain table from file ###
-    ${table}=    Create Request Body From CSV File    ATable1
+    ${table}=    Create Request Body From CSV File    ${Table_ID}
 ### Request to import the table ###
     ${import_table}=    PATCH-Import Table    ${table}
     Status Should Be    200    ${import_table}
+### Request to obtain the newly imported table ###
+    ${GET_response}=    GET-Table with ID    ${Table_ID}
+    Status Should Be    200    ${GET_response}
+### Verify its elements ###
+    Check Table Attribute    ${GET_response}    ${Table_ID}    $.id
+    Check Table Columns Attribute    ${GET_response}    c1    0    id
+    Check Table Columns Attribute    ${GET_response}    Key    0    type
+    Check Table Columns Attribute    ${GET_response}    C 1    0    name
+    Check Table Columns Attribute    ${GET_response}    c2    1    id
+    Check Table Columns Attribute    ${GET_response}    Unique    1    type
+    Check Table Columns Attribute    ${GET_response}    C 2    1    name
+    Check Table Columns Attribute    ${GET_response}    c3    2    id
+    Check Table Columns Attribute    ${GET_response}    None    2    type
+    Check Table Columns Attribute    ${GET_response}    C 3    2    name
+    Check Table Columns Attribute    ${GET_response}    c4    3    id
+    Check Table Columns Attribute    ${GET_response}    None    3    type
+    Check Table Columns Attribute    ${GET_response}    C 4    3    name
 ### Update table from file ###
     ${table}=    Create Request Body From CSV File    ATable1_updated
 ### Request to update the table ###
     ${update_table}=    PATCH-Import Table    ${table}
     Status Should Be    200    ${update_table}
+### Request to obtain the newly updated table ###
+    ${GET_response}=    GET-Table with ID    ${Table_ID}
+    Status Should Be    200    ${GET_response}
+### Verify its elements ###
+    Check Table Attribute    ${GET_response}    ${Table_ID}    $.id
+    Check Table Columns Attribute    ${GET_response}    c1    0    id
+    Check Table Columns Attribute    ${GET_response}    Key    0    type
+    Check Table Columns Attribute    ${GET_response}    CHANGED    0    name
+    Check Table Columns Attribute    ${GET_response}    c2    1    id
+    Check Table Columns Attribute    ${GET_response}    None    1    type
+    Check Table Columns Attribute    ${GET_response}    C 2    1    name
+    Check Table Columns Attribute    ${GET_response}    c3    2    id
+    Check Table Columns Attribute    ${GET_response}    None    2    type
+    Check Table Columns Attribute    ${GET_response}    C 3    2    name
+    Check Table Columns Attribute    ${GET_response}    c5    3    id
+    Check Table Columns Attribute    ${GET_response}    None    3    type
+    Check Table Columns Attribute    ${GET_response}    C 5    3    name
     Set Suite Variable    ${results}    1
  
 Report to JAMA
 ### Report to JAMA test results ###   
-    ${jama_id}=    Run    python TestCaseResults.py "Automated - Basic Task Operations" "${testcycle}" 
+    ${jama_id}=    Run    python TestCaseResults.py "Automated - Create, Modify & Delete EITK Table and Verify Table Elements via Endpoints" "${testcycle}" 
     Run Keyword If    ${results} == 1    Jama-Report Passed Test    run_id=${jama_id}
     ...  ELSE
     ...    Jama-Report Failed Test    run_id=${jama_id}
