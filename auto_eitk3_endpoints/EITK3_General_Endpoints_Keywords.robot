@@ -25,7 +25,7 @@ Check Task is Successful    [Arguments]    ${response}
     ${status}=    Get Value From Json    ${body_json}    $[0].status
     Should Be Equal As Strings    ${status}[0]    Success
 Create Request Body From CSV File    [Arguments]    ${filename}
-    ${request_body}=    Get File    Files/${filename}.csv
+    ${request_body}=    Get File    auto_eitk3_endpoints/Files/${filename}.csv
     Return From Keyword    ${request_body}
 Check Table Attribute    [Arguments]    ${response}    ${attribute}    ${json_path}
     ${string}=    Convert To String    ${response.content}

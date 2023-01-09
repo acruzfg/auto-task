@@ -1,7 +1,5 @@
 *** Settings ***
 Library     RequestsLibrary
-Library     CSVLibrary
-Library     String
 Resource    EITK3_General_Endpoints_Keywords.robot
 Resource    EITK3_POST_Keywords.robot
 Resource    EITK3_GET_Keywords.robot
@@ -10,7 +8,6 @@ Resource    EITK3_DELETE_Keywords.robot
 Resource    EITK3_PATCH_Keywords.robot
 Resource    Report_to_Jama.robot
 Resource    ../auto_common_robot/${testsystem}_Variables.robot
-Resource    ../auto_eitk3_tasks/EITK_Task_Endpoints_Keywords.robot
 Test Setup    Create Session    Swagger    ${Base_URL}
 Test Teardown    Delete All Sessions
 
@@ -164,7 +161,7 @@ Convert IDMap to Table
 
 Report to JAMA
 ### Report to JAMA test results ###   
-    ${jama_id}=    Run    python TestCaseResults.py "Automated - Convert IDMap to Table" "${testcycle}" 
+    ${jama_id}=    Run    python .\\auto_eitk3_endpoints\\TestCaseResults.py "Automated - Convert IDMap to Table" "${testcycle}" 
     Run Keyword If    ${results} == 1    Jama-Report Passed Test    run_id=${jama_id}
     ...  ELSE
     ...    Jama-Report Failed Test    run_id=${jama_id}
