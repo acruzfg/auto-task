@@ -1,8 +1,12 @@
 *** Settings ***
-Resource   EITK_Task_Endpoints_Keywords.robot
+Library    JSONLibrary
+Resource   EITK3_General_Endpoints_Keywords.robot
+Resource   EITK3_POST_Keywords.robot
+Resource   EITK3_GET_Keywords.robot
+Resource   EITK3_PUT_Keywords.robot
 Resource   Report_to_Jama.robot
-Resource   ${testsystem}_API_Variables.robot   
-Test Setup    Create Session    Swagger    ${base_url}
+Resource   ../auto_common_robot/${testsystem}_Variables.robot   
+Test Setup    Create Session    Swagger    ${Base_URL}
 Test Teardown    Delete All Sessions
 
 *** Variables ***
@@ -23,16 +27,15 @@ ${timeout}=            5000
 
 *** Test Cases ***
 Basic Tasks Operations
-### the "results" variable will be used to report to Jama. We set to 0 so if the test fails, it will report 'FAILED' to jama ###
+### The "results" variable will be used to report to Jama. We set to 0 so if the test fails, it will report 'FAILED' to jama ###
     Set Suite Variable    ${results}    0    
-
 ### Ensure task does not exist to obtain accurate results ###
     Make Sure Task Does Not Exist    ${name}
 ### Create task details ###
     ${createAuditCopies}=    Set Variable    Always
     ${task}=    Set Variable    {"name": "${name}","createAuditCopies": "${createAuditCopies}"}
 ### Create task ###
-    ${Create_task}=    POST-Create Task with Name    ${task}
+    ${Create_task}=    POST-Create Task    ${task}
     Status Should Be    201    ${Create_task}
 ### Obtain task details ###
     ${Task_details}=    GET-Tasks With Name    ${name}
@@ -98,3 +101,10 @@ Report to JAMA
     Run Keyword If    ${results} == 1    Jama-Report Passed Test    run_id=${jama_id}
     ...  ELSE
     ...    Jama-Report Failed Test    run_id=${jama_id}
+
+*** Keywords ***
+Check Task Details    [Arguments]    ${response}    ${task_detail}    ${json_path}    
+    ${string}=    Convert To String    ${response.content}
+    ${json_body}=    Convert String To Json    ${string}
+    ${task_attribute}=    Get Value From Json    ${json_body}    ${json_path}
+    Should Be Equal As Strings    ${task_detail}    ${task_attribute[0]}
