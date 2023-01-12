@@ -17,7 +17,7 @@ pipeline {
                     echo "/auto_eitk3_endpoints/Files" >> .git/info/sparse-checkout
                     git sparse-checkout add /auto_common_robot/SM5-DAC1_Variables.robot
                     git sparse-checkout add /auto_common_robot/SM5-PDS1_Variables.robot
-                    git sparse-checkout add /auto_eitk3_endpoints/EITK3_Table_Column_Types.robot
+                    git sparse-checkout add /auto_eitk3_endpoints/EITK3_Basic_Tables_Operations.robot
                     git sparse-checkout add /auto_eitk3_endpoints/EITK3_General_Endpoints_Keywords.robot
                     git sparse-checkout add /auto_eitk3_endpoints/EITK3_POST_Keywords.robot
                     git sparse-checkout add /auto_eitk3_endpoints/EITK3_GET_Keywords.robot
@@ -26,6 +26,8 @@ pipeline {
                     git sparse-checkout add /auto_eitk3_endpoints/EITK3_PATCH_Keywords.robot
                     git sparse-checkout add /auto_eitk3_endpoints/Report_to_Jama.robot
                     git sparse-checkout add /auto_eitk3_endpoints/TestCaseResults.py
+                    git sparse-checkout add /auto_eitk3_endpoints/Files/ATable1.csv
+                    git sparse-checkout add /auto_eitk3_endpoints/Files/ATable1_updated.csv
                     git pull origin main
                     '''
                 }
@@ -36,7 +38,7 @@ pipeline {
             steps{
                 script{
                     echo "Testing node ${params.TEST_SYSTEM}"
-                    bat "robot --variable testcycle:${params.TEST_CYCLE} --variable testsystem:${params.TEST_SYSTEM} -l Table_Column_Types__log -r Table_Column_Types_report .\\auto_eitk3_endpoints\\EITK3_Table_Column_Types.robot"
+                    bat "robot --variable testcycle:${params.TEST_CYCLE} --variable testsystem:${params.TEST_SYSTEM} -l EITK3_Basic_Tables_Operations__log -r EITK3_Basic_Tables_Operations_report .\\auto_eitk3_endpoints\\EITK3_Basic_Tables_Operations.robot"
                 }
             }
         }
