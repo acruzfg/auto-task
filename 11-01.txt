@@ -1,0 +1,8 @@
+data set id
+63befed5e5ede640a3a2f075
+DataP1
+63beff20e5ede640a3a2f078
+DataP2
+63beff20e5ede640a3a2f077
+
+mongo localhost:27023/eitk --authenticationDatabase admin --user admin --password admin
