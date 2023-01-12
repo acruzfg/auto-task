@@ -1,6 +1,5 @@
 *** Settings ***
 Library     RequestsLibrary
-Library     CSVLibrary
 Resource    EITK3_General_Endpoints_Keywords.robot
 Resource    EITK3_POST_Keywords.robot
 Resource    EITK3_GET_Keywords.robot
