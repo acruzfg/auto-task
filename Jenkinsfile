@@ -14,14 +14,20 @@ pipeline {
                     git config core.sparseCheckout true
                     echo "/auto_common_robot" >> .git/info/sparse-checkout
                     echo "/auto_eitk3_endpoints" >> .git/info/sparse-checkout
-                    git sparse-checkout add /auto_common_robot/${params.TEST_SYSTEM}_Variables.robot
-                    git sparse-checkout add /auto_eitk3_endpoints/EITK3_Basic_Task_Operations.robot
+                    echo "/auto_eitk3_endpoints/Files" >> .git/info/sparse-checkout
+                    git sparse-checkout add /auto_common_robot/SM5-DAC1_Variables.robot
+                    git sparse-checkout add /auto_common_robot/SM5-PDS1_Variables.robot
+                    git sparse-checkout add /auto_eitk3_endpoints/EITK3_Basic_Tables_Operations.robot
                     git sparse-checkout add /auto_eitk3_endpoints/EITK3_General_Endpoints_Keywords.robot
                     git sparse-checkout add /auto_eitk3_endpoints/EITK3_POST_Keywords.robot
                     git sparse-checkout add /auto_eitk3_endpoints/EITK3_GET_Keywords.robot
                     git sparse-checkout add /auto_eitk3_endpoints/EITK3_PUT_Keywords.robot
+                    git sparse-checkout add /auto_eitk3_endpoints/EITK3_DELETE_Keywords.robot
+                    git sparse-checkout add /auto_eitk3_endpoints/EITK3_PATCH_Keywords.robot
                     git sparse-checkout add /auto_eitk3_endpoints/Report_to_Jama.robot
                     git sparse-checkout add /auto_eitk3_endpoints/TestCaseResults.py
+                    git sparse-checkout add /auto_eitk3_endpoints/Files/ATable1.csv
+                    git sparse-checkout add /auto_eitk3_endpoints/Files/ATable1_updated.csv
                     git pull origin main
                     '''
                 }
@@ -31,9 +37,8 @@ pipeline {
         stage('Testing'){
             steps{
                 script{
-                    echo "On node ${params.TEST_SYSTEM}"
-                    bat "cd auto_eitk3_endpoints"
-                    bat "robot --variable testcycle:${params.TEST_CYCLE} --variable testsystem:${params.TEST_SYSTEM} -l Basic_Task_Operations__log -r Basic_Task_Operation_report -d ..\results EITK3_Basic_Task_Operations.robot"
+                    echo "Testing node ${params.TEST_SYSTEM}"
+                    bat "robot --variable testcycle:${params.TEST_CYCLE} --variable testsystem:${params.TEST_SYSTEM} -l EITK3_Basic_Tables_Operations__log -r EITK3_Basic_Tables_Operations_report .\\auto_eitk3_endpoints\\EITK3_Basic_Tables_Operations.robot"
                 }
             }
         }
