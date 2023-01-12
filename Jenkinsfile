@@ -9,6 +9,7 @@ pipeline {
             steps{
                 script{
                     bat '''
+                    git clean  -d  -f .
                     git init
                     git remote add -f origin https://github.com/acruzfg/auto-task.git
                     git config core.sparseCheckout true
