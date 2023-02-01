@@ -244,9 +244,9 @@ Basic Table Operations
     Check Table Columns Attribute            ${GET_response}    C 5            3            name
     Set Suite Variable                       ${results}         1
  
-Report to JAMA
+#Report to JAMA
 ### Report to JAMA test results ###   
-    ${jama_id}=            Run                        python .\\auto_eitk3_endpoints\\TestCaseResults.py "Automated - Create, Modify & Delete EITK Table and Verify Table Elements via Endpoints" "${testcycle}" 
-    Run Keyword If         ${results} == 1            Jama-Report Passed Test    run_id=${jama_id}
-    ...  ELSE
-    ...  Jama-Report Failed Test            run_id=${jama_id}
+##    ${jama_id}=            Run                        python .\\auto_eitk3_endpoints\\TestCaseResults.py "Automated - Create, Modify & Delete EITK Table and Verify Table Elements via Endpoints" "${testcycle}" 
+#    Run Keyword If         ${results} == 1            Jama-Report Passed Test    run_id=${jama_id}
+#    ...  ELSE
+#    ...  Jama-Report Failed Test            run_id=${jama_id}
