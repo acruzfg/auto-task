@@ -29,6 +29,7 @@ ${Image_SM}  //*[@id="appsContainer"]//a[@href='/platform/page/auth/sitemonitor.
 ${ImageText_SM}  //*[@id="appsContainer"]//a[@href='/platform/page/auth/sitemonitor.html']//div[text()[contains(.,'System Monitor')]]
 ${Image_MAP}    //*[@id="appsContainer"]//a[@href='/map/page/auth/MonarchAdminPortal.html']//*//img[@src='/map/page/auth/images/map-icon.svg']
 ${ImageText_MAP}    //*[@id="appsContainer"]//a[@href='/map/page/auth/MonarchAdminPortal.html']//div[text()[contains(.,'Monarch Admin Portal')]]
+${Image_SM}  //*[@href='/eitk/page/auth/sitemonitor.html']//*//img[@src='/platform/page/auth/images/apps-system-monitor-sm.png']
 
 # Bare-bones Logout Variables:
 ${User_Toolbar_User_Dropdown}  //*[@id="navbar"]//*[@role="menuitem"]//*[text()="admin"]
