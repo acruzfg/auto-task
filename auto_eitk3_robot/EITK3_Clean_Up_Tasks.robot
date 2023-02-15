@@ -43,11 +43,21 @@ Change System Settings
     ...    Should be equal  ${Pop_Up_Message}  Save successful
     Close All Browsers
 
+Restart EITK Instance
+## Navigate to EITK Setting Page Task Tab ##
+    Open_Browser_And_Login_As_Admin    Chrome
+    Set Selenium Speed    2s
+    Wait Until Element Is Visible    xpath=${Image_SM}
+    Click Element    xpath=${Image_SM}
+    Wait Until Element Is Visible    xpath=//*[@id="global-page-content"]/div[2]/div[2]/div[1]/div/div
+    Click Element    xpath=//*[@id="global-page-content"]/div[2]/div[2]/div[1]/div/div
+    Sleep    10s
+
+    Close All Browsers
+
 *** Keywords ***
 Set_Value    [Arguments]    ${value}    ${xpath}
     Set Selenium Timeout    60s
     Click Element    xpath=${xpath}
     Wait Until Element Is Enabled    xpath=${xpath}
     Input Text    xpath=${xpath}    ${value}
-    
-    
