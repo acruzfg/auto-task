@@ -27,5 +27,9 @@ ${OSINavber_NamingService_Sources}  //*[@class="dx-submenu"]//*[@role="menuitem"
 ${Task_Monarch_Success}    //td[text()='Auto_Test_DD']/..//span[contains(text(),'Success')]
 ${Last_Run_Time}    //td[text()='Auto_Test_DD']/..//td[4]/div
 
+# Site Monitor variables for EITK
+${EITK_Process}    //div[contains(text(),'osii_eitkd')]
+
+
 ########################################################################################################################
 ########################################################################################################################

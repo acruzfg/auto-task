@@ -36,6 +36,12 @@ ${User_Toolbar_User_Dropdown}  //*[@id="navbar"]//*[@role="menuitem"]//*[text()=
 ${User_Toolbar_User_Caret}  //*[@id="navbar"]//*[@role="menuitem"]//*[text()="admin"]/i
 ${User_Dropdown_Logout}  //*[@class="dx-submenu"]//*[@role="menuitem"]//*[text()='Logout']
 
+# Variable to use site monitor
+
+${EITK_Restart_Checkbox}    //tbody/tr[3]/td[11]/div[1]/label[1]/span[3]
+${Restart_Process_Button}    //i[contains(text(),'refresh')]
+${Confirm_Button}            //button[contains(text(),'Confirm')]
+
 ########################################################################################################################
 
 # Column Dropdown Text Variables: (Re-useable for all different types of Column Search Values)
