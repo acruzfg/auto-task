@@ -1,28 +1,28 @@
 *** Settings ***
-Library    SeleniumLibrary    run_on_failure=Nothing
-Library    DateTime
-Library    OperatingSystem
+Library     SeleniumLibrary    run_on_failure=Nothing
+Library     DateTime
+Library     OperatingSystem
 Resource    ../auto_common_robot/General_Variables.robot
 Resource    ../auto_common_robot/General_Keywords.robot
 Resource    ../auto_common_robot/${testsystem}_Variables.robot
 Resource    EITK3_Task_Variables.robot
 Resource    EITK3_General_Variables.robot
 Resource    EITK3_General_Keywords.robot
+Test Setup       Open_Browser_And_Login_As_Admin    Chrome
+Test Teardown    Logout_User_And_Close_Browser
 
 *** Variables ***
 ${testsystem}=               SM5-DAC1    #Default values, can be changed during execution
-${TaskCleanupTime}=          02:00:00    
-${FileAge}=                  1    
-${PayloadsStoredperTask}=    100
-${TaskHistoryAge}=           60
-${TaskRunRequestAge}=        30
-
+${TaskCleanupTime}  
+${FileAge} 
+${PayloadsStoredperTask}
+${TaskHistoryAge}
+${TaskRunRequestAge}
 
 *** Test Cases ***
 Change System Settings
     [Tags]    settings
 ## Navigate to EITK Setting Page Task Tab ##
-    Open_Browser_And_Login_As_Admin        Chrome
     Select_EITK_Tool
     Navigate_To_System_Settings_Page
     EnterpriseITK_Settings_Task_Tab
@@ -43,14 +43,13 @@ Change System Settings
     ...    Log                     The values entered are the same as before. No changes made.
     ...  ELSE
     ...    Should be equal         ${Pop_Up_Message}  Save successful
-    Logout_User_And_Close_Browser
+
 
 Restart EITK Instance
     [Tags]    restart
 ## Elements may be take a while to load, so we try with a high timeout ##
     Set Selenium Timeout               60s
 ## Navigate to Site Monitor Page ##
-    Open_Browser_And_Login_As_Admin    Chrome
     Wait Until Element Is Visible      xpath=${Image_SM}
     Click Element                      xpath=${Image_SM}
     Wait Until Element Is Visible      xpath=${SM_System_Button}
@@ -78,8 +77,8 @@ Restart EITK Instance
     Set Selenium Timeout    180s
     Wait Until Element Is Not Visible  xpath=${Image_EITK}
     Wait Until Element Is Visible      xpath=${Image_EITK}
-## Log out user ###
-    Logout_User_And_Close_Browser
+
+
 
 *** Keywords ***
 Set_Value    [Arguments]             ${value}          ${xpath}
