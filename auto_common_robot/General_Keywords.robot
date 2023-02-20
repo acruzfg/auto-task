@@ -1,6 +1,7 @@
 *** Settings ***
 Variables  Robot_Pass_Fail_Report_To_Jama.py
 Library  Robot_Pass_Fail_Report_To_Jama.py
+Library    SeleniumLibrary
 *** Keywords ***
 ##################################################################################################################################################################################
 ##################################################################################################################################################################################
@@ -283,3 +284,12 @@ Navigate_To_WP_Group
     click element  xpath=${${User/Console}_Groups_Option}
     wait until element is visible  xpath=${${User/Console}_Group_Page_Title}
     wait until element is visible  xpath=${Admin_${User/Console}_Group}
+
+#Keyword to naviagte to Audits
+Navigate_To_Audits_Page
+    wait until element is visible  xpath=${OSINavbar_Admin}
+    wait until element is visible  xpath=${OSINavbar_AdminCaret}
+    click element  xpath=${OSINavbar_AdminCaret}
+    Wait Until Element Is Visible    xpath=${Audits_Option}
+    Click Element    xpath=//*[@href='/platform/page/admin/audits.html']
+    

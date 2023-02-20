@@ -3,10 +3,10 @@ pipeline {
     parameters {
         string(name: 'TEST_SYSTEM', defaultValue: 'SM5-DAC1', description: 'System hosting the EITK3 instance.')
         string(name: 'TEST_CYCLE', description: 'JAMA test cycle API ID')
-        string(name: 'FileAge', description:'Integer. ')
-        string(name: 'PayloadsStoredperTask', description:'')
-        string(name: 'TaskHistoryAge', description:'')
-        string(name: 'TaskRunRequestAge', description:'')
+        string(name: 'FileAge', description:'Maximum age (in days) of a file before is cleaned up.')
+        string(name: 'PayloadsStoredperTask', description:'Maximum number of task payload files that can be stored at once for each Task.')
+        string(name: 'TaskHistoryAge', description:'Maximum age (in days) of a task history before it is cleaned up.')
+        string(name: 'TaskRunRequestAge', description:'Maximum age (in days) of a task run request before it is cleaned up.')
     }
     stages {
         stage('Create files in audits folder'){
@@ -18,8 +18,9 @@ pipeline {
                 echo"${params.TEST_SYSTEM}"
                 sh '''
                 cd /opt/osi/monarch/log/eitk
-                mkdir dir1 dir2 dir3 dir4
-                touch -d "2 days ago" dir1/file1.txt
+                mkdir folder1 folder2
+                touch -d "2 days ago" folder1
+                touch -d "2 days ago" folder1/file1.txt
                 touch -d "2 days ago" file3.txt
                 touch dir2/file2.txt file4.txt
                 '''
@@ -31,7 +32,7 @@ pipeline {
             }
             agent{label 'sm5-pds1'}
             steps{
-                echo"${params.TEST_SYSTEM}"
+                echo"${params.TEST_SYSTEM}"1
                 sh '''
                 cd /opt/osi/monarch/log/eitk
                 mkdir dir1 dir2 dir3 dir4
@@ -91,11 +92,11 @@ pipeline {
             steps{
                 echo"${params.TEST_SYSTEM}"
                 sh '''
-                cd /opt/osi/monarch/log/eitk
-                mkdir dir1 dir2 dir3 dir4
-                touch -d "2 days ago" dir1/file1.txt
-                touch -d "2 days ago" file3.txt
-                touch dir2/file2.txt file4.txt
+                git init
+                git remote add -f origin https://github.com/acruzfg/auto-task.git
+                git config core.sparseCheckout true
+                git sparse-checkout add check-files.sh
+                git pull origin
                 '''
             }
         }
@@ -107,11 +108,23 @@ pipeline {
             steps{
                 echo"${params.TEST_SYSTEM}"
                 sh '''
-                cd /opt/osi/monarch/log/eitk
-                mkdir dir1 dir2 dir3 dir4
-                touch -d "2 days ago" dir1/file1.txt
-                touch -d "2 days ago" file3.txt
-                touch dir2/file2.txt file4.txt
+                git init
+                git remote add -f origin https://github.com/acruzfg/auto-task.git
+                git config core.sparseCheckout true
+                git sparse-checkout add check-files.sh
+                git pull origin
+                '''
+            }
+        }
+        stage('Check audits'){
+            agent{label 'master'}
+            steps{
+                sh '''
+                git init
+                git remote add -f origin https://github.com/acruzfg/auto-task.git
+                git config core.sparseCheckout true
+                git sparse-checkout add check-files.sh
+                git pull origin
                 '''
             }
         }

@@ -135,3 +135,7 @@ ${MCTab_Edit_Group_Popup_MC_AllowEditModifications_Toggle_False}  //*[@id="Maint
 ${MCTab_Edit_Group_Popup_MC_DomainGroups}  //div[text()='Domain Groups']
 
 ######################################################## #########################################################################################################################################################
+# Variables for downloading audits file in the Audits 
+${Download_Button}                //button[@id='download-btn']
+${Download_All_Option}            //li[@id='download-all-btn']
+${Download_Filtered_Option}       //li[@id='download-filtered-btn']
