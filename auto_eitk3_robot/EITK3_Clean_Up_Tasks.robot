@@ -29,8 +29,8 @@ Change System Settings
     EnterpriseITK_Settings_Task_Tab
     Verify_EITK_Settings_Page_Task_Tab
 ## Entering values ##
-    ${Time}=               Get Current Date                  increment=00:05:00    result_format=%H:%M:%S
-    ${Current_Daytime}=    Get Current Date                  increment=00:05:00    exclude_millis=True
+    ${Time}=               Get Current Date                  increment=00:05:00    result_format=%H:%M:%S    ## to set up the clean up time
+    ${Current_Daytime}=    Get Current Date                  increment=00:05:00    exclude_millis=True       ## to check if clean up was ran the next day
     ${Daytime}=            Add Time To Date                  ${Current_Daytime}    1 day
     ${TaskCleanupTime}=    Set Variable                      ${Time}
     Set_Value              ${TaskCleanupTime}                ${EITK_Cleanup_Time_Textbox}
@@ -47,7 +47,7 @@ Change System Settings
     ...  ELSE
     ...    Should be equal         ${Pop_Up_Message}  Save successful
     Logout_User_And_Close_Browser
-    Run    echo ${Daytime} >> time_setup.txt
+    Run    echo ${Daytime} >> time_setup.txt            ### save to verify the cleaner run the next day
 
 
 Restart EITK Instance
@@ -79,7 +79,7 @@ Restart EITK Instance
     Click Element                      xpath=${OSINavbar_Button_Apps}
     Wait Until Element Is Visible      xpath=${OSINavbar_Button_Apps_ShowApps}
     Click Element                      xpath=${OSINavbar_Button_Apps_ShowApps}
-## Wait for EITk to restart and appear again the in the Apps Page. This make take up to 2-3 minutes ##
+## Wait for EITK to restart and appear again the in the Apps Page. This might take up to 2-3 minutes ##
     Set Selenium Timeout    180s
     Wait Until Element Is Not Visible  xpath=${Image_EITK}
     Wait Until Element Is Visible      xpath=${Image_EITK}
@@ -111,8 +111,9 @@ Check the Clean Up ran as expected
     Set Suite Variable               ${results}        1
 
 Report to JAMA
+    [Tags]    jama
 ###   Report to JAMA test results ###  
-    ${jama_id}=            Run                        python .\\auto_eitk3_endpoints\\TestCaseResults.py "Automated - Create, Modify & Delete EITK Table and Verify Table Elements via Endpoints" "${testcycle}" 
+    ${jama_id}=            Run                        python .\\auto_eitk3_endpoints\\TestCaseResults.py "Automated - Clean Up Tasks" "${testcycle}" 
     Run Keyword If         ${results} == 1            Jama-Report Passed Test    run_id=${jama_id}
     ...  ELSE
     ...  Jama-Report Failed Test            run_id=${jama_id}

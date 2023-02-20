@@ -72,7 +72,7 @@ pipeline {
             steps{
                 script{
                     echo "Testing node ${params.TEST_SYSTEM}"
-                    bat "robot  -l EITK3_Settings_log --variable testsystem:${params.TEST_SYSTEM} --variable FileAge:${params.FileAge} --variable PayloadsStoredperTask:${params.PayloadsStoredperTask} --variable TaskHistoryAge:${params.TaskHistoryAge} --variable TaskRunRequestAge:${params.TaskRunRequestAge} --exclude verify .//auto_eitk3_robot//EITK3_Clean_Up_Tasks.robot"    
+                    bat "robot  -l EITK3_Settings_log --variable testsystem:${params.TEST_SYSTEM} --variable: ${params.TEST_CYCLE} --variable FileAge:${params.FileAge} --variable PayloadsStoredperTask:${params.PayloadsStoredperTask} --variable TaskHistoryAge:${params.TaskHistoryAge} --variable TaskRunRequestAge:${params.TaskRunRequestAge} --exclude verify --exclude jama .//auto_eitk3_robot//EITK3_Clean_Up_Tasks.robot"    
                 }
             }
         }
