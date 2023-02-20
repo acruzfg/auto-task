@@ -60,6 +60,8 @@ pipeline {
                     git sparse-checkout add /auto_eitk3_robot/EITK3_Clean_Up_Tasks.robot
                     git sparse-checkout add /auto_eitk3_robot/EITK3_General_Keywords.robot
                     git sparse-checkout add /auto_eitk3_robot/EITK3_General_Variables.robot
+                    git sparse-checkout add /auto_eitk3_robot/Report_to_Jama.robot
+                    git sparse-checkout add /auto_eitk3_robot/*.py
                     git pull origin main
                     '''
                 }
@@ -71,16 +73,7 @@ pipeline {
             steps{
                 script{
                     echo "Testing node ${params.TEST_SYSTEM}"
-                    bat "robot  -l EITK3_Settings__log --variable testsystem:${params.TEST_SYSTEM} --variable FileAge:${params.FileAge} --variable PayloadsStoredperTask:${params.PayloadsStoredperTask} --variable TaskHistoryAge:${params.TaskHistoryAge} --variable TaskRunRequestAge:${params.TaskRunRequestAge} --exclude restart .//auto_eitk3_robot//EITK3_Clean_Up_Tasks.robot"    
-                }
-            }
-        }
-        stage('Restart  EITK instance'){
-            agent{label 'master'}
-            steps{
-                script{
-                    echo "Testing node ${params.TEST_SYSTEM}"
-                    bat "robot  -l EITK3_Restart__log --variable testsystem:${params.TEST_SYSTEM} --exclude settings .//auto_eitk3_robot//EITK3_Clean_Up_Tasks.robot"    
+                    bat "robot  -l EITK3_Settings_log --variable testsystem:${params.TEST_SYSTEM} --variable FileAge:${params.FileAge} --variable PayloadsStoredperTask:${params.PayloadsStoredperTask} --variable TaskHistoryAge:${params.TaskHistoryAge} --variable TaskRunRequestAge:${params.TaskRunRequestAge} --exclude verify .//auto_eitk3_robot//EITK3_Clean_Up_Tasks.robot"    
                 }
             }
         }
@@ -97,6 +90,7 @@ pipeline {
                 git config core.sparseCheckout true
                 git sparse-checkout add check-files.sh
                 git pull origin
+                source check-files.sh
                 '''
             }
         }
@@ -113,19 +107,16 @@ pipeline {
                 git config core.sparseCheckout true
                 git sparse-checkout add check-files.sh
                 git pull origin
+                source check-files.sh
                 '''
             }
         }
         stage('Check audits'){
             agent{label 'master'}
             steps{
-                sh '''
-                git init
-                git remote add -f origin https://github.com/acruzfg/auto-task.git
-                git config core.sparseCheckout true
-                git sparse-checkout add check-files.sh
-                git pull origin
-                '''
+                script{
+                    bat "robot  -l EITK3_Audits_log --variable testsystem:${params.TEST_SYSTEM} --exclude settings --exclude restart .//auto_eitk3_robot//EITK3_Clean_Up_Tasks.robot" 
+                }
             }
         }
     }

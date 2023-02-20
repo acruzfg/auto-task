@@ -13,9 +13,9 @@ Resource    EITK3_General_Keywords.robot
 *** Variables ***
 ${testsystem}=               SM5-DAC1    #Default values, can be changed during execution
 ${testcycle}
-${TaskCleanupTime}  
+${TaskCleanupTime}           1
 ${FileAge}                   1
-${PayloadsStoredperTask}     100git
+${PayloadsStoredperTask}     100
 ${TaskHistoryAge}            1
 ${TaskRunRequestAge}         1
 
@@ -89,8 +89,8 @@ Check the Clean Up ran as expected
     [Tags]   verify
     Set Suite Variable    ${results}        0
     Open_Chrome_Browser_With_Modified_Download_Directory_And_Login_As_Admin
-    ${Day}=              Get Current Date        result_format=timestamp
     ${Clean_Up_Time}=    Get File    time_setup.txt
+    Remove File          time_setup.txt
     Log    Clean up time was expected at ${Clean_Up_Time}
     Navigate_To_Audits_Page
 ## Wait for the page to load and te download button appears
