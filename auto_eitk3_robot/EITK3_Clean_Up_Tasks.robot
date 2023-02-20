@@ -11,7 +11,7 @@ Resource    EITK3_General_Variables.robot
 Resource    EITK3_General_Keywords.robot
 
 *** Variables ***
-${testsystem}=               SM5-DAC1    #Default values, can be changed during execution
+${testsystem}=               SM-DAC1    #Default values, can be changed during execution
 ${testcycle}
 ${TaskCleanupTime}           1
 ${FileAge}                   1
@@ -59,7 +59,7 @@ Restart EITK Instance
     Wait Until Element Is Visible      xpath=${Image_SM}
     Click Element                      xpath=${Image_SM}
     Wait Until Element Is Visible      xpath=${SM_System_Button}
-    Element Text Should Be             xpath=${SM_System_Button}     sm5-dac1
+    Element Text Should Be             xpath=${SM_System_Button}     ${testsystem}    ignore_case=True
     Click Element                      xpath=${SM_System_Button}
 ## Check the osii_eitkd process is visible ##
     Wait Until Element Is Visible      xpath=${EITK_process}
@@ -94,7 +94,7 @@ Check the Clean Up ran as expected
     Log    Clean up time was expected at ${Clean_Up_Time}
     Navigate_To_Audits_Page
 ## Wait for the page to load and te download button appears
-    Wait Until Page Contains    Audits
+    Wait Until Page Contains         Audits
     Wait Until Element Is Visible    xpath=${Download_Button}
     Wait Until Element Is Enabled    xpath=${Download_Button}
     Click Element                    xpath=${Download_Button}

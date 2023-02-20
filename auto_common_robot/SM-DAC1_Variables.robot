@@ -5,7 +5,7 @@
 
 # Web Browser Variable:
 
-${URL}  https://172.17.82.129:8443/platform/page/signin.html
+${URL}  https://172.17.82.121:8443/platform/page/signin.html
 
 # Jama Test Plan ID Variable:
 

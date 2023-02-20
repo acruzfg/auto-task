@@ -26,13 +26,13 @@ pipeline {
                 '''
             }
         }
-        stage('Create files in audits folder'){
+        stage('Create files in audits folder 2'){
             when{
                 expression { params.TEST_SYSTEM == "SM5-PDS1" }
             }
             agent{label 'sm5-pds1'}
             steps{
-                echo"${params.TEST_SYSTEM}"1
+                echo"${params.TEST_SYSTEM}"
                 sh '''
                 cd /opt/osi/monarch/log/eitk
                 mkdir dir1 dir2 dir3 dir4
@@ -65,7 +65,6 @@ pipeline {
                     git pull origin main
                     '''
                 }
-
             }
         }
         stage('Settings for EITK instance'){
@@ -94,7 +93,7 @@ pipeline {
                 '''
             }
         }
-        stage('Check if files were deleted'){
+        stage('Check if files were deleted 2'){
             when{
                 expression { params.TEST_SYSTEM == "SM5-PDS1" }
             }
