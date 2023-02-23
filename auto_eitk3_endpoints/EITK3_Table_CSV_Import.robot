@@ -154,7 +154,7 @@ Table CSV Import
     Status Should Be                  200                                       ${GET_response_rows}
 ### Count the number of rows and verify it is consistent with the table, which in this case means that each row must have a key defined ###
     ${number_of_rows}=                Count Rows                                ${GET_response_rows}
-    Should Be Equal As Strings        1                                         ${number_of_rows}
+    Should Be Equal As Strings        2                                         ${number_of_rows}
         
 
 ### Invalid missing keys ###

@@ -11,7 +11,7 @@ Resource    EITK3_General_Variables.robot
 Resource    EITK3_General_Keywords.robot
 
 *** Variables ***
-${testsystem}=               SM-DAC1    #Default values, can be changed during execution
+${testsystem}=               SM5-DAC1    #Default values, can be changed during execution
 ${testcycle}
 ${TaskCleanupTime}           1
 ${FileAge}                   1
