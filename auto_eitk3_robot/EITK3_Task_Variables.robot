@@ -102,11 +102,8 @@ ${Tasks_Delete_Button_Option_Yes}  //*[@role="toolbar"]//*[@class="dx-toolbar-ce
 #${Tasks_Delete_Task_Message}  /html/body/div[3]/div/div
 
 ${Message}  //*[@class='dx-toast-message' and @role='alert']
-${Message_Snackbar}    //div[contains(@class, 'mdl-js-snackbar mdl-snackbar mdl-snackbar--active')]
-${Message_Snackbar_Text}    //div[contains(@class, 'mdl-snackbar__text')]
 # Really difficult to catch when it disappears and isn't static ^^
 ${Tasks_Grid_After_Search_And_Delete}  //app-tasks/app-tasks-view/div/dx-data-grid/div//*//span[text()="No Data"]
-
 # Variable used to verify the search for this particular task either (aka whether this task exists or doesn't exist):
 ${Tasks_NameSearch_Result_EmailStep}  //app-tasks/app-tasks-view/div/dx-data-grid/div//*/div/div/div/div/table/tbody//*//td[text()='EmailStep_TestCase_HR']
 

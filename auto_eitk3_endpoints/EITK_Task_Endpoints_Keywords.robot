@@ -5,28 +5,28 @@ Library    JSONLibrary
 
 *** Keywords ***
 POST-Create Task with Name    [Arguments]    ${POST_body}
-    ${headers}=    Create Dictionary    osiApiToken=${token}    Content-Type=application/json
+    ${headers}=    Create Dictionary    osiApiToken=${Token}    Content-Type=application/json
     ${response}=    POST On Session    Swagger    url=/eitk/api/v1/taskconfig    data=${POST_body}    headers=${headers}    expected_status=Anything    verify=${False}
     Return From Keyword    ${response}
 
 PUT-Update Task with Name    [Arguments]    ${task_name}    ${PUT_body}
-    ${headers}=    Create Dictionary    osiApiToken=${token}    Content-Type=application/json
+    ${headers}=    Create Dictionary    osiApiToken=${Token}    Content-Type=application/json
     ${response}=    PUT On Session    Swagger    url=/eitk/api/v1/taskconfig/${task_name}   data=${PUT_body}    headers=${headers}    expected_status=Anything    verify=${False}
     Return From Keyword    ${response}
 
 GET-Tasks With Name    [Arguments]    ${task_name}
-    ${headers}=    Create Dictionary    osiApiToken=${token}    Content-Type=application/json
+    ${headers}=    Create Dictionary    osiApiToken=${Token}    Content-Type=application/json
     ${response}=    GET On Session    Swagger    url=/eitk/api/v1/taskconfig/${task_name}   headers=${headers}        expected_status=Anything    verify=${False}
     Return From Keyword    ${response}
 
 GET-Tasks With Name Filter    [Arguments]    ${task_name}
-    ${headers}=    Create Dictionary    osiApiToken=${token}    Content-Type=application/json
+    ${headers}=    Create Dictionary    osiApiToken=${Token}    Content-Type=application/json
     ${params}=    Create Dictionary    filter=["name","=","${task_name}"]
     ${response}=    GET On Session    Swagger    url=/eitk/api/v1/taskconfig   headers=${headers}        params=${params}    expected_status=Anything    verify=${False}
     Return From Keyword    ${response}
 
 DELETE-Task with Name    [Arguments]    ${task_name}
-    ${headers}=    Create Dictionary    osiApiToken=${token}    Content-Type=application/json
+    ${headers}=    Create Dictionary    osiApiToken=${Token}    Content-Type=application/json
     ${response}=    DELETE On Session    Swagger    url=/eitk/api/v1/taskconfig/${task_name}    headers=${headers}    verify=${False}
     Return From Keyword    ${response}
 

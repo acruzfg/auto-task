@@ -292,4 +292,49 @@ Navigate_To_Audits_Page
     click element  xpath=${OSINavbar_AdminCaret}
     Wait Until Element Is Visible    xpath=${Audits_Option}
     Click Element    xpath=//*[@href='/platform/page/admin/audits.html']
-    
+
+Navigate_To_Apps_Page
+    Click Element                      xpath=${OSINavbar_Button_Apps}
+    Wait Until Element Is Visible      xpath=${OSINavbar_Button_Apps_ShowApps}
+    Click Element                      xpath=${OSINavbar_Button_Apps_ShowApps}
+
+Restart_Proccess_Using_Site_Monitor    [Arguments]    ${Test_System_Name}        ${Process}    ${Go_to_App_Page}=${True}
+## Elements may be take a while to load, so we try with a high timeout ##
+    Run Keyword If    ${Go_to_App_Page} == ${True}
+    ...    Navigate_To_Apps_Page
+    Set Selenium Timeout               60s
+## Navigate to Site Monitor Page ##    
+    Wait Until Element Is Visible      xpath=${Image_SM}
+    Click Element                      xpath=${Image_SM}
+    Wait Until Page Contains           Global View
+##Scan active nodes and click on designated test system 
+    FOR    ${i}    IN RANGE    1    7
+        ${XPath}=              Set Variable                           //body/div[@id='templateContent']/div[1]/div[1]/main[1]/div[2]/div[${i}]/div[2]/div[1]/div[1]/div[1]
+        ${XPATH}=              Convert To String                      ${XPath}
+        ${Node_Name}=          Get Text                               xpath=${XPATH}
+        ${Test_System}=        Convert To Lower Case                  ${Test_System_Name}
+        Run Keyword If         "${Test_System}" == "${Node_Name}"     Click Element    xpath=${XPATH}
+        Exit For Loop If       "${Test_System}" == "${Node_Name}"
+    END
+##  Check the targeted process is present in the process grid ##
+    Wait Until Page Contains Element    xpath=//div[contains(text(),'${Process}')]
+##  Search the process grid to find the target process ##
+    FOR    ${row}    IN RANGE    1    20
+        ${Process_Name}=    Get Text    xpath=//tbody/tr[${row}]/td[1]
+        ${Process_Restart_Checkbox}=    Set Variable If    "${Process_Name}" == "${Process}"    //tbody/tr[${row}]/td[11]/div[1]/label[1]/span[3]  
+        Exit For Loop If       "${Process_Name}" == "${Process}"
+    END                   
+## Click on box to restart process ##
+    Page Should Contain Element        xpath=${Process_Restart_Checkbox}
+    Click Element                      xpath=${Process_Restart_Checkbox}
+    Wait Until Element Is Enabled      xpath=${Restart_Process_Button}
+    Click Element                      xpath=${Restart_Process_Button}
+## Confirm on pop up window ##         
+    Wait Until Element Is Visible      xpath=//div[contains(text(),'Are you sure you want to restart ${Process}?')]
+    Wait Until Element Is Visible      xpath=${Confirm_Button}
+    Wait Until Element Is Enabled      xpath=${Confirm_Button}
+    Click Element                      xpath=${Confirm_Button}
+## Verify message confirms process was restarted ##
+    Wait until element is visible      ${Message_Snackbar}
+    ${Pop_Up_Message}=                 Get Text    xpath=${Message_Snackbar_Text}
+    Should Be Equal As Strings    ${Pop_Up_Message}    	Processes restarted successfully

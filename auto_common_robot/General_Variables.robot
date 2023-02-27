@@ -37,10 +37,11 @@ ${User_Toolbar_User_Caret}  //*[@id="navbar"]//*[@role="menuitem"]//*[text()="ad
 ${User_Dropdown_Logout}  //*[@class="dx-submenu"]//*[@role="menuitem"]//*[text()='Logout']
 
 # Variable to use site monitor
-
-${EITK_Restart_Checkbox}    //tbody/tr[3]/td[11]/div[1]/label[1]/span[3]
-${Restart_Process_Button}    //i[contains(text(),'refresh')]
-${Confirm_Button}            //button[contains(text(),'Confirm')]
+${Restart_Process_Button}                       //i[contains(text(),'refresh')]
+${Confirm_Button}                               //button[contains(text(),'Confirm')]
+${Cancel_Button}                                //button[contains(text(),'Cancel')]
+${Message_Snackbar}    //div[contains(@class, 'mdl-js-snackbar mdl-snackbar mdl-snackbar--active')]
+${Message_Snackbar_Text}    //div[contains(@class, 'mdl-snackbar__text')]
 
 ########################################################################################################################
 
