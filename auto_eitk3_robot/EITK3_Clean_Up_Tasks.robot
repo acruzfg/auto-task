@@ -104,6 +104,7 @@ Check the Clean Up ran as expected
     Status Should Be      200                         ${RunRequests}
     ${Body}=              Convert To String           ${RunRequests.content}
     Should Be Equal As Strings    ${Body}             [${SPACE}]
+    Delete All Sessions
     Set Suite Variable            ${results}          1
 
 Report to JAMA
