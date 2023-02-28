@@ -88,3 +88,13 @@ GET-Links That Contain ItemID    [Arguments]    ${idmap_name}    ${sourceID}    
     ${headers}=     Create Dictionary    osiApiToken=${Token}
     ${response}=    GET On Session    Swagger    url=/eitk/api/v1/idmaps/${idmap_name}/sources/${sourceID}/items/${itemID}    headers=${headers}    expected_status=Anything    verify=${False}
     Return From Keyword    ${response}
+
+GET-Task Run History            [Arguments]     ${params}=${None}
+    ${headers}=     Create Dictionary    osiApiToken=${Token}
+    ${response}=      GET On Session    Swagger    url=/eitk/api/v1/taskrunhistory   headers=${headers}    params=${params}    expected_status=Anything    verify=${False}
+    Return From Keyword    ${response}
+
+GET-Task Run Requests            [Arguments]     ${params}=${None}
+    ${headers}=     Create Dictionary    osiApiToken=${Token}
+    ${response}=      GET On Session    Swagger    url=/eitk/api/v1/taskrunrequests   headers=${headers}    params=${params}    expected_status=Anything    verify=${False}
+    Return From Keyword    ${response}

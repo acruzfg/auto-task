@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 5.0.1 (Python 3.10.7 on win32)" generated="20230227 17:01:48.794" rpa="false" schemaversion="3">
+<robot generator="Robot 5.0.1 (Python 3.10.7 on win32)" generated="20230228 09:00:41.400" rpa="false" schemaversion="3">
 <suite id="s1" name="EITK3 Clean Up Tasks" source="C:\Users\acruz\OneDrive - Aspen Technology, Inc\Documents\AutoTasks\auto_eitk3_robot\EITK3_Clean_Up_Tasks.robot">
 <test id="s1-t1" name="Change System Settings" line="33">
 <kw name="Create Session" library="RequestsLibrary">
 <arg>Swagger</arg>
 <arg>${Base_URL}</arg>
 <doc>Create Session: create a HTTP session to a server</doc>
-<msg timestamp="20230227 17:01:49.190" level="INFO">Creating Session using : alias=Swagger, url=https://172.17.82.121:8443/, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
-<status status="PASS" starttime="20230227 17:01:49.190" endtime="20230227 17:01:49.190"/>
+<msg timestamp="20230228 09:00:42.120" level="INFO">Creating Session using : alias=Swagger, url=https://172.17.82.121:8443/, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230228 09:00:42.120" endtime="20230228 09:00:42.120"/>
 </kw>
 <kw name="Make Sure Task Does Not Exist" library="EITK3_General_Endpoints_Keywords">
 <arg>${TaskName}</arg>
@@ -15,8 +15,8 @@
 <var>${name_filter}</var>
 <arg>["name","=", "${task_name}"]</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20230227 17:01:49.192" level="INFO">${name_filter} = ["name","=", "CleanUpTest"]</msg>
-<status status="PASS" starttime="20230227 17:01:49.191" endtime="20230227 17:01:49.192"/>
+<msg timestamp="20230228 09:00:42.120" level="INFO">${name_filter} = ["name","=", "CleanUpTest"]</msg>
+<status status="PASS" starttime="20230228 09:00:42.120" endtime="20230228 09:00:42.120"/>
 </kw>
 <kw name="GET-Tasks With Filter" library="EITK3_GET_Keywords">
 <var>${response}</var>
@@ -27,15 +27,15 @@
 <arg>osiApiToken=${Token}</arg>
 <arg>accept=application/json</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20230227 17:01:49.192" level="INFO">${headers} = {'osiApiToken': '624d17a278f71870c4bc0ef6:08c99aec5c74fe42882b78f90dbc165ba87378592a73bc1c59c793f4197b85a2', 'accept': 'application/json'}</msg>
-<status status="PASS" starttime="20230227 17:01:49.192" endtime="20230227 17:01:49.192"/>
+<msg timestamp="20230228 09:00:42.120" level="INFO">${headers} = {'osiApiToken': '624d17a278f71870c4bc0ef6:08c99aec5c74fe42882b78f90dbc165ba87378592a73bc1c59c793f4197b85a2', 'accept': 'application/json'}</msg>
+<status status="PASS" starttime="20230228 09:00:42.120" endtime="20230228 09:00:42.120"/>
 </kw>
 <kw name="Create Dictionary" library="BuiltIn">
 <var>${params}</var>
 <arg>filter=${filter}</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20230227 17:01:49.192" level="INFO">${params} = {'filter': '["name","=", "CleanUpTest"]'}</msg>
-<status status="PASS" starttime="20230227 17:01:49.192" endtime="20230227 17:01:49.193"/>
+<msg timestamp="20230228 09:00:42.120" level="INFO">${params} = {'filter': '["name","=", "CleanUpTest"]'}</msg>
+<status status="PASS" starttime="20230228 09:00:42.120" endtime="20230228 09:00:42.120"/>
 </kw>
 <kw name="GET On Session" library="RequestsLibrary">
 <var>${response}</var>
@@ -46,16 +46,16 @@
 <arg>expected_status=Anything</arg>
 <arg>verify=${False}</arg>
 <doc>Sends a GET request on a previously created HTTP Session.</doc>
-<msg timestamp="20230227 17:01:49.736" level="INFO">GET Request : url=https://172.17.82.121:8443/eitk/api/v1/taskconfig?filter=%5B%22name%22%2C%22%3D%22%2C+%22CleanUpTest%22%5D 
+<msg timestamp="20230228 09:00:42.471" level="INFO">GET Request : url=https://172.17.82.121:8443/eitk/api/v1/taskconfig?filter=%5B%22name%22%2C%22%3D%22%2C+%22CleanUpTest%22%5D 
  path_url=/eitk/api/v1/taskconfig?filter=%5B%22name%22%2C%22%3D%22%2C+%22CleanUpTest%22%5D 
  headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'accept': 'application/json', 'Connection': 'keep-alive', 'osiApiToken': '624d17a278f71870c4bc0ef6:08c99aec5c74fe42882b78f90dbc165ba87378592a73bc1c59c793f4197b85a2'} 
  body=None 
  </msg>
-<msg timestamp="20230227 17:01:49.736" level="INFO">GET Response : url=https://172.17.82.121:8443/eitk/api/v1/taskconfig?filter=%5B%22name%22%2C%22%3D%22%2C+%22CleanUpTest%22%5D 
+<msg timestamp="20230228 09:00:42.471" level="INFO">GET Response : url=https://172.17.82.121:8443/eitk/api/v1/taskconfig?filter=%5B%22name%22%2C%22%3D%22%2C+%22CleanUpTest%22%5D 
  status=200, reason=OK 
- headers={'Server': 'nginx', 'Date': 'Mon, 27 Feb 2023 23:01:49 GMT', 'Content-Type': 'application/json', 'Content-Length': '1255', 'Connection': 'keep-alive', 'X-Frame-Options': 'SAMEORIGIN', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '1; mode=block', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Pragma': 'no-cache', 'Cache-Control': 'no-cache, must-revalidate, private, no-store'} 
+ headers={'Server': 'nginx', 'Date': 'Tue, 28 Feb 2023 15:00:42 GMT', 'Content-Type': 'application/json', 'Content-Length': '1255', 'Connection': 'keep-alive', 'X-Frame-Options': 'SAMEORIGIN', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '1; mode=block', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Pragma': 'no-cache', 'Cache-Control': 'no-cache, must-revalidate, private, no-store'} 
  body=[ {
-  "id" : "63fd35aa83d19b7dcadc7c0c",
+  "id" : "63fe16f4dde72a77fab78d29",
   "saveID" : 1,
   "name" : "CleanUpTest",
   "steps" : [ {
@@ -73,8 +73,8 @@
   "createAuditCopies" : "Never",
   "result" : {
     "name" : "CleanUpTest",
-    "startTime" : 1677538730249,
-    "endTime" : 1677538730596,
+    "startTime" : 1677596404655,
+    "endTime" : 1677596404846,
     "status" : "Success",
     "error" : false,
     "statusCode" : 200,
@@ -91,7 +91,7 @@
     "saveTaskPayload" : false,
     "waitForResponse" : true,
     "isSchedulerRequest" : false,
-    "requestID" : "63595ec1-ab5d-4b16-84d2-ef41e2971b7f",
+    "requestID" : "3fa018ff-2aff-4b49-b4ec-4105dbab2d65",
     "payload" : "",
     "payloadHeaders" : { },
     "userId" : "624d17a278f71870c4bc0ef6",
@@ -101,26 +101,26 @@
   }
 } ] 
  </msg>
-<msg timestamp="20230227 17:01:49.736" level="INFO">C:\Users\acruz\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host '172.17.82.121'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+<msg timestamp="20230228 09:00:42.471" level="INFO">C:\Users\acruz\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host '172.17.82.121'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
   warnings.warn(</msg>
-<msg timestamp="20230227 17:01:49.736" level="INFO">${response} = &lt;Response [200]&gt;</msg>
-<status status="PASS" starttime="20230227 17:01:49.193" endtime="20230227 17:01:49.736"/>
+<msg timestamp="20230228 09:00:42.471" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230228 09:00:42.120" endtime="20230228 09:00:42.471"/>
 </kw>
 <kw name="Return From Keyword" library="BuiltIn">
 <arg>${response}</arg>
 <doc>Returns from the enclosing user keyword.</doc>
-<msg timestamp="20230227 17:01:49.736" level="INFO">Returning from the enclosing user keyword.</msg>
-<status status="PASS" starttime="20230227 17:01:49.736" endtime="20230227 17:01:49.750"/>
+<msg timestamp="20230228 09:00:42.471" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20230228 09:00:42.471" endtime="20230228 09:00:42.475"/>
 </kw>
-<msg timestamp="20230227 17:01:49.750" level="INFO">${response} = &lt;Response [200]&gt;</msg>
-<status status="PASS" starttime="20230227 17:01:49.192" endtime="20230227 17:01:49.750"/>
+<msg timestamp="20230228 09:00:42.475" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230228 09:00:42.120" endtime="20230228 09:00:42.475"/>
 </kw>
 <kw name="Convert To String" library="BuiltIn">
 <var>${body}</var>
 <arg>${response.content}</arg>
 <doc>Converts the given item to a Unicode string.</doc>
-<msg timestamp="20230227 17:01:49.754" level="INFO">${body} = [ {
-  "id" : "63fd35aa83d19b7dcadc7c0c",
+<msg timestamp="20230228 09:00:42.481" level="INFO">${body} = [ {
+  "id" : "63fe16f4dde72a77fab78d29",
   "saveID" : 1,
   "name" : "CleanUpTest",
   "steps" : [ {
@@ -129,14 +129,14 @@
     "filePath" : "*",
     "hostname" : "sm-dac1",
    ...</msg>
-<status status="PASS" starttime="20230227 17:01:49.751" endtime="20230227 17:01:49.754"/>
+<status status="PASS" starttime="20230228 09:00:42.475" endtime="20230228 09:00:42.481"/>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
 <var>${status}</var>
 <arg>'${task_name}' in '''${body}'''</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20230227 17:01:49.754" level="INFO">${status} = True</msg>
-<status status="PASS" starttime="20230227 17:01:49.754" endtime="20230227 17:01:49.754"/>
+<msg timestamp="20230228 09:00:42.481" level="INFO">${status} = True</msg>
+<status status="PASS" starttime="20230228 09:00:42.481" endtime="20230228 09:00:42.481"/>
 </kw>
 <kw name="Run Keyword If" library="BuiltIn">
 <var>${Delete_response}</var>
@@ -150,8 +150,8 @@
 <var>${headers}</var>
 <arg>osiApiToken=${Token}</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20230227 17:01:49.755" level="INFO">${headers} = {'osiApiToken': '624d17a278f71870c4bc0ef6:08c99aec5c74fe42882b78f90dbc165ba87378592a73bc1c59c793f4197b85a2'}</msg>
-<status status="PASS" starttime="20230227 17:01:49.755" endtime="20230227 17:01:49.755"/>
+<msg timestamp="20230228 09:00:42.481" level="INFO">${headers} = {'osiApiToken': '624d17a278f71870c4bc0ef6:08c99aec5c74fe42882b78f90dbc165ba87378592a73bc1c59c793f4197b85a2'}</msg>
+<status status="PASS" starttime="20230228 09:00:42.481" endtime="20230228 09:00:42.481"/>
 </kw>
 <kw name="DELETE On Session" library="RequestsLibrary">
 <var>${response}</var>
@@ -160,16 +160,16 @@
 <arg>headers=${headers}</arg>
 <arg>verify=${False}</arg>
 <doc>Sends a DELETE request on a previously created HTTP Session.</doc>
-<msg timestamp="20230227 17:01:49.906" level="INFO">DELETE Request : url=https://172.17.82.121:8443/eitk/api/v1/taskconfig/CleanUpTest 
+<msg timestamp="20230228 09:00:42.571" level="INFO">DELETE Request : url=https://172.17.82.121:8443/eitk/api/v1/taskconfig/CleanUpTest 
  path_url=/eitk/api/v1/taskconfig/CleanUpTest 
  headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'osiApiToken': '624d17a278f71870c4bc0ef6:08c99aec5c74fe42882b78f90dbc165ba87378592a73bc1c59c793f4197b85a2', 'Content-Length': '0'} 
  body=None 
  </msg>
-<msg timestamp="20230227 17:01:49.906" level="INFO">DELETE Response : url=https://172.17.82.121:8443/eitk/api/v1/taskconfig/CleanUpTest 
+<msg timestamp="20230228 09:00:42.571" level="INFO">DELETE Response : url=https://172.17.82.121:8443/eitk/api/v1/taskconfig/CleanUpTest 
  status=200, reason=OK 
- headers={'Server': 'nginx', 'Date': 'Mon, 27 Feb 2023 23:01:49 GMT', 'Content-Type': 'application/json', 'Content-Length': '1251', 'Connection': 'keep-alive', 'X-Frame-Options': 'SAMEORIGIN', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '1; mode=block', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Pragma': 'no-cache', 'Cache-Control': 'no-cache, must-revalidate, private, no-store'} 
+ headers={'Server': 'nginx', 'Date': 'Tue, 28 Feb 2023 15:00:42 GMT', 'Content-Type': 'application/json', 'Content-Length': '1251', 'Connection': 'keep-alive', 'X-Frame-Options': 'SAMEORIGIN', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '1; mode=block', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Pragma': 'no-cache', 'Cache-Control': 'no-cache, must-revalidate, private, no-store'} 
  body={
-  "id" : "63fd35aa83d19b7dcadc7c0c",
+  "id" : "63fe16f4dde72a77fab78d29",
   "saveID" : 1,
   "name" : "CleanUpTest",
   "steps" : [ {
@@ -187,8 +187,8 @@
   "createAuditCopies" : "Never",
   "result" : {
     "name" : "CleanUpTest",
-    "startTime" : 1677538730249,
-    "endTime" : 1677538730596,
+    "startTime" : 1677596404655,
+    "endTime" : 1677596404846,
     "status" : "Success",
     "error" : false,
     "statusCode" : 200,
@@ -205,7 +205,7 @@
     "saveTaskPayload" : false,
     "waitForResponse" : true,
     "isSchedulerRequest" : false,
-    "requestID" : "63595ec1-ab5d-4b16-84d2-ef41e2971b7f",
+    "requestID" : "3fa018ff-2aff-4b49-b4ec-4105dbab2d65",
     "payload" : "",
     "payloadHeaders" : { },
     "userId" : "624d17a278f71870c4bc0ef6",
@@ -215,21 +215,21 @@
   }
 } 
  </msg>
-<msg timestamp="20230227 17:01:49.906" level="INFO">C:\Users\acruz\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host '172.17.82.121'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+<msg timestamp="20230228 09:00:42.571" level="INFO">C:\Users\acruz\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host '172.17.82.121'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
   warnings.warn(</msg>
-<msg timestamp="20230227 17:01:49.906" level="INFO">${response} = &lt;Response [200]&gt;</msg>
-<status status="PASS" starttime="20230227 17:01:49.755" endtime="20230227 17:01:49.906"/>
+<msg timestamp="20230228 09:00:42.571" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230228 09:00:42.481" endtime="20230228 09:00:42.571"/>
 </kw>
 <kw name="Return From Keyword" library="BuiltIn">
 <arg>${response}</arg>
 <doc>Returns from the enclosing user keyword.</doc>
-<msg timestamp="20230227 17:01:49.906" level="INFO">Returning from the enclosing user keyword.</msg>
-<status status="PASS" starttime="20230227 17:01:49.906" endtime="20230227 17:01:49.906"/>
+<msg timestamp="20230228 09:00:42.571" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20230228 09:00:42.571" endtime="20230228 09:00:42.571"/>
 </kw>
-<status status="PASS" starttime="20230227 17:01:49.754" endtime="20230227 17:01:49.906"/>
+<status status="PASS" starttime="20230228 09:00:42.481" endtime="20230228 09:00:42.571"/>
 </kw>
-<msg timestamp="20230227 17:01:49.912" level="INFO">${Delete_response} = &lt;Response [200]&gt;</msg>
-<status status="PASS" starttime="20230227 17:01:49.754" endtime="20230227 17:01:49.912"/>
+<msg timestamp="20230228 09:00:42.571" level="INFO">${Delete_response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230228 09:00:42.481" endtime="20230228 09:00:42.571"/>
 </kw>
 <kw name="Run Keyword If" library="BuiltIn">
 <arg>${status} == ${True}</arg>
@@ -241,53 +241,53 @@
 <arg>200</arg>
 <arg>${Delete_response}</arg>
 <doc>Fails if response status code is different than the expected.</doc>
-<status status="PASS" starttime="20230227 17:01:49.912" endtime="20230227 17:01:49.912"/>
+<status status="PASS" starttime="20230228 09:00:42.571" endtime="20230228 09:00:42.571"/>
 </kw>
-<status status="PASS" starttime="20230227 17:01:49.912" endtime="20230227 17:01:49.912"/>
+<status status="PASS" starttime="20230228 09:00:42.571" endtime="20230228 09:00:42.571"/>
 </kw>
-<status status="PASS" starttime="20230227 17:01:49.191" endtime="20230227 17:01:49.912"/>
+<status status="PASS" starttime="20230228 09:00:42.120" endtime="20230228 09:00:42.571"/>
 </kw>
 <kw name="Set Variable" library="BuiltIn">
 <var>${createAuditCopies}</var>
 <arg>Always</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20230227 17:01:49.914" level="INFO">${createAuditCopies} = Always</msg>
-<status status="PASS" starttime="20230227 17:01:49.913" endtime="20230227 17:01:49.914"/>
+<msg timestamp="20230228 09:00:42.571" level="INFO">${createAuditCopies} = Always</msg>
+<status status="PASS" starttime="20230228 09:00:42.571" endtime="20230228 09:00:42.571"/>
 </kw>
 <kw name="Set Variable" library="BuiltIn">
 <var>${task}</var>
 <arg>{"name": "${TaskName}","createAuditCopies": "${createAuditCopies}"}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20230227 17:01:49.915" level="INFO">${task} = {"name": "CleanUpTest","createAuditCopies": "Always"}</msg>
-<status status="PASS" starttime="20230227 17:01:49.914" endtime="20230227 17:01:49.915"/>
+<msg timestamp="20230228 09:00:42.571" level="INFO">${task} = {"name": "CleanUpTest","createAuditCopies": "Always"}</msg>
+<status status="PASS" starttime="20230228 09:00:42.571" endtime="20230228 09:00:42.571"/>
 </kw>
 <kw name="Set Variable" library="BuiltIn">
 <var>${createAuditCopies}</var>
 <arg>Never</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20230227 17:01:49.915" level="INFO">${createAuditCopies} = Never</msg>
-<status status="PASS" starttime="20230227 17:01:49.915" endtime="20230227 17:01:49.915"/>
+<msg timestamp="20230228 09:00:42.579" level="INFO">${createAuditCopies} = Never</msg>
+<status status="PASS" starttime="20230228 09:00:42.579" endtime="20230228 09:00:42.579"/>
 </kw>
 <kw name="Convert To Lower Case" library="String">
 <var>${Hostname}</var>
 <arg>${TESTSYSTEM}</arg>
 <doc>Converts string to lower case.</doc>
-<msg timestamp="20230227 17:01:49.916" level="INFO">${Hostname} = sm-dac1</msg>
-<status status="PASS" starttime="20230227 17:01:49.916" endtime="20230227 17:01:49.916"/>
+<msg timestamp="20230228 09:00:42.579" level="INFO">${Hostname} = sm-dac1</msg>
+<status status="PASS" starttime="20230228 09:00:42.579" endtime="20230228 09:00:42.579"/>
 </kw>
 <kw name="Set Variable" library="BuiltIn">
 <var>${steps}</var>
 <arg>[{"type": "FILE","description": "","hostname": "${Hostname}","filePath": "*","disablePreserveTimestamp": false,"deletePostTransfer": "NEVER","readFile": true,"treatMissingFilesAsSuccess": true,"protocol": "MONARCH"}]</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20230227 17:01:49.917" level="INFO">${steps} = [{"type": "FILE","description": "","hostname": "sm-dac1","filePath": "*","disablePreserveTimestamp": false,"deletePostTransfer": "NEVER","readFile": true,"treatMissingFilesAsSuccess": true,"protocol":...</msg>
-<status status="PASS" starttime="20230227 17:01:49.917" endtime="20230227 17:01:49.917"/>
+<msg timestamp="20230228 09:00:42.581" level="INFO">${steps} = [{"type": "FILE","description": "","hostname": "sm-dac1","filePath": "*","disablePreserveTimestamp": false,"deletePostTransfer": "NEVER","readFile": true,"treatMissingFilesAsSuccess": true,"protocol":...</msg>
+<status status="PASS" starttime="20230228 09:00:42.581" endtime="20230228 09:00:42.581"/>
 </kw>
 <kw name="Set Variable" library="BuiltIn">
 <var>${task}</var>
 <arg>{"name": "${TaskName}", "createAuditCopies": "${createAuditCopies}","steps": ${steps}}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20230227 17:01:49.918" level="INFO">${task} = {"name": "CleanUpTest", "createAuditCopies": "Never","steps": [{"type": "FILE","description": "","hostname": "sm-dac1","filePath": "*","disablePreserveTimestamp": false,"deletePostTransfer": "NEVER","...</msg>
-<status status="PASS" starttime="20230227 17:01:49.918" endtime="20230227 17:01:49.918"/>
+<msg timestamp="20230228 09:00:42.581" level="INFO">${task} = {"name": "CleanUpTest", "createAuditCopies": "Never","steps": [{"type": "FILE","description": "","hostname": "sm-dac1","filePath": "*","disablePreserveTimestamp": false,"deletePostTransfer": "NEVER","...</msg>
+<status status="PASS" starttime="20230228 09:00:42.581" endtime="20230228 09:00:42.581"/>
 </kw>
 <kw name="POST-Create Task" library="EITK3_POST_Keywords">
 <var>${Create_task}</var>
@@ -297,8 +297,8 @@
 <arg>osiApiToken=${Token}</arg>
 <arg>Content-Type=application/json</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20230227 17:01:49.919" level="INFO">${headers} = {'osiApiToken': '624d17a278f71870c4bc0ef6:08c99aec5c74fe42882b78f90dbc165ba87378592a73bc1c59c793f4197b85a2', 'Content-Type': 'application/json'}</msg>
-<status status="PASS" starttime="20230227 17:01:49.919" endtime="20230227 17:01:49.919"/>
+<msg timestamp="20230228 09:00:42.581" level="INFO">${headers} = {'osiApiToken': '624d17a278f71870c4bc0ef6:08c99aec5c74fe42882b78f90dbc165ba87378592a73bc1c59c793f4197b85a2', 'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20230228 09:00:42.581" endtime="20230228 09:00:42.581"/>
 </kw>
 <kw name="POST On Session" library="RequestsLibrary">
 <var>${response}</var>
@@ -309,16 +309,16 @@
 <arg>expected_status=Anything</arg>
 <arg>verify=${False}</arg>
 <doc>Sends a POST request on a previously created HTTP Session.</doc>
-<msg timestamp="20230227 17:01:50.079" level="INFO">POST Request : url=https://172.17.82.121:8443/eitk/api/v1/taskconfig 
+<msg timestamp="20230228 09:00:42.663" level="INFO">POST Request : url=https://172.17.82.121:8443/eitk/api/v1/taskconfig 
  path_url=/eitk/api/v1/taskconfig 
  headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'osiApiToken': '624d17a278f71870c4bc0ef6:08c99aec5c74fe42882b78f90dbc165ba87378592a73bc1c59c793f4197b85a2', 'Content-Type': 'application/json', 'Content-Length': '275'} 
  body={"name": "CleanUpTest", "createAuditCopies": "Never","steps": [{"type": "FILE","description": "","hostname": "sm-dac1","filePath": "*","disablePreserveTimestamp": false,"deletePostTransfer": "NEVER","readFile": true,"treatMissingFilesAsSuccess": true,"protocol": "MONARCH"}]} 
  </msg>
-<msg timestamp="20230227 17:01:50.079" level="INFO">POST Response : url=https://172.17.82.121:8443/eitk/api/v1/taskconfig 
+<msg timestamp="20230228 09:00:42.671" level="INFO">POST Response : url=https://172.17.82.121:8443/eitk/api/v1/taskconfig 
  status=201, reason=Created 
- headers={'Server': 'nginx', 'Date': 'Mon, 27 Feb 2023 23:01:50 GMT', 'Content-Type': 'application/json', 'Content-Length': '423', 'Connection': 'keep-alive', 'Location': 'https://172.17.82.121:8443/eitk/api/v1/taskconfig/CleanUpTest', 'X-Frame-Options': 'SAMEORIGIN', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '1; mode=block', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Pragma': 'no-cache', 'Cache-Control': 'no-cache, must-revalidate, private, no-store'} 
+ headers={'Server': 'nginx', 'Date': 'Tue, 28 Feb 2023 15:00:42 GMT', 'Content-Type': 'application/json', 'Content-Length': '423', 'Connection': 'keep-alive', 'Location': 'https://172.17.82.121:8443/eitk/api/v1/taskconfig/CleanUpTest', 'X-Frame-Options': 'SAMEORIGIN', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '1; mode=block', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Pragma': 'no-cache', 'Cache-Control': 'no-cache, must-revalidate, private, no-store'} 
  body={
-  "id" : "63fd365eed11f26c4d7427a6",
+  "id" : "63fe171adde72a77fab78d2c",
   "saveID" : 1,
   "name" : "CleanUpTest",
   "steps" : [ {
@@ -336,25 +336,25 @@
   "createAuditCopies" : "Never"
 } 
  </msg>
-<msg timestamp="20230227 17:01:50.079" level="INFO">C:\Users\acruz\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host '172.17.82.121'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+<msg timestamp="20230228 09:00:42.671" level="INFO">C:\Users\acruz\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host '172.17.82.121'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
   warnings.warn(</msg>
-<msg timestamp="20230227 17:01:50.079" level="INFO">${response} = &lt;Response [201]&gt;</msg>
-<status status="PASS" starttime="20230227 17:01:49.919" endtime="20230227 17:01:50.079"/>
+<msg timestamp="20230228 09:00:42.673" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<status status="PASS" starttime="20230228 09:00:42.581" endtime="20230228 09:00:42.673"/>
 </kw>
 <kw name="Return From Keyword" library="BuiltIn">
 <arg>${response}</arg>
 <doc>Returns from the enclosing user keyword.</doc>
-<msg timestamp="20230227 17:01:50.084" level="INFO">Returning from the enclosing user keyword.</msg>
-<status status="PASS" starttime="20230227 17:01:50.079" endtime="20230227 17:01:50.084"/>
+<msg timestamp="20230228 09:00:42.673" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20230228 09:00:42.673" endtime="20230228 09:00:42.673"/>
 </kw>
-<msg timestamp="20230227 17:01:50.084" level="INFO">${Create_task} = &lt;Response [201]&gt;</msg>
-<status status="PASS" starttime="20230227 17:01:49.919" endtime="20230227 17:01:50.084"/>
+<msg timestamp="20230228 09:00:42.673" level="INFO">${Create_task} = &lt;Response [201]&gt;</msg>
+<status status="PASS" starttime="20230228 09:00:42.581" endtime="20230228 09:00:42.673"/>
 </kw>
 <kw name="Status Should Be" library="RequestsLibrary">
 <arg>201</arg>
 <arg>${Create_task}</arg>
 <doc>Fails if response status code is different than the expected.</doc>
-<status status="PASS" starttime="20230227 17:01:50.085" endtime="20230227 17:01:50.085"/>
+<status status="PASS" starttime="20230228 09:00:42.675" endtime="20230228 09:00:42.675"/>
 </kw>
 <kw name="POST-Run a Task" library="EITK3_POST_Keywords">
 <var>${Run_request}</var>
@@ -364,15 +364,15 @@
 <arg>osiApiToken=${Token}</arg>
 <arg>Content-Type=application/json</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20230227 17:01:50.087" level="INFO">${headers} = {'osiApiToken': '624d17a278f71870c4bc0ef6:08c99aec5c74fe42882b78f90dbc165ba87378592a73bc1c59c793f4197b85a2', 'Content-Type': 'application/json'}</msg>
-<status status="PASS" starttime="20230227 17:01:50.086" endtime="20230227 17:01:50.087"/>
+<msg timestamp="20230228 09:00:42.675" level="INFO">${headers} = {'osiApiToken': '624d17a278f71870c4bc0ef6:08c99aec5c74fe42882b78f90dbc165ba87378592a73bc1c59c793f4197b85a2', 'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20230228 09:00:42.675" endtime="20230228 09:00:42.675"/>
 </kw>
 <kw name="Set Variable" library="BuiltIn">
 <var>${POST_body}</var>
 <arg>{"waitForResponse": true,"name": "${task_name}"}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20230227 17:01:50.087" level="INFO">${POST_body} = {"waitForResponse": true,"name": "CleanUpTest"}</msg>
-<status status="PASS" starttime="20230227 17:01:50.087" endtime="20230227 17:01:50.087"/>
+<msg timestamp="20230228 09:00:42.675" level="INFO">${POST_body} = {"waitForResponse": true,"name": "CleanUpTest"}</msg>
+<status status="PASS" starttime="20230228 09:00:42.675" endtime="20230228 09:00:42.675"/>
 </kw>
 <kw name="POST On Session" library="RequestsLibrary">
 <var>${response}</var>
@@ -383,18 +383,18 @@
 <arg>expected_status=Anything</arg>
 <arg>verify=${False}</arg>
 <doc>Sends a POST request on a previously created HTTP Session.</doc>
-<msg timestamp="20230227 17:01:50.671" level="INFO">POST Request : url=https://172.17.82.121:8443/eitk/api/v1/taskrunrequests 
+<msg timestamp="20230228 09:00:43.268" level="INFO">POST Request : url=https://172.17.82.121:8443/eitk/api/v1/taskrunrequests 
  path_url=/eitk/api/v1/taskrunrequests 
  headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'osiApiToken': '624d17a278f71870c4bc0ef6:08c99aec5c74fe42882b78f90dbc165ba87378592a73bc1c59c793f4197b85a2', 'Content-Type': 'application/json', 'Content-Length': '47'} 
  body={"waitForResponse": true,"name": "CleanUpTest"} 
  </msg>
-<msg timestamp="20230227 17:01:50.671" level="INFO">POST Response : url=https://172.17.82.121:8443/eitk/api/v1/taskrunrequests 
+<msg timestamp="20230228 09:00:43.268" level="INFO">POST Response : url=https://172.17.82.121:8443/eitk/api/v1/taskrunrequests 
  status=200, reason=OK 
- headers={'Server': 'nginx', 'Date': 'Mon, 27 Feb 2023 23:01:50 GMT', 'Content-Type': 'application/json', 'Content-Length': '763', 'Connection': 'keep-alive', 'X-Frame-Options': 'SAMEORIGIN', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '1; mode=block', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Pragma': 'no-cache', 'Cache-Control': 'no-cache, must-revalidate, private, no-store'} 
+ headers={'Server': 'nginx', 'Date': 'Tue, 28 Feb 2023 15:00:43 GMT', 'Content-Type': 'application/json', 'Content-Length': '763', 'Connection': 'keep-alive', 'X-Frame-Options': 'SAMEORIGIN', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '1; mode=block', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Pragma': 'no-cache', 'Cache-Control': 'no-cache, must-revalidate, private, no-store'} 
  body=[ {
   "name" : "CleanUpTest",
-  "startTime" : 1677538910122,
-  "endTime" : 1677538910548,
+  "startTime" : 1677596442736,
+  "endTime" : 1677596443016,
   "status" : "Success",
   "error" : false,
   "statusCode" : 200,
@@ -411,7 +411,7 @@
   "saveTaskPayload" : false,
   "waitForResponse" : true,
   "isSchedulerRequest" : false,
-  "requestID" : "189c2a77-6b95-4497-9494-9b3089209249",
+  "requestID" : "51fbec9f-d9df-4088-a539-3dcbbc283a08",
   "payload" : "",
   "payloadHeaders" : { },
   "userId" : "624d17a278f71870c4bc0ef6",
@@ -420,30 +420,30 @@
   "nodeName" : "sm-dac1"
 } ] 
  </msg>
-<msg timestamp="20230227 17:01:50.671" level="INFO">C:\Users\acruz\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host '172.17.82.121'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+<msg timestamp="20230228 09:00:43.268" level="INFO">C:\Users\acruz\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host '172.17.82.121'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
   warnings.warn(</msg>
-<msg timestamp="20230227 17:01:50.671" level="INFO">${response} = &lt;Response [200]&gt;</msg>
-<status status="PASS" starttime="20230227 17:01:50.087" endtime="20230227 17:01:50.671"/>
+<msg timestamp="20230228 09:00:43.268" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230228 09:00:42.675" endtime="20230228 09:00:43.268"/>
 </kw>
 <kw name="Return From Keyword" library="BuiltIn">
 <arg>${response}</arg>
 <doc>Returns from the enclosing user keyword.</doc>
-<msg timestamp="20230227 17:01:50.684" level="INFO">Returning from the enclosing user keyword.</msg>
-<status status="PASS" starttime="20230227 17:01:50.671" endtime="20230227 17:01:50.684"/>
+<msg timestamp="20230228 09:00:43.268" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20230228 09:00:43.268" endtime="20230228 09:00:43.268"/>
 </kw>
-<msg timestamp="20230227 17:01:50.684" level="INFO">${Run_request} = &lt;Response [200]&gt;</msg>
-<status status="PASS" starttime="20230227 17:01:50.086" endtime="20230227 17:01:50.684"/>
+<msg timestamp="20230228 09:00:43.268" level="INFO">${Run_request} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230228 09:00:42.675" endtime="20230228 09:00:43.268"/>
 </kw>
 <kw name="Status Should Be" library="RequestsLibrary">
 <arg>200</arg>
 <arg>${Run_request}</arg>
 <doc>Fails if response status code is different than the expected.</doc>
-<status status="PASS" starttime="20230227 17:01:50.685" endtime="20230227 17:01:50.685"/>
+<status status="PASS" starttime="20230228 09:00:43.268" endtime="20230228 09:00:43.268"/>
 </kw>
 <kw name="Delete All Sessions" library="RequestsLibrary">
 <doc>Removes all the session objects</doc>
-<msg timestamp="20230227 17:01:50.685" level="INFO">Deleting All Sessions</msg>
-<status status="PASS" starttime="20230227 17:01:50.685" endtime="20230227 17:01:50.686"/>
+<msg timestamp="20230228 09:00:43.276" level="INFO">Deleting All Sessions</msg>
+<status status="PASS" starttime="20230228 09:00:43.276" endtime="20230228 09:00:43.278"/>
 </kw>
 <kw name="Open_Browser_And_Login_As_Admin" library="General_Keywords">
 <arg>Chrome</arg>
@@ -451,37 +451,37 @@
 <arg>${URL}</arg>
 <arg>${Browser}</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<msg timestamp="20230227 17:01:50.689" level="INFO">Opening browser 'Chrome' to base url 'https://sm-dac1:8443/platform/page/signin.html'.</msg>
-<status status="PASS" starttime="20230227 17:01:50.688" endtime="20230227 17:01:52.601"/>
+<msg timestamp="20230228 09:00:43.280" level="INFO">Opening browser 'Chrome' to base url 'https://sm-dac1:8443/platform/page/signin.html'.</msg>
+<status status="PASS" starttime="20230228 09:00:43.280" endtime="20230228 09:00:45.451"/>
 </kw>
 <kw name="Maximize Browser Window" library="SeleniumLibrary">
 <doc>Maximizes current browser window.</doc>
-<status status="PASS" starttime="20230227 17:01:52.601" endtime="20230227 17:01:52.730"/>
+<status status="PASS" starttime="20230228 09:00:45.451" endtime="20230228 09:00:45.581"/>
 </kw>
 <kw name="Set Selenium Timeout" library="SeleniumLibrary">
 <arg>60s</arg>
 <doc>Sets the timeout that is used by various keywords.</doc>
-<status status="PASS" starttime="20230227 17:01:52.731" endtime="20230227 17:01:52.733"/>
+<status status="PASS" starttime="20230228 09:00:45.581" endtime="20230228 09:00:45.581"/>
 </kw>
 <kw name="Run Keyword If" library="BuiltIn">
 <arg>"${Browser}" == "ie"</arg>
 <arg>set selenium speed</arg>
 <arg>0.08s</arg>
 <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<status status="PASS" starttime="20230227 17:01:52.733" endtime="20230227 17:01:52.733"/>
+<status status="PASS" starttime="20230228 09:00:45.581" endtime="20230228 09:00:45.581"/>
 </kw>
 <kw name="Run Keyword If" library="BuiltIn">
 <arg>"${Browser}" == "chrome"</arg>
 <arg>set selenium speed</arg>
 <arg>0.08s</arg>
 <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<status status="PASS" starttime="20230227 17:01:52.733" endtime="20230227 17:01:52.733"/>
+<status status="PASS" starttime="20230228 09:00:45.581" endtime="20230228 09:00:45.581"/>
 </kw>
 <kw name="Run Keyword If" library="BuiltIn">
 <arg>"${Browser}" == "ie"</arg>
 <arg>Verify_IE_CertIssue_Exists</arg>
 <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<status status="PASS" starttime="20230227 17:01:52.733" endtime="20230227 17:01:52.733"/>
+<status status="PASS" starttime="20230228 09:00:45.581" endtime="20230228 09:00:45.581"/>
 </kw>
 <kw name="Run Keyword And Return Status" library="BuiltIn">
 <var>${Cert_Authentication}</var>
@@ -493,304 +493,304 @@
 <arg>xpath=//*[@id="details-button"]</arg>
 <arg>5s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<msg timestamp="20230227 17:01:57.912" level="FAIL">Element 'xpath=//*[@id="details-button"]' not visible after 5 seconds.</msg>
-<status status="FAIL" starttime="20230227 17:01:52.733" endtime="20230227 17:01:57.912"/>
+<msg timestamp="20230228 09:00:50.605" level="FAIL">Element 'xpath=//*[@id="details-button"]' not visible after 5 seconds.</msg>
+<status status="FAIL" starttime="20230228 09:00:45.581" endtime="20230228 09:00:50.605"/>
 </kw>
-<msg timestamp="20230227 17:01:57.912" level="INFO">${Cert_Authentication} = False</msg>
-<status status="PASS" starttime="20230227 17:01:52.733" endtime="20230227 17:01:57.912"/>
+<msg timestamp="20230228 09:00:50.605" level="INFO">${Cert_Authentication} = False</msg>
+<status status="PASS" starttime="20230228 09:00:45.581" endtime="20230228 09:00:50.605"/>
 </kw>
 <kw name="Run Keyword If" library="BuiltIn">
 <arg>${Cert_Authentication}</arg>
 <arg>click element</arg>
 <arg>xpath=//*[@id="details-button"]</arg>
 <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<status status="PASS" starttime="20230227 17:01:57.912" endtime="20230227 17:01:57.912"/>
+<status status="PASS" starttime="20230228 09:00:50.605" endtime="20230228 09:00:50.605"/>
 </kw>
 <kw name="Run Keyword If" library="BuiltIn">
 <arg>${Cert_Authentication}</arg>
 <arg>click element</arg>
 <arg>xpath=//*[@id="proceed-link"]</arg>
 <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<status status="PASS" starttime="20230227 17:01:57.912" endtime="20230227 17:01:57.912"/>
+<status status="PASS" starttime="20230228 09:00:50.605" endtime="20230228 09:00:50.605"/>
 </kw>
 <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
 <arg>xpath=${OSI_Logo}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:01:57.912" endtime="20230227 17:01:57.939"/>
+<status status="PASS" starttime="20230228 09:00:50.605" endtime="20230228 09:00:50.650"/>
 </kw>
 <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
 <arg>xpath=${OSI_Username}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:01:57.940" endtime="20230227 17:01:57.957"/>
+<status status="PASS" starttime="20230228 09:00:50.650" endtime="20230228 09:00:50.691"/>
 </kw>
 <kw name="Input Text" library="SeleniumLibrary">
 <arg>id:username</arg>
 <arg>admin</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20230227 17:01:57.957" level="INFO">Typing text 'admin' into text field 'id:username'.</msg>
-<status status="PASS" starttime="20230227 17:01:57.957" endtime="20230227 17:01:58.020"/>
+<msg timestamp="20230228 09:00:50.691" level="INFO">Typing text 'admin' into text field 'id:username'.</msg>
+<status status="PASS" starttime="20230228 09:00:50.691" endtime="20230228 09:00:50.824"/>
 </kw>
 <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
 <arg>xpath=${OSI_Password}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:01:58.020" endtime="20230227 17:01:58.034"/>
+<status status="PASS" starttime="20230228 09:00:50.824" endtime="20230228 09:00:50.858"/>
 </kw>
 <kw name="Input Text" library="SeleniumLibrary">
 <arg>id:password</arg>
 <arg>admin21`</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20230227 17:01:58.034" level="INFO">Typing text 'admin21`' into text field 'id:password'.</msg>
-<status status="PASS" starttime="20230227 17:01:58.034" endtime="20230227 17:01:58.105"/>
+<msg timestamp="20230228 09:00:50.858" level="INFO">Typing text 'admin21`' into text field 'id:password'.</msg>
+<status status="PASS" starttime="20230228 09:00:50.858" endtime="20230228 09:00:51.014"/>
 </kw>
 <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
 <arg>xpath=${OSI_Login_Button}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:01:58.105" endtime="20230227 17:01:58.107"/>
+<status status="PASS" starttime="20230228 09:00:51.014" endtime="20230228 09:00:51.061"/>
 </kw>
 <kw name="Click Element" library="SeleniumLibrary">
 <arg>xpath=${OSI_Login_Button}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20230227 17:01:58.107" level="INFO">Clicking element 'xpath=//*[@id="submit"]'.</msg>
-<status status="PASS" starttime="20230227 17:01:58.107" endtime="20230227 17:01:58.158"/>
+<msg timestamp="20230228 09:00:51.061" level="INFO">Clicking element 'xpath=//*[@id="submit"]'.</msg>
+<status status="PASS" starttime="20230228 09:00:51.061" endtime="20230228 09:00:51.167"/>
 </kw>
-<status status="PASS" starttime="20230227 17:01:50.688" endtime="20230227 17:01:58.158"/>
+<status status="PASS" starttime="20230228 09:00:43.280" endtime="20230228 09:00:51.167"/>
 </kw>
 <kw name="Select_EITK_Tool" library="EITK3_General_Keywords">
 <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
 <arg>xpath=${Image_EITK}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:01:58.158" endtime="20230227 17:02:00.386"/>
+<status status="PASS" starttime="20230228 09:00:51.167" endtime="20230228 09:00:54.672"/>
 </kw>
 <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
 <arg>xpath=${ImageText_EITK}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:02:00.386" endtime="20230227 17:02:00.405"/>
+<status status="PASS" starttime="20230228 09:00:54.672" endtime="20230228 09:00:54.722"/>
 </kw>
 <kw name="Click Element" library="SeleniumLibrary">
 <arg>xpath=${Image_EITK}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20230227 17:02:00.405" level="INFO">Clicking element 'xpath=//*[@href='/eitk/page/auth/EnterpriseITK.html']//*//img[@src='/eitk/page/auth/images/enterprise-itk.png']'.</msg>
-<status status="PASS" starttime="20230227 17:02:00.405" endtime="20230227 17:02:03.139"/>
+<msg timestamp="20230228 09:00:54.722" level="INFO">Clicking element 'xpath=//*[@href='/eitk/page/auth/EnterpriseITK.html']//*//img[@src='/eitk/page/auth/images/enterprise-itk.png']'.</msg>
+<status status="PASS" starttime="20230228 09:00:54.722" endtime="20230228 09:01:01.920"/>
 </kw>
 <kw name="Wait Until Element Is Not Visible" library="SeleniumLibrary">
 <arg>xpath=${Tasks_Search_Loading}</arg>
 <doc>Waits until the element ``locator`` is not visible.</doc>
-<status status="PASS" starttime="20230227 17:02:03.139" endtime="20230227 17:02:03.157"/>
+<status status="PASS" starttime="20230228 09:01:01.920" endtime="20230228 09:01:01.965"/>
 </kw>
-<status status="PASS" starttime="20230227 17:01:58.158" endtime="20230227 17:02:03.157"/>
+<status status="PASS" starttime="20230228 09:00:51.167" endtime="20230228 09:01:01.965"/>
 </kw>
 <kw name="Navigate_To_System_Settings_Page" library="EITK3_General_Keywords">
 <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
 <arg>xpath=${EITK_Admin_Dropdown}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:02:03.158" endtime="20230227 17:02:03.179"/>
+<status status="PASS" starttime="20230228 09:01:01.965" endtime="20230228 09:01:02.012"/>
 </kw>
 <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
 <arg>xpath=${EITK_Admin_Caret}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:02:03.179" endtime="20230227 17:02:03.198"/>
+<status status="PASS" starttime="20230228 09:01:02.012" endtime="20230228 09:01:02.053"/>
 </kw>
 <kw name="Click Element" library="SeleniumLibrary">
 <arg>xpath=${EITK_Admin_Caret}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20230227 17:02:03.198" level="INFO">Clicking element 'xpath=//*[@id="navbar"]//*[@role="menuitem"]//*[text()="Admin"]/i'.</msg>
-<status status="PASS" starttime="20230227 17:02:03.198" endtime="20230227 17:02:03.269"/>
+<msg timestamp="20230228 09:01:02.053" level="INFO">Clicking element 'xpath=//*[@id="navbar"]//*[@role="menuitem"]//*[text()="Admin"]/i'.</msg>
+<status status="PASS" starttime="20230228 09:01:02.053" endtime="20230228 09:01:02.201"/>
 </kw>
 <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
 <arg>xpath=${Admin_Dropdown_System Settings}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:02:03.269" endtime="20230227 17:02:03.288"/>
+<status status="PASS" starttime="20230228 09:01:02.201" endtime="20230228 09:01:02.243"/>
 </kw>
 <kw name="Click Element" library="SeleniumLibrary">
 <arg>xpath=${Admin_Dropdown_System Settings}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20230227 17:02:03.288" level="INFO">Clicking element 'xpath=//*[@class="dx-submenu"]//*[@role="menuitem"]//*[text()='System Settings']'.</msg>
-<status status="PASS" starttime="20230227 17:02:03.288" endtime="20230227 17:02:04.599"/>
+<msg timestamp="20230228 09:01:02.244" level="INFO">Clicking element 'xpath=//*[@class="dx-submenu"]//*[@role="menuitem"]//*[text()='System Settings']'.</msg>
+<status status="PASS" starttime="20230228 09:01:02.244" endtime="20230228 09:01:06.264"/>
 </kw>
 <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
 <arg>${EITK_Settings_Page_Title}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:02:04.600" endtime="20230227 17:02:04.644"/>
+<status status="PASS" starttime="20230228 09:01:06.264" endtime="20230228 09:01:06.347"/>
 </kw>
-<status status="PASS" starttime="20230227 17:02:03.158" endtime="20230227 17:02:04.644"/>
+<status status="PASS" starttime="20230228 09:01:01.965" endtime="20230228 09:01:06.347"/>
 </kw>
 <kw name="EnterpriseITK_Settings_Task_Tab" library="EITK3_General_Keywords">
 <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
 <arg>${EITK_Tasks_Tab}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:02:04.645" endtime="20230227 17:02:04.669"/>
+<status status="PASS" starttime="20230228 09:01:06.347" endtime="20230228 09:01:06.389"/>
 </kw>
 <kw name="Click Element" library="SeleniumLibrary">
 <arg>${EITK_Tasks_Tab}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20230227 17:02:04.670" level="INFO">Clicking element '//h3[text()='Tasks']'.</msg>
-<status status="PASS" starttime="20230227 17:02:04.669" endtime="20230227 17:02:04.723"/>
+<msg timestamp="20230228 09:01:06.389" level="INFO">Clicking element '//h3[text()='Tasks']'.</msg>
+<status status="PASS" starttime="20230228 09:01:06.389" endtime="20230228 09:01:06.499"/>
 </kw>
-<status status="PASS" starttime="20230227 17:02:04.645" endtime="20230227 17:02:04.723"/>
+<status status="PASS" starttime="20230228 09:01:06.347" endtime="20230228 09:01:06.499"/>
 </kw>
 <kw name="Verify_EITK_Settings_Page_Task_Tab" library="EITK3_General_Keywords">
 <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
 <arg>xpath=${EITK_Allow_PV_Access_Checkbox}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:02:04.726" endtime="20230227 17:02:04.967"/>
+<status status="PASS" starttime="20230228 09:01:06.503" endtime="20230228 09:01:06.557"/>
 </kw>
 <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
 <arg>xpath=${EITK_Allow_PV_Access_Checkbox_Label}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:02:04.967" endtime="20230227 17:02:04.991"/>
+<status status="PASS" starttime="20230228 09:01:06.557" endtime="20230228 09:01:06.606"/>
 </kw>
 <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
 <arg>xpath=${EITK_Allow_PV_Access_Help_Icon}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:02:04.991" endtime="20230227 17:02:05.013"/>
+<status status="PASS" starttime="20230228 09:01:06.606" endtime="20230228 09:01:06.652"/>
 </kw>
 <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
 <arg>xpath=${EITK_Log_Task_Header_Textbox}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:02:05.014" endtime="20230227 17:02:05.039"/>
+<status status="PASS" starttime="20230228 09:01:06.652" endtime="20230228 09:01:06.698"/>
 </kw>
 <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
 <arg>xpath=${EITK_Log_Task_Header_Textbox_Label}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:02:05.039" endtime="20230227 17:02:05.061"/>
+<status status="PASS" starttime="20230228 09:01:06.698" endtime="20230228 09:01:06.732"/>
 </kw>
 <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
 <arg>xpath=${EITK_Log_Task_Header_Help_Icon}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:02:05.061" endtime="20230227 17:02:05.082"/>
+<status status="PASS" starttime="20230228 09:01:06.732" endtime="20230228 09:01:06.783"/>
 </kw>
 <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
 <arg>xpath=${EITK_Max_Payloads_Stored_Per_Task_Textbox}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:02:05.082" endtime="20230227 17:02:05.103"/>
+<status status="PASS" starttime="20230228 09:01:06.783" endtime="20230228 09:01:06.832"/>
 </kw>
 <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
 <arg>xpath=${EITK_Max_Payloads_Stored_Per_Task_Textbox_Label}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:02:05.103" endtime="20230227 17:02:05.123"/>
+<status status="PASS" starttime="20230228 09:01:06.832" endtime="20230228 09:01:06.882"/>
 </kw>
 <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
 <arg>xpath=${EITK_Max_Payloads_Stored_Per_Task_Help_Icon}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:02:05.127" endtime="20230227 17:02:05.145"/>
+<status status="PASS" starttime="20230228 09:01:06.882" endtime="20230228 09:01:06.921"/>
 </kw>
 <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
 <arg>xpath=${EITK_Max_Task_Run_Request_Age_Textbox}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:02:05.146" endtime="20230227 17:02:05.165"/>
+<status status="PASS" starttime="20230228 09:01:06.921" endtime="20230228 09:01:06.965"/>
 </kw>
 <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
 <arg>xpath=${EITK_Max_Task_Run_Request_Age_Textbox_Label}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:02:05.165" endtime="20230227 17:02:05.186"/>
+<status status="PASS" starttime="20230228 09:01:06.965" endtime="20230228 09:01:07.007"/>
 </kw>
 <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
 <arg>xpath=${EITK_Max_Task_Run_Request_Age_Help_Icon}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:02:05.186" endtime="20230227 17:02:05.204"/>
+<status status="PASS" starttime="20230228 09:01:07.007" endtime="20230228 09:01:07.033"/>
 </kw>
 <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
 <arg>xpath=${EITK_Cleanup_Time_Textbox}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:02:05.204" endtime="20230227 17:02:05.223"/>
+<status status="PASS" starttime="20230228 09:01:07.033" endtime="20230228 09:01:07.070"/>
 </kw>
 <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
 <arg>xpath=${EITK_Cleanup_Time_Textbox_Label}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:02:05.223" endtime="20230227 17:02:05.242"/>
+<status status="PASS" starttime="20230228 09:01:07.070" endtime="20230228 09:01:07.110"/>
 </kw>
 <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
 <arg>xpath=${EITK_Cleanup_Time_Help_Icon}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:02:05.242" endtime="20230227 17:02:05.259"/>
+<status status="PASS" starttime="20230228 09:01:07.110" endtime="20230228 09:01:07.135"/>
 </kw>
 <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
 <arg>xpath=${EITK_Max_File_Age_Textbox}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:02:05.259" endtime="20230227 17:02:05.276"/>
+<status status="PASS" starttime="20230228 09:01:07.135" endtime="20230228 09:01:07.162"/>
 </kw>
 <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
 <arg>xpath=${EITK_Max_File_Age_Textbox_Label}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:02:05.276" endtime="20230227 17:02:05.295"/>
+<status status="PASS" starttime="20230228 09:01:07.163" endtime="20230228 09:01:07.188"/>
 </kw>
 <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
 <arg>xpath=${EITK_Max_File_Age_Help_Icon}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:02:05.295" endtime="20230227 17:02:05.314"/>
+<status status="PASS" starttime="20230228 09:01:07.188" endtime="20230228 09:01:07.214"/>
 </kw>
 <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
 <arg>xpath=${EITK_Task_History_Age_Textbox}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:02:05.315" endtime="20230227 17:02:05.334"/>
+<status status="PASS" starttime="20230228 09:01:07.214" endtime="20230228 09:01:07.239"/>
 </kw>
 <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
 <arg>xpath=${EITK_Task_History_Age_Textbox_Label}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:02:05.335" endtime="20230227 17:02:05.355"/>
+<status status="PASS" starttime="20230228 09:01:07.239" endtime="20230228 09:01:07.263"/>
 </kw>
 <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
 <arg>xpath=${EITK_Task_History_Age_Help_Icon}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:02:05.355" endtime="20230227 17:02:05.378"/>
+<status status="PASS" starttime="20230228 09:01:07.264" endtime="20230228 09:01:07.288"/>
 </kw>
 <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
 <arg>xpath=${EITK_Schedule_OnAny_Site_Checkbox}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:02:05.378" endtime="20230227 17:02:05.398"/>
+<status status="PASS" starttime="20230228 09:01:07.288" endtime="20230228 09:01:07.315"/>
 </kw>
 <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
 <arg>xpath=${EITK_Schedule_OnAny_Site_Checkbox_Label}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:02:05.398" endtime="20230227 17:02:05.419"/>
+<status status="PASS" starttime="20230228 09:01:07.315" endtime="20230228 09:01:07.343"/>
 </kw>
 <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
 <arg>xpath=${EITK_Schedule_OnAny_Site_Help_Icon}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:02:05.419" endtime="20230227 17:02:05.441"/>
+<status status="PASS" starttime="20230228 09:01:07.343" endtime="20230228 09:01:07.374"/>
 </kw>
 <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
 <arg>xpath=${EITK_Settings_Save_Button}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:02:05.441" endtime="20230227 17:02:05.461"/>
+<status status="PASS" starttime="20230228 09:01:07.374" endtime="20230228 09:01:07.412"/>
 </kw>
 <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
 <arg>xpath=${EITK_Settings_Cancel_Button}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:02:05.461" endtime="20230227 17:02:05.477"/>
+<status status="PASS" starttime="20230228 09:01:07.412" endtime="20230228 09:01:07.445"/>
 </kw>
-<status status="PASS" starttime="20230227 17:02:04.724" endtime="20230227 17:02:05.477"/>
+<status status="PASS" starttime="20230228 09:01:06.502" endtime="20230228 09:01:07.445"/>
 </kw>
 <kw name="Get Current Date" library="DateTime">
 <var>${Time}</var>
 <arg>increment=00:05:00</arg>
 <arg>result_format=%H:%M:%S</arg>
 <doc>Returns current local or UTC time with an optional increment.</doc>
-<msg timestamp="20230227 17:02:05.478" level="INFO">${Time} = 17:07:05</msg>
-<status status="PASS" starttime="20230227 17:02:05.478" endtime="20230227 17:02:05.478"/>
+<msg timestamp="20230228 09:01:07.445" level="INFO">${Time} = 09:06:07</msg>
+<status status="PASS" starttime="20230228 09:01:07.445" endtime="20230228 09:01:07.445"/>
 </kw>
 <kw name="Get Current Date" library="DateTime">
 <var>${Current_Daytime}</var>
 <arg>increment=00:05:00</arg>
 <arg>exclude_millis=True</arg>
 <doc>Returns current local or UTC time with an optional increment.</doc>
-<msg timestamp="20230227 17:02:05.479" level="INFO">${Current_Daytime} = 2023-02-27 17:07:05</msg>
-<status status="PASS" starttime="20230227 17:02:05.479" endtime="20230227 17:02:05.479"/>
+<msg timestamp="20230228 09:01:07.448" level="INFO">${Current_Daytime} = 2023-02-28 09:06:07</msg>
+<status status="PASS" starttime="20230228 09:01:07.448" endtime="20230228 09:01:07.448"/>
 </kw>
 <kw name="Add Time To Date" library="DateTime">
 <var>${Daytime}</var>
 <arg>${Current_Daytime}</arg>
 <arg>1 day</arg>
 <doc>Adds time to date and returns the resulting date.</doc>
-<msg timestamp="20230227 17:02:05.483" level="INFO">${Daytime} = 2023-02-28 17:07:05.000</msg>
-<status status="PASS" starttime="20230227 17:02:05.479" endtime="20230227 17:02:05.483"/>
+<msg timestamp="20230228 09:01:07.456" level="INFO">${Daytime} = 2023-03-01 09:06:07.000</msg>
+<status status="PASS" starttime="20230228 09:01:07.448" endtime="20230228 09:01:07.457"/>
 </kw>
 <kw name="Set Variable" library="BuiltIn">
 <var>${TaskCleanupTime}</var>
 <arg>${Time}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20230227 17:02:05.484" level="INFO">${TaskCleanupTime} = 17:07:05</msg>
-<status status="PASS" starttime="20230227 17:02:05.484" endtime="20230227 17:02:05.484"/>
+<msg timestamp="20230228 09:01:07.457" level="INFO">${TaskCleanupTime} = 09:06:07</msg>
+<status status="PASS" starttime="20230228 09:01:07.457" endtime="20230228 09:01:07.457"/>
 </kw>
 <kw name="Set_Value">
 <arg>${TaskCleanupTime}</arg>
@@ -798,27 +798,27 @@
 <kw name="Set Selenium Timeout" library="SeleniumLibrary">
 <arg>60s</arg>
 <doc>Sets the timeout that is used by various keywords.</doc>
-<status status="PASS" starttime="20230227 17:02:05.486" endtime="20230227 17:02:05.488"/>
+<status status="PASS" starttime="20230228 09:01:07.457" endtime="20230228 09:01:07.457"/>
 </kw>
 <kw name="Click Element" library="SeleniumLibrary">
 <arg>xpath=${xpath}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20230227 17:02:05.488" level="INFO">Clicking element 'xpath=//label[text()='Cleanup Time']/../..//input[@id='taskstaskDailyAuditCleanupTime']'.</msg>
-<status status="PASS" starttime="20230227 17:02:05.488" endtime="20230227 17:02:05.545"/>
+<msg timestamp="20230228 09:01:07.457" level="INFO">Clicking element 'xpath=//label[text()='Cleanup Time']/../..//input[@id='taskstaskDailyAuditCleanupTime']'.</msg>
+<status status="PASS" starttime="20230228 09:01:07.457" endtime="20230228 09:01:07.555"/>
 </kw>
 <kw name="Wait Until Element Is Enabled" library="SeleniumLibrary">
 <arg>xpath=${xpath}</arg>
 <doc>Waits until the element ``locator`` is enabled.</doc>
-<status status="PASS" starttime="20230227 17:02:05.545" endtime="20230227 17:02:05.576"/>
+<status status="PASS" starttime="20230228 09:01:07.555" endtime="20230228 09:01:07.623"/>
 </kw>
 <kw name="Input Text" library="SeleniumLibrary">
 <arg>xpath=${xpath}</arg>
 <arg>${value}</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20230227 17:02:05.576" level="INFO">Typing text '17:07:05' into text field 'xpath=//label[text()='Cleanup Time']/../..//input[@id='taskstaskDailyAuditCleanupTime']'.</msg>
-<status status="PASS" starttime="20230227 17:02:05.576" endtime="20230227 17:02:05.640"/>
+<msg timestamp="20230228 09:01:07.623" level="INFO">Typing text '09:06:07' into text field 'xpath=//label[text()='Cleanup Time']/../..//input[@id='taskstaskDailyAuditCleanupTime']'.</msg>
+<status status="PASS" starttime="20230228 09:01:07.623" endtime="20230228 09:01:07.784"/>
 </kw>
-<status status="PASS" starttime="20230227 17:02:05.485" endtime="20230227 17:02:05.641"/>
+<status status="PASS" starttime="20230228 09:01:07.457" endtime="20230228 09:01:07.784"/>
 </kw>
 <kw name="Set_Value">
 <arg>${FileAge}</arg>
@@ -826,27 +826,27 @@
 <kw name="Set Selenium Timeout" library="SeleniumLibrary">
 <arg>60s</arg>
 <doc>Sets the timeout that is used by various keywords.</doc>
-<status status="PASS" starttime="20230227 17:02:05.641" endtime="20230227 17:02:05.642"/>
+<status status="PASS" starttime="20230228 09:01:07.788" endtime="20230228 09:01:07.788"/>
 </kw>
 <kw name="Click Element" library="SeleniumLibrary">
 <arg>xpath=${xpath}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20230227 17:02:05.643" level="INFO">Clicking element 'xpath=//label[text()='Max File Age']/../..//input[@id='taskstaskCleanUpAge']'.</msg>
-<status status="PASS" starttime="20230227 17:02:05.642" endtime="20230227 17:02:05.685"/>
+<msg timestamp="20230228 09:01:07.788" level="INFO">Clicking element 'xpath=//label[text()='Max File Age']/../..//input[@id='taskstaskCleanUpAge']'.</msg>
+<status status="PASS" starttime="20230228 09:01:07.788" endtime="20230228 09:01:07.901"/>
 </kw>
 <kw name="Wait Until Element Is Enabled" library="SeleniumLibrary">
 <arg>xpath=${xpath}</arg>
 <doc>Waits until the element ``locator`` is enabled.</doc>
-<status status="PASS" starttime="20230227 17:02:05.685" endtime="20230227 17:02:05.709"/>
+<status status="PASS" starttime="20230228 09:01:07.901" endtime="20230228 09:01:07.970"/>
 </kw>
 <kw name="Input Text" library="SeleniumLibrary">
 <arg>xpath=${xpath}</arg>
 <arg>${value}</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20230227 17:02:05.710" level="INFO">Typing text '1' into text field 'xpath=//label[text()='Max File Age']/../..//input[@id='taskstaskCleanUpAge']'.</msg>
-<status status="PASS" starttime="20230227 17:02:05.709" endtime="20230227 17:02:05.782"/>
+<msg timestamp="20230228 09:01:07.970" level="INFO">Typing text '1' into text field 'xpath=//label[text()='Max File Age']/../..//input[@id='taskstaskCleanUpAge']'.</msg>
+<status status="PASS" starttime="20230228 09:01:07.970" endtime="20230228 09:01:08.121"/>
 </kw>
-<status status="PASS" starttime="20230227 17:02:05.641" endtime="20230227 17:02:05.782"/>
+<status status="PASS" starttime="20230228 09:01:07.784" endtime="20230228 09:01:08.121"/>
 </kw>
 <kw name="Set_Value">
 <arg>${PayloadsStoredperTask}</arg>
@@ -854,27 +854,27 @@
 <kw name="Set Selenium Timeout" library="SeleniumLibrary">
 <arg>60s</arg>
 <doc>Sets the timeout that is used by various keywords.</doc>
-<status status="PASS" starttime="20230227 17:02:05.783" endtime="20230227 17:02:05.784"/>
+<status status="PASS" starttime="20230228 09:01:08.125" endtime="20230228 09:01:08.127"/>
 </kw>
 <kw name="Click Element" library="SeleniumLibrary">
 <arg>xpath=${xpath}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20230227 17:02:05.785" level="INFO">Clicking element 'xpath=//label[text()='Max Payloads Stored per Task']/../.. //input[@id="tasksgridFsMaxPayloadAmount"]'.</msg>
-<status status="PASS" starttime="20230227 17:02:05.784" endtime="20230227 17:02:05.830"/>
+<msg timestamp="20230228 09:01:08.127" level="INFO">Clicking element 'xpath=//label[text()='Max Payloads Stored per Task']/../.. //input[@id="tasksgridFsMaxPayloadAmount"]'.</msg>
+<status status="PASS" starttime="20230228 09:01:08.127" endtime="20230228 09:01:08.247"/>
 </kw>
 <kw name="Wait Until Element Is Enabled" library="SeleniumLibrary">
 <arg>xpath=${xpath}</arg>
 <doc>Waits until the element ``locator`` is enabled.</doc>
-<status status="PASS" starttime="20230227 17:02:05.830" endtime="20230227 17:02:05.857"/>
+<status status="PASS" starttime="20230228 09:01:08.247" endtime="20230228 09:01:08.302"/>
 </kw>
 <kw name="Input Text" library="SeleniumLibrary">
 <arg>xpath=${xpath}</arg>
 <arg>${value}</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20230227 17:02:05.857" level="INFO">Typing text '100' into text field 'xpath=//label[text()='Max Payloads Stored per Task']/../.. //input[@id="tasksgridFsMaxPayloadAmount"]'.</msg>
-<status status="PASS" starttime="20230227 17:02:05.857" endtime="20230227 17:02:05.922"/>
+<msg timestamp="20230228 09:01:08.302" level="INFO">Typing text '100' into text field 'xpath=//label[text()='Max Payloads Stored per Task']/../.. //input[@id="tasksgridFsMaxPayloadAmount"]'.</msg>
+<status status="PASS" starttime="20230228 09:01:08.302" endtime="20230228 09:01:08.456"/>
 </kw>
-<status status="PASS" starttime="20230227 17:02:05.783" endtime="20230227 17:02:05.922"/>
+<status status="PASS" starttime="20230228 09:01:08.125" endtime="20230228 09:01:08.456"/>
 </kw>
 <kw name="Set_Value">
 <arg>${TaskHistoryAge}</arg>
@@ -882,27 +882,27 @@
 <kw name="Set Selenium Timeout" library="SeleniumLibrary">
 <arg>60s</arg>
 <doc>Sets the timeout that is used by various keywords.</doc>
-<status status="PASS" starttime="20230227 17:02:05.923" endtime="20230227 17:02:05.925"/>
+<status status="PASS" starttime="20230228 09:01:08.465" endtime="20230228 09:01:08.465"/>
 </kw>
 <kw name="Click Element" library="SeleniumLibrary">
 <arg>xpath=${xpath}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20230227 17:02:05.925" level="INFO">Clicking element 'xpath=//label[text()='Max Task History Age']/../..//input[@id='taskstaskHistoryCleanUpAge']'.</msg>
-<status status="PASS" starttime="20230227 17:02:05.925" endtime="20230227 17:02:05.977"/>
+<msg timestamp="20230228 09:01:08.465" level="INFO">Clicking element 'xpath=//label[text()='Max Task History Age']/../..//input[@id='taskstaskHistoryCleanUpAge']'.</msg>
+<status status="PASS" starttime="20230228 09:01:08.465" endtime="20230228 09:01:08.584"/>
 </kw>
 <kw name="Wait Until Element Is Enabled" library="SeleniumLibrary">
 <arg>xpath=${xpath}</arg>
 <doc>Waits until the element ``locator`` is enabled.</doc>
-<status status="PASS" starttime="20230227 17:02:05.977" endtime="20230227 17:02:06.000"/>
+<status status="PASS" starttime="20230228 09:01:08.584" endtime="20230228 09:01:08.634"/>
 </kw>
 <kw name="Input Text" library="SeleniumLibrary">
 <arg>xpath=${xpath}</arg>
 <arg>${value}</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20230227 17:02:06.001" level="INFO">Typing text '1' into text field 'xpath=//label[text()='Max Task History Age']/../..//input[@id='taskstaskHistoryCleanUpAge']'.</msg>
-<status status="PASS" starttime="20230227 17:02:06.001" endtime="20230227 17:02:06.064"/>
+<msg timestamp="20230228 09:01:08.634" level="INFO">Typing text '1' into text field 'xpath=//label[text()='Max Task History Age']/../..//input[@id='taskstaskHistoryCleanUpAge']'.</msg>
+<status status="PASS" starttime="20230228 09:01:08.634" endtime="20230228 09:01:08.787"/>
 </kw>
-<status status="PASS" starttime="20230227 17:02:05.923" endtime="20230227 17:02:06.066"/>
+<status status="PASS" starttime="20230228 09:01:08.463" endtime="20230228 09:01:08.787"/>
 </kw>
 <kw name="Set_Value">
 <arg>${TaskRunRequestAge}</arg>
@@ -910,45 +910,45 @@
 <kw name="Set Selenium Timeout" library="SeleniumLibrary">
 <arg>60s</arg>
 <doc>Sets the timeout that is used by various keywords.</doc>
-<status status="PASS" starttime="20230227 17:02:06.067" endtime="20230227 17:02:06.067"/>
+<status status="PASS" starttime="20230228 09:01:08.787" endtime="20230228 09:01:08.793"/>
 </kw>
 <kw name="Click Element" library="SeleniumLibrary">
 <arg>xpath=${xpath}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20230227 17:02:06.069" level="INFO">Clicking element 'xpath=//label[text()='Max Task Run Request Age']/../..//input[@id="taskstaskRunRequestsCleanUpAge"]'.</msg>
-<status status="PASS" starttime="20230227 17:02:06.069" endtime="20230227 17:02:06.109"/>
+<msg timestamp="20230228 09:01:08.793" level="INFO">Clicking element 'xpath=//label[text()='Max Task Run Request Age']/../..//input[@id="taskstaskRunRequestsCleanUpAge"]'.</msg>
+<status status="PASS" starttime="20230228 09:01:08.793" endtime="20230228 09:01:08.901"/>
 </kw>
 <kw name="Wait Until Element Is Enabled" library="SeleniumLibrary">
 <arg>xpath=${xpath}</arg>
 <doc>Waits until the element ``locator`` is enabled.</doc>
-<status status="PASS" starttime="20230227 17:02:06.109" endtime="20230227 17:02:06.131"/>
+<status status="PASS" starttime="20230228 09:01:08.901" endtime="20230228 09:01:08.963"/>
 </kw>
 <kw name="Input Text" library="SeleniumLibrary">
 <arg>xpath=${xpath}</arg>
 <arg>${value}</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20230227 17:02:06.131" level="INFO">Typing text '1' into text field 'xpath=//label[text()='Max Task Run Request Age']/../..//input[@id="taskstaskRunRequestsCleanUpAge"]'.</msg>
-<status status="PASS" starttime="20230227 17:02:06.131" endtime="20230227 17:02:06.201"/>
+<msg timestamp="20230228 09:01:08.963" level="INFO">Typing text '1' into text field 'xpath=//label[text()='Max Task Run Request Age']/../..//input[@id="taskstaskRunRequestsCleanUpAge"]'.</msg>
+<status status="PASS" starttime="20230228 09:01:08.963" endtime="20230228 09:01:09.120"/>
 </kw>
-<status status="PASS" starttime="20230227 17:02:06.066" endtime="20230227 17:02:06.202"/>
+<status status="PASS" starttime="20230228 09:01:08.787" endtime="20230228 09:01:09.120"/>
 </kw>
 <kw name="Click Button" library="SeleniumLibrary">
 <arg>xpath=${EITK_Settings_Save_Button}</arg>
 <doc>Clicks the button identified by ``locator``.</doc>
-<msg timestamp="20230227 17:02:06.203" level="INFO">Clicking button 'xpath=//*[@id="saveBtn"]'.</msg>
-<status status="PASS" starttime="20230227 17:02:06.202" endtime="20230227 17:02:06.263"/>
+<msg timestamp="20230228 09:01:09.120" level="INFO">Clicking button 'xpath=//*[@id="saveBtn"]'.</msg>
+<status status="PASS" starttime="20230228 09:01:09.120" endtime="20230228 09:01:09.267"/>
 </kw>
 <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
 <arg>${Message_Snackbar}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:02:06.264" endtime="20230227 17:02:06.510"/>
+<status status="PASS" starttime="20230228 09:01:09.268" endtime="20230228 09:01:09.547"/>
 </kw>
 <kw name="Get Text" library="SeleniumLibrary">
 <var>${Pop_Up_Message}</var>
 <arg>${Message_Snackbar_Text}</arg>
 <doc>Returns the text value of the element identified by ``locator``.</doc>
-<msg timestamp="20230227 17:02:06.538" level="INFO">${Pop_Up_Message} = Save successful</msg>
-<status status="PASS" starttime="20230227 17:02:06.511" endtime="20230227 17:02:06.538"/>
+<msg timestamp="20230228 09:01:09.597" level="INFO">${Pop_Up_Message} = Save successful</msg>
+<status status="PASS" starttime="20230228 09:01:09.549" endtime="20230228 09:01:09.597"/>
 </kw>
 <kw name="Run Keyword If" library="BuiltIn">
 <arg>"${Pop_Up_Message}" == "No changes made"</arg>
@@ -963,402 +963,299 @@
 <arg>${Pop_Up_Message}</arg>
 <arg>Save successful</arg>
 <doc>Fails if the given objects are unequal.</doc>
-<status status="PASS" starttime="20230227 17:02:06.539" endtime="20230227 17:02:06.539"/>
+<status status="PASS" starttime="20230228 09:01:09.599" endtime="20230228 09:01:09.599"/>
 </kw>
-<status status="PASS" starttime="20230227 17:02:06.539" endtime="20230227 17:02:06.539"/>
-</kw>
-<kw name="Restart_Proccess_Using_Site_Monitor" library="General_Keywords">
-<arg>${TESTSYSTEM}</arg>
-<arg>osii_eitkd</arg>
-<kw name="Run Keyword If" library="BuiltIn">
-<arg>${Go_to_App_Page} == ${True}</arg>
-<arg>Navigate_To_Apps_Page</arg>
-<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<kw name="Navigate_To_Apps_Page" library="General_Keywords">
-<kw name="Click Element" library="SeleniumLibrary">
-<arg>xpath=${OSINavbar_Button_Apps}</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20230227 17:02:06.541" level="INFO">Clicking element 'xpath=//*[@id="navbar"]//*[@data-tag="appsIcon"]//*[text()="apps"]'.</msg>
-<status status="PASS" starttime="20230227 17:02:06.541" endtime="20230227 17:02:06.617"/>
-</kw>
-<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
-<arg>xpath=${OSINavbar_Button_Apps_ShowApps}</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:02:06.617" endtime="20230227 17:02:06.642"/>
-</kw>
-<kw name="Click Element" library="SeleniumLibrary">
-<arg>xpath=${OSINavbar_Button_Apps_ShowApps}</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20230227 17:02:06.643" level="INFO">Clicking element 'xpath=//*[@id="apps_popup"]//span[text()='Apps Page']'.</msg>
-<status status="PASS" starttime="20230227 17:02:06.643" endtime="20230227 17:02:08.685"/>
-</kw>
-<status status="PASS" starttime="20230227 17:02:06.541" endtime="20230227 17:02:08.686"/>
-</kw>
-<status status="PASS" starttime="20230227 17:02:06.540" endtime="20230227 17:02:08.686"/>
-</kw>
-<kw name="Set Selenium Timeout" library="SeleniumLibrary">
-<arg>60s</arg>
-<doc>Sets the timeout that is used by various keywords.</doc>
-<status status="PASS" starttime="20230227 17:02:08.686" endtime="20230227 17:02:08.689"/>
-</kw>
-<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
-<arg>xpath=${Image_SM}</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:02:08.689" endtime="20230227 17:02:09.146"/>
-</kw>
-<kw name="Click Element" library="SeleniumLibrary">
-<arg>xpath=${Image_SM}</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20230227 17:02:09.146" level="INFO">Clicking element 'xpath=//*[@id="appsContainer"]//a[@href='/platform/page/auth/sitemonitor.html']//*//img[@src='/platform/page/auth/images/apps-system-monitor-sm.png']'.</msg>
-<status status="PASS" starttime="20230227 17:02:09.146" endtime="20230227 17:02:10.028"/>
-</kw>
-<kw name="Wait Until Page Contains" library="SeleniumLibrary">
-<arg>Global View</arg>
-<doc>Waits until ``text`` appears on the current page.</doc>
-<status status="PASS" starttime="20230227 17:02:10.028" endtime="20230227 17:02:10.262"/>
-</kw>
-<for flavor="IN RANGE">
-<var>${i}</var>
-<value>1</value>
-<value>7</value>
-<iter>
-<var name="${i}">1</var>
-<kw name="Set Variable" library="BuiltIn">
-<var>${XPath}</var>
-<arg>//body/div[@id='templateContent']/div[1]/div[1]/main[1]/div[2]/div[${i}]/div[2]/div[1]/div[1]/div[1]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20230227 17:02:10.263" level="INFO">${XPath} = //body/div[@id='templateContent']/div[1]/div[1]/main[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]</msg>
-<status status="PASS" starttime="20230227 17:02:10.262" endtime="20230227 17:02:10.263"/>
-</kw>
-<kw name="Convert To String" library="BuiltIn">
-<var>${XPATH}</var>
-<arg>${XPath}</arg>
-<doc>Converts the given item to a Unicode string.</doc>
-<msg timestamp="20230227 17:02:10.263" level="INFO">${XPATH} = //body/div[@id='templateContent']/div[1]/div[1]/main[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]</msg>
-<status status="PASS" starttime="20230227 17:02:10.263" endtime="20230227 17:02:10.263"/>
-</kw>
-<kw name="Get Text" library="SeleniumLibrary">
-<var>${Node_Name}</var>
-<arg>xpath=${XPATH}</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<msg timestamp="20230227 17:02:10.289" level="INFO">${Node_Name} = sm-bdac1</msg>
-<status status="PASS" starttime="20230227 17:02:10.263" endtime="20230227 17:02:10.289"/>
-</kw>
-<kw name="Convert To Lower Case" library="String">
-<var>${Test_System}</var>
-<arg>${Test_System_Name}</arg>
-<doc>Converts string to lower case.</doc>
-<msg timestamp="20230227 17:02:10.289" level="INFO">${Test_System} = sm-dac1</msg>
-<status status="PASS" starttime="20230227 17:02:10.289" endtime="20230227 17:02:10.289"/>
-</kw>
-<kw name="Run Keyword If" library="BuiltIn">
-<arg>"${Test_System}" == "${Node_Name}"</arg>
-<arg>Click Element</arg>
-<arg>xpath=${XPATH}</arg>
-<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<status status="PASS" starttime="20230227 17:02:10.289" endtime="20230227 17:02:10.289"/>
-</kw>
-<kw name="Exit For Loop If" library="BuiltIn">
-<arg>"${Test_System}" == "${Node_Name}"</arg>
-<doc>Stops executing the enclosing FOR loop if the ``condition`` is true.</doc>
-<status status="PASS" starttime="20230227 17:02:10.289" endtime="20230227 17:02:10.289"/>
-</kw>
-<status status="PASS" starttime="20230227 17:02:10.262" endtime="20230227 17:02:10.289"/>
-</iter>
-<iter>
-<var name="${i}">2</var>
-<kw name="Set Variable" library="BuiltIn">
-<var>${XPath}</var>
-<arg>//body/div[@id='templateContent']/div[1]/div[1]/main[1]/div[2]/div[${i}]/div[2]/div[1]/div[1]/div[1]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20230227 17:02:10.289" level="INFO">${XPath} = //body/div[@id='templateContent']/div[1]/div[1]/main[1]/div[2]/div[2]/div[2]/div[1]/div[1]/div[1]</msg>
-<status status="PASS" starttime="20230227 17:02:10.289" endtime="20230227 17:02:10.289"/>
-</kw>
-<kw name="Convert To String" library="BuiltIn">
-<var>${XPATH}</var>
-<arg>${XPath}</arg>
-<doc>Converts the given item to a Unicode string.</doc>
-<msg timestamp="20230227 17:02:10.289" level="INFO">${XPATH} = //body/div[@id='templateContent']/div[1]/div[1]/main[1]/div[2]/div[2]/div[2]/div[1]/div[1]/div[1]</msg>
-<status status="PASS" starttime="20230227 17:02:10.289" endtime="20230227 17:02:10.289"/>
-</kw>
-<kw name="Get Text" library="SeleniumLibrary">
-<var>${Node_Name}</var>
-<arg>xpath=${XPATH}</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<msg timestamp="20230227 17:02:10.318" level="INFO">${Node_Name} = sm-dac1</msg>
-<status status="PASS" starttime="20230227 17:02:10.289" endtime="20230227 17:02:10.318"/>
-</kw>
-<kw name="Convert To Lower Case" library="String">
-<var>${Test_System}</var>
-<arg>${Test_System_Name}</arg>
-<doc>Converts string to lower case.</doc>
-<msg timestamp="20230227 17:02:10.318" level="INFO">${Test_System} = sm-dac1</msg>
-<status status="PASS" starttime="20230227 17:02:10.318" endtime="20230227 17:02:10.318"/>
-</kw>
-<kw name="Run Keyword If" library="BuiltIn">
-<arg>"${Test_System}" == "${Node_Name}"</arg>
-<arg>Click Element</arg>
-<arg>xpath=${XPATH}</arg>
-<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<kw name="Click Element" library="SeleniumLibrary">
-<arg>xpath=${XPATH}</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20230227 17:02:10.319" level="INFO">Clicking element 'xpath=//body/div[@id='templateContent']/div[1]/div[1]/main[1]/div[2]/div[2]/div[2]/div[1]/div[1]/div[1]'.</msg>
-<status status="PASS" starttime="20230227 17:02:10.319" endtime="20230227 17:02:10.419"/>
-</kw>
-<status status="PASS" starttime="20230227 17:02:10.318" endtime="20230227 17:02:10.419"/>
-</kw>
-<kw name="Exit For Loop If" library="BuiltIn">
-<arg>"${Test_System}" == "${Node_Name}"</arg>
-<doc>Stops executing the enclosing FOR loop if the ``condition`` is true.</doc>
-<msg timestamp="20230227 17:02:10.420" level="INFO">Exiting for loop altogether.</msg>
-<status status="PASS" starttime="20230227 17:02:10.419" endtime="20230227 17:02:10.420"/>
-</kw>
-<status status="PASS" starttime="20230227 17:02:10.289" endtime="20230227 17:02:10.420"/>
-</iter>
-<status status="PASS" starttime="20230227 17:02:10.262" endtime="20230227 17:02:10.420"/>
-</for>
-<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
-<arg>xpath=//div[contains(text(),'${Process}')]</arg>
-<doc>Waits until the element ``locator`` appears on the current page.</doc>
-<status status="PASS" starttime="20230227 17:02:10.420" endtime="20230227 17:02:10.629"/>
-</kw>
-<for flavor="IN RANGE">
-<var>${row}</var>
-<value>1</value>
-<value>20</value>
-<iter>
-<var name="${row}">1</var>
-<kw name="Get Text" library="SeleniumLibrary">
-<var>${Process_Name}</var>
-<arg>xpath=//tbody/tr[${row}]/td[1]</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<msg timestamp="20230227 17:02:10.657" level="INFO">${Process_Name} = nginx</msg>
-<status status="PASS" starttime="20230227 17:02:10.629" endtime="20230227 17:02:10.657"/>
-</kw>
-<kw name="Set Variable If" library="BuiltIn">
-<var>${Process_Restart_Checkbox}</var>
-<arg>"${Process_Name}" == "${Process}"</arg>
-<arg>//tbody/tr[${row}]/td[11]/div[1]/label[1]/span[3]</arg>
-<doc>Sets variable based on the given condition.</doc>
-<msg timestamp="20230227 17:02:10.657" level="INFO">${Process_Restart_Checkbox} = None</msg>
-<status status="PASS" starttime="20230227 17:02:10.657" endtime="20230227 17:02:10.657"/>
-</kw>
-<kw name="Exit For Loop If" library="BuiltIn">
-<arg>"${Process_Name}" == "${Process}"</arg>
-<doc>Stops executing the enclosing FOR loop if the ``condition`` is true.</doc>
-<status status="PASS" starttime="20230227 17:02:10.657" endtime="20230227 17:02:10.657"/>
-</kw>
-<status status="PASS" starttime="20230227 17:02:10.629" endtime="20230227 17:02:10.657"/>
-</iter>
-<iter>
-<var name="${row}">2</var>
-<kw name="Get Text" library="SeleniumLibrary">
-<var>${Process_Name}</var>
-<arg>xpath=//tbody/tr[${row}]/td[1]</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<msg timestamp="20230227 17:02:10.666" level="INFO">${Process_Name} = osii_dct_service</msg>
-<status status="PASS" starttime="20230227 17:02:10.657" endtime="20230227 17:02:10.666"/>
-</kw>
-<kw name="Set Variable If" library="BuiltIn">
-<var>${Process_Restart_Checkbox}</var>
-<arg>"${Process_Name}" == "${Process}"</arg>
-<arg>//tbody/tr[${row}]/td[11]/div[1]/label[1]/span[3]</arg>
-<doc>Sets variable based on the given condition.</doc>
-<msg timestamp="20230227 17:02:10.666" level="INFO">${Process_Restart_Checkbox} = None</msg>
-<status status="PASS" starttime="20230227 17:02:10.666" endtime="20230227 17:02:10.666"/>
-</kw>
-<kw name="Exit For Loop If" library="BuiltIn">
-<arg>"${Process_Name}" == "${Process}"</arg>
-<doc>Stops executing the enclosing FOR loop if the ``condition`` is true.</doc>
-<status status="PASS" starttime="20230227 17:02:10.666" endtime="20230227 17:02:10.666"/>
-</kw>
-<status status="PASS" starttime="20230227 17:02:10.657" endtime="20230227 17:02:10.666"/>
-</iter>
-<iter>
-<var name="${row}">3</var>
-<kw name="Get Text" library="SeleniumLibrary">
-<var>${Process_Name}</var>
-<arg>xpath=//tbody/tr[${row}]/td[1]</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<msg timestamp="20230227 17:02:10.715" level="INFO">${Process_Name} = osii_eitkd</msg>
-<status status="PASS" starttime="20230227 17:02:10.681" endtime="20230227 17:02:10.715"/>
-</kw>
-<kw name="Set Variable If" library="BuiltIn">
-<var>${Process_Restart_Checkbox}</var>
-<arg>"${Process_Name}" == "${Process}"</arg>
-<arg>//tbody/tr[${row}]/td[11]/div[1]/label[1]/span[3]</arg>
-<doc>Sets variable based on the given condition.</doc>
-<msg timestamp="20230227 17:02:10.715" level="INFO">${Process_Restart_Checkbox} = //tbody/tr[3]/td[11]/div[1]/label[1]/span[3]</msg>
-<status status="PASS" starttime="20230227 17:02:10.715" endtime="20230227 17:02:10.715"/>
-</kw>
-<kw name="Exit For Loop If" library="BuiltIn">
-<arg>"${Process_Name}" == "${Process}"</arg>
-<doc>Stops executing the enclosing FOR loop if the ``condition`` is true.</doc>
-<msg timestamp="20230227 17:02:10.715" level="INFO">Exiting for loop altogether.</msg>
-<status status="PASS" starttime="20230227 17:02:10.715" endtime="20230227 17:02:10.715"/>
-</kw>
-<status status="PASS" starttime="20230227 17:02:10.666" endtime="20230227 17:02:10.715"/>
-</iter>
-<status status="PASS" starttime="20230227 17:02:10.629" endtime="20230227 17:02:10.715"/>
-</for>
-<kw name="Page Should Contain Element" library="SeleniumLibrary">
-<arg>xpath=${Process_Restart_Checkbox}</arg>
-<doc>Verifies that element ``locator`` is found on the current page.</doc>
-<msg timestamp="20230227 17:02:10.715" level="INFO">Current page contains element 'xpath=//tbody/tr[3]/td[11]/div[1]/label[1]/span[3]'.</msg>
-<status status="PASS" starttime="20230227 17:02:10.715" endtime="20230227 17:02:10.715"/>
-</kw>
-<kw name="Click Element" library="SeleniumLibrary">
-<arg>xpath=${Process_Restart_Checkbox}</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20230227 17:02:10.715" level="INFO">Clicking element 'xpath=//tbody/tr[3]/td[11]/div[1]/label[1]/span[3]'.</msg>
-<status status="PASS" starttime="20230227 17:02:10.715" endtime="20230227 17:02:10.771"/>
-</kw>
-<kw name="Wait Until Element Is Enabled" library="SeleniumLibrary">
-<arg>xpath=${Restart_Process_Button}</arg>
-<doc>Waits until the element ``locator`` is enabled.</doc>
-<status status="PASS" starttime="20230227 17:02:10.771" endtime="20230227 17:02:10.805"/>
-</kw>
-<kw name="Click Element" library="SeleniumLibrary">
-<arg>xpath=${Restart_Process_Button}</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20230227 17:02:10.805" level="INFO">Clicking element 'xpath=//i[contains(text(),'refresh')]'.</msg>
-<status status="PASS" starttime="20230227 17:02:10.805" endtime="20230227 17:02:10.855"/>
-</kw>
-<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
-<arg>xpath=//div[contains(text(),'Are you sure you want to restart ${Process}?')]</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:02:10.855" endtime="20230227 17:02:10.894"/>
-</kw>
-<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
-<arg>xpath=${Confirm_Button}</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:02:10.894" endtime="20230227 17:02:10.914"/>
-</kw>
-<kw name="Wait Until Element Is Enabled" library="SeleniumLibrary">
-<arg>xpath=${Confirm_Button}</arg>
-<doc>Waits until the element ``locator`` is enabled.</doc>
-<status status="PASS" starttime="20230227 17:02:10.914" endtime="20230227 17:02:10.930"/>
-</kw>
-<kw name="Click Element" library="SeleniumLibrary">
-<arg>xpath=${Confirm_Button}</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20230227 17:02:10.930" level="INFO">Clicking element 'xpath=//button[contains(text(),'Confirm')]'.</msg>
-<status status="PASS" starttime="20230227 17:02:10.930" endtime="20230227 17:02:10.978"/>
-</kw>
-<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
-<arg>${Message_Snackbar}</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:02:10.978" endtime="20230227 17:02:11.199"/>
-</kw>
-<kw name="Get Text" library="SeleniumLibrary">
-<var>${Pop_Up_Message}</var>
-<arg>xpath=${Message_Snackbar_Text}</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<msg timestamp="20230227 17:02:11.215" level="INFO">${Pop_Up_Message} = Processes restarted successfully</msg>
-<status status="PASS" starttime="20230227 17:02:11.199" endtime="20230227 17:02:11.215"/>
-</kw>
-<kw name="Should Be Equal As Strings" library="BuiltIn">
-<arg>${Pop_Up_Message}</arg>
-<arg>Processes restarted successfully</arg>
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20230227 17:02:11.215" endtime="20230227 17:02:11.215"/>
-</kw>
-<kw name="Navigate_To_Apps_Page" library="General_Keywords">
-<kw name="Click Element" library="SeleniumLibrary">
-<arg>xpath=${OSINavbar_Button_Apps}</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20230227 17:02:11.215" level="INFO">Clicking element 'xpath=//*[@id="navbar"]//*[@data-tag="appsIcon"]//*[text()="apps"]'.</msg>
-<status status="PASS" starttime="20230227 17:02:11.215" endtime="20230227 17:02:11.304"/>
-</kw>
-<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
-<arg>xpath=${OSINavbar_Button_Apps_ShowApps}</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:02:11.304" endtime="20230227 17:02:11.556"/>
-</kw>
-<kw name="Click Element" library="SeleniumLibrary">
-<arg>xpath=${OSINavbar_Button_Apps_ShowApps}</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20230227 17:02:11.556" level="INFO">Clicking element 'xpath=//*[@id="apps_popup"]//span[text()='Apps Page']'.</msg>
-<status status="PASS" starttime="20230227 17:02:11.556" endtime="20230227 17:02:12.174"/>
-</kw>
-<status status="PASS" starttime="20230227 17:02:11.215" endtime="20230227 17:02:12.175"/>
-</kw>
-<status status="PASS" starttime="20230227 17:02:06.540" endtime="20230227 17:02:12.175"/>
+<status status="PASS" starttime="20230228 09:01:09.599" endtime="20230228 09:01:09.599"/>
 </kw>
 <kw name="Logout_User_And_Close_Browser" library="General_Keywords">
 <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
 <arg>xpath=${User_Toolbar_User_Dropdown}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:02:12.176" endtime="20230227 17:02:12.201"/>
+<status status="PASS" starttime="20230228 09:01:09.599" endtime="20230228 09:01:09.647"/>
 </kw>
 <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
 <arg>xpath=${User_Toolbar_User_Caret}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:02:12.201" endtime="20230227 17:02:12.239"/>
+<status status="PASS" starttime="20230228 09:01:09.647" endtime="20230228 09:01:09.687"/>
 </kw>
 <kw name="Click Element" library="SeleniumLibrary">
 <arg>xpath=${User_Toolbar_User_Caret}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20230227 17:02:12.240" level="INFO">Clicking element 'xpath=//*[@id="navbar"]//*[@role="menuitem"]//*[text()="admin"]/i'.</msg>
-<status status="PASS" starttime="20230227 17:02:12.239" endtime="20230227 17:02:12.302"/>
+<msg timestamp="20230228 09:01:09.687" level="INFO">Clicking element 'xpath=//*[@id="navbar"]//*[@role="menuitem"]//*[text()="admin"]/i'.</msg>
+<status status="PASS" starttime="20230228 09:01:09.687" endtime="20230228 09:01:09.778"/>
 </kw>
 <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
 <arg>xpath=${User_Dropdown_Logout}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20230227 17:02:12.302" endtime="20230227 17:02:12.555"/>
+<status status="PASS" starttime="20230228 09:01:09.778" endtime="20230228 09:01:09.813"/>
 </kw>
 <kw name="Element Text Should Be" library="SeleniumLibrary">
 <arg>xpath=${User_Dropdown_Logout}</arg>
 <arg>Logout</arg>
 <doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
-<msg timestamp="20230227 17:02:12.555" level="INFO">Verifying element 'xpath=//*[@class="dx-submenu"]//*[@role="menuitem"]//*[text()='Logout']' contains exact text 'Logout'.</msg>
-<status status="PASS" starttime="20230227 17:02:12.555" endtime="20230227 17:02:12.573"/>
+<msg timestamp="20230228 09:01:09.813" level="INFO">Verifying element 'xpath=//*[@class="dx-submenu"]//*[@role="menuitem"]//*[text()='Logout']' contains exact text 'Logout'.</msg>
+<status status="PASS" starttime="20230228 09:01:09.813" endtime="20230228 09:01:09.859"/>
 </kw>
 <kw name="Click Element" library="SeleniumLibrary">
 <arg>xpath=${User_Dropdown_Logout}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20230227 17:02:12.573" level="INFO">Clicking element 'xpath=//*[@class="dx-submenu"]//*[@role="menuitem"]//*[text()='Logout']'.</msg>
-<status status="PASS" starttime="20230227 17:02:12.573" endtime="20230227 17:02:12.611"/>
+<msg timestamp="20230228 09:01:09.861" level="INFO">Clicking element 'xpath=//*[@class="dx-submenu"]//*[@role="menuitem"]//*[text()='Logout']'.</msg>
+<status status="PASS" starttime="20230228 09:01:09.859" endtime="20230228 09:01:09.933"/>
 </kw>
 <kw name="Close Browser" library="SeleniumLibrary">
 <doc>Closes the current browser.</doc>
-<status status="PASS" starttime="20230227 17:02:12.612" endtime="20230227 17:02:14.756"/>
+<status status="PASS" starttime="20230228 09:01:09.933" endtime="20230228 09:01:12.231"/>
 </kw>
-<status status="PASS" starttime="20230227 17:02:12.175" endtime="20230227 17:02:14.757"/>
+<status status="PASS" starttime="20230228 09:01:09.599" endtime="20230228 09:01:12.231"/>
 </kw>
 <kw name="Convert Date" library="DateTime">
 <var>${Expected_Clean_Up_Time}</var>
 <arg>${Daytime}</arg>
 <arg>result_format=epoch</arg>
 <doc>Converts between supported `date formats`.</doc>
-<msg timestamp="20230227 17:02:14.758" level="INFO">${Expected_Clean_Up_Time} = 1677625625.0</msg>
-<status status="PASS" starttime="20230227 17:02:14.758" endtime="20230227 17:02:14.758"/>
+<msg timestamp="20230228 09:01:12.234" level="INFO">${Expected_Clean_Up_Time} = 1677683167.0</msg>
+<status status="PASS" starttime="20230228 09:01:12.231" endtime="20230228 09:01:12.234"/>
+</kw>
+<kw name="Convert To Integer" library="BuiltIn">
+<var>${Expected_Clean_Up_Time}</var>
+<arg>${Expected_Clean_Up_Time}</arg>
+<doc>Converts the given item to an integer number.</doc>
+<msg timestamp="20230228 09:01:12.235" level="INFO">${Expected_Clean_Up_Time} = 1677683167</msg>
+<status status="PASS" starttime="20230228 09:01:12.234" endtime="20230228 09:01:12.235"/>
 </kw>
 <kw name="Run" library="OperatingSystem">
 <arg>echo ${Expected_Clean_Up_Time} &gt;&gt; time_setup.txt</arg>
 <doc>Runs the given command in the system and returns the output.</doc>
-<msg timestamp="20230227 17:02:14.763" level="INFO">Running command 'echo 1677625625.0 &gt;&gt; time_setup.txt'.</msg>
-<status status="PASS" starttime="20230227 17:02:14.759" endtime="20230227 17:02:14.772"/>
+<msg timestamp="20230228 09:01:12.247" level="INFO">Running command 'echo 1677683167 &gt;&gt; time_setup.txt'.</msg>
+<status status="PASS" starttime="20230228 09:01:12.235" endtime="20230228 09:01:12.261"/>
 </kw>
 <tag>settings</tag>
-<status status="PASS" starttime="20230227 17:01:49.189" endtime="20230227 17:02:14.773"/>
+<status status="PASS" starttime="20230228 09:00:42.120" endtime="20230228 09:01:12.264"/>
 </test>
-<status status="PASS" starttime="20230227 17:01:48.794" endtime="20230227 17:02:14.775"/>
+<test id="s1-t2" name="Check the Clean Up ran as expected" line="84">
+<kw name="Set Suite Variable" library="BuiltIn">
+<arg>${results}</arg>
+<arg>0</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<msg timestamp="20230228 09:01:12.274" level="INFO">${results} = 0</msg>
+<status status="PASS" starttime="20230228 09:01:12.266" endtime="20230228 09:01:12.274"/>
+</kw>
+<kw name="File Should Exist" library="OperatingSystem">
+<arg>time_setup.txt</arg>
+<doc>Fails unless the given ``path`` points to an existing file.</doc>
+<msg timestamp="20230228 09:01:12.274" level="INFO" html="true">File '&lt;a href="file://C:\Users\acruz\OneDrive - Aspen Technology, Inc\Documents\AutoTasks\time_setup.txt"&gt;C:\Users\acruz\OneDrive - Aspen Technology, Inc\Documents\AutoTasks\time_setup.txt&lt;/a&gt;' exists.</msg>
+<status status="PASS" starttime="20230228 09:01:12.274" endtime="20230228 09:01:12.274"/>
+</kw>
+<kw name="Get File" library="OperatingSystem">
+<var>${Clean_Up_Time}</var>
+<arg>time_setup.txt</arg>
+<doc>Returns the contents of a specified file.</doc>
+<msg timestamp="20230228 09:01:12.274" level="INFO" html="true">Getting file '&lt;a href="file://C:\Users\acruz\OneDrive - Aspen Technology, Inc\Documents\AutoTasks\time_setup.txt"&gt;C:\Users\acruz\OneDrive - Aspen Technology, Inc\Documents\AutoTasks\time_setup.txt&lt;/a&gt;'.</msg>
+<msg timestamp="20230228 09:01:12.274" level="INFO">${Clean_Up_Time} = 1677683167 
+</msg>
+<status status="PASS" starttime="20230228 09:01:12.274" endtime="20230228 09:01:12.274"/>
+</kw>
+<kw name="Remove File" library="OperatingSystem">
+<arg>time_setup.txt</arg>
+<doc>Removes a file with the given path.</doc>
+<msg timestamp="20230228 09:01:12.282" level="INFO" html="true">Removed file '&lt;a href="file://C:\Users\acruz\OneDrive - Aspen Technology, Inc\Documents\AutoTasks\time_setup.txt"&gt;C:\Users\acruz\OneDrive - Aspen Technology, Inc\Documents\AutoTasks\time_setup.txt&lt;/a&gt;'.</msg>
+<status status="PASS" starttime="20230228 09:01:12.274" endtime="20230228 09:01:12.282"/>
+</kw>
+<kw name="Remove String" library="String">
+<var>${Clean_Up_Time}</var>
+<arg>${Clean_Up_Time}</arg>
+<arg>${SPACE}</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<msg timestamp="20230228 09:01:12.283" level="INFO">${Clean_Up_Time} = 1677683167
+</msg>
+<status status="PASS" starttime="20230228 09:01:12.282" endtime="20230228 09:01:12.283"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${Miliseconds}</var>
+<arg>000</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230228 09:01:12.284" level="INFO">${Miliseconds} = 000</msg>
+<status status="PASS" starttime="20230228 09:01:12.284" endtime="20230228 09:01:12.284"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${Clean_Up_Time}</var>
+<arg>-</arg>
+<arg>${Clean_Up_Time}${Miliseconds}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230228 09:01:12.284" level="INFO">${Clean_Up_Time} = ['-', '1677683167\n000']</msg>
+<status status="PASS" starttime="20230228 09:01:12.284" endtime="20230228 09:01:12.284"/>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>Swagger</arg>
+<arg>${Base_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230228 09:01:12.284" level="INFO">Creating Session using : alias=Swagger, url=https://172.17.82.121:8443/, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230228 09:01:12.284" endtime="20230228 09:01:12.284"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${filter}</var>
+<arg>["startTime","&lt;","1675261595000"]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230228 09:01:12.284" level="INFO">${filter} = ["startTime","&lt;","1675261595000"]</msg>
+<status status="PASS" starttime="20230228 09:01:12.284" endtime="20230228 09:01:12.284"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${params}</var>
+<arg>filter=${filter}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230228 09:01:12.292" level="INFO">${params} = {'filter': '["startTime","&lt;","1675261595000"]'}</msg>
+<status status="PASS" starttime="20230228 09:01:12.292" endtime="20230228 09:01:12.292"/>
+</kw>
+<kw name="GET-Task Run History" library="EITK3_GET_Keywords">
+<var>${TaskHistory}</var>
+<arg>${params}</arg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${headers}</var>
+<arg>osiApiToken=${Token}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230228 09:01:12.292" level="INFO">${headers} = {'osiApiToken': '624d17a278f71870c4bc0ef6:08c99aec5c74fe42882b78f90dbc165ba87378592a73bc1c59c793f4197b85a2'}</msg>
+<status status="PASS" starttime="20230228 09:01:12.292" endtime="20230228 09:01:12.292"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>Swagger</arg>
+<arg>url=/eitk/api/v1/taskrunhistory</arg>
+<arg>headers=${headers}</arg>
+<arg>params=${params}</arg>
+<arg>expected_status=Anything</arg>
+<arg>verify=${False}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230228 09:01:12.619" level="INFO">GET Request : url=https://172.17.82.121:8443/eitk/api/v1/taskrunhistory?filter=%5B%22startTime%22%2C%22%3C%22%2C%221675261595000%22%5D 
+ path_url=/eitk/api/v1/taskrunhistory?filter=%5B%22startTime%22%2C%22%3C%22%2C%221675261595000%22%5D 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'osiApiToken': '624d17a278f71870c4bc0ef6:08c99aec5c74fe42882b78f90dbc165ba87378592a73bc1c59c793f4197b85a2'} 
+ body=None 
+ </msg>
+<msg timestamp="20230228 09:01:12.619" level="INFO">GET Response : url=https://172.17.82.121:8443/eitk/api/v1/taskrunhistory?filter=%5B%22startTime%22%2C%22%3C%22%2C%221675261595000%22%5D 
+ status=200, reason=OK 
+ headers={'Server': 'nginx', 'Date': 'Tue, 28 Feb 2023 15:01:12 GMT', 'Content-Type': 'application/json', 'Content-Length': '3', 'Connection': 'keep-alive', 'X-Frame-Options': 'SAMEORIGIN', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '1; mode=block', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Pragma': 'no-cache', 'Cache-Control': 'no-cache, must-revalidate, private, no-store'} 
+ body=[ ] 
+ </msg>
+<msg timestamp="20230228 09:01:12.619" level="INFO">C:\Users\acruz\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host '172.17.82.121'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20230228 09:01:12.619" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230228 09:01:12.292" endtime="20230228 09:01:12.619"/>
+</kw>
+<kw name="Return From Keyword" library="BuiltIn">
+<arg>${response}</arg>
+<doc>Returns from the enclosing user keyword.</doc>
+<msg timestamp="20230228 09:01:12.619" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20230228 09:01:12.619" endtime="20230228 09:01:12.632"/>
+</kw>
+<msg timestamp="20230228 09:01:12.632" level="INFO">${TaskHistory} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230228 09:01:12.292" endtime="20230228 09:01:12.632"/>
+</kw>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>200</arg>
+<arg>${TaskHistory}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" starttime="20230228 09:01:12.632" endtime="20230228 09:01:12.632"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${Body}</var>
+<arg>${TaskHistory.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230228 09:01:12.640" level="INFO">${Body} = [ ]</msg>
+<status status="PASS" starttime="20230228 09:01:12.632" endtime="20230228 09:01:12.640"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${Body}</arg>
+<arg>[${SPACE}]</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20230228 09:01:12.640" endtime="20230228 09:01:12.644"/>
+</kw>
+<kw name="GET-Task Run Requests" library="EITK3_GET_Keywords">
+<var>${RunRequests}</var>
+<arg>${params}</arg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${headers}</var>
+<arg>osiApiToken=${Token}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230228 09:01:12.645" level="INFO">${headers} = {'osiApiToken': '624d17a278f71870c4bc0ef6:08c99aec5c74fe42882b78f90dbc165ba87378592a73bc1c59c793f4197b85a2'}</msg>
+<status status="PASS" starttime="20230228 09:01:12.645" endtime="20230228 09:01:12.645"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>Swagger</arg>
+<arg>url=/eitk/api/v1/taskrunrequests</arg>
+<arg>headers=${headers}</arg>
+<arg>params=${params}</arg>
+<arg>expected_status=Anything</arg>
+<arg>verify=${False}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230228 09:01:12.718" level="INFO">GET Request : url=https://172.17.82.121:8443/eitk/api/v1/taskrunrequests?filter=%5B%22startTime%22%2C%22%3C%22%2C%221675261595000%22%5D 
+ path_url=/eitk/api/v1/taskrunrequests?filter=%5B%22startTime%22%2C%22%3C%22%2C%221675261595000%22%5D 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'osiApiToken': '624d17a278f71870c4bc0ef6:08c99aec5c74fe42882b78f90dbc165ba87378592a73bc1c59c793f4197b85a2'} 
+ body=None 
+ </msg>
+<msg timestamp="20230228 09:01:12.718" level="INFO">GET Response : url=https://172.17.82.121:8443/eitk/api/v1/taskrunrequests?filter=%5B%22startTime%22%2C%22%3C%22%2C%221675261595000%22%5D 
+ status=200, reason=OK 
+ headers={'Server': 'nginx', 'Date': 'Tue, 28 Feb 2023 15:01:12 GMT', 'Content-Type': 'application/json', 'Content-Length': '3', 'Connection': 'keep-alive', 'X-Frame-Options': 'SAMEORIGIN', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '1; mode=block', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Pragma': 'no-cache', 'Cache-Control': 'no-cache, must-revalidate, private, no-store'} 
+ body=[ ] 
+ </msg>
+<msg timestamp="20230228 09:01:12.718" level="INFO">C:\Users\acruz\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host '172.17.82.121'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20230228 09:01:12.718" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230228 09:01:12.645" endtime="20230228 09:01:12.718"/>
+</kw>
+<kw name="Return From Keyword" library="BuiltIn">
+<arg>${response}</arg>
+<doc>Returns from the enclosing user keyword.</doc>
+<msg timestamp="20230228 09:01:12.718" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20230228 09:01:12.718" endtime="20230228 09:01:12.726"/>
+</kw>
+<msg timestamp="20230228 09:01:12.726" level="INFO">${RunRequests} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230228 09:01:12.645" endtime="20230228 09:01:12.726"/>
+</kw>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>200</arg>
+<arg>${RunRequests}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" starttime="20230228 09:01:12.726" endtime="20230228 09:01:12.726"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${Body}</var>
+<arg>${RunRequests.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230228 09:01:12.734" level="INFO">${Body} = [ ]</msg>
+<status status="PASS" starttime="20230228 09:01:12.726" endtime="20230228 09:01:12.734"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${Body}</arg>
+<arg>[${SPACE}]</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20230228 09:01:12.734" endtime="20230228 09:01:12.734"/>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<arg>${results}</arg>
+<arg>1</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<msg timestamp="20230228 09:01:12.734" level="INFO">${results} = 1</msg>
+<status status="PASS" starttime="20230228 09:01:12.734" endtime="20230228 09:01:12.734"/>
+</kw>
+<tag>verify</tag>
+<status status="PASS" starttime="20230228 09:01:12.266" endtime="20230228 09:01:12.743"/>
+</test>
+<status status="PASS" starttime="20230228 09:00:41.402" endtime="20230228 09:01:12.743"/>
 </suite>
 <statistics>
 <total>
-<stat pass="1" fail="0" skip="0">All Tests</stat>
+<stat pass="2" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
 <stat pass="1" fail="0" skip="0">settings</stat>
+<stat pass="1" fail="0" skip="0">verify</stat>
 </tag>
 <suite>
-<stat pass="1" fail="0" skip="0" id="s1" name="EITK3 Clean Up Tasks">EITK3 Clean Up Tasks</stat>
+<stat pass="2" fail="0" skip="0" id="s1" name="EITK3 Clean Up Tasks">EITK3 Clean Up Tasks</stat>
 </suite>
 </statistics>
 <errors>
-<msg timestamp="20230227 17:01:48.981" level="ERROR">Error in file 'C:\Users\acruz\OneDrive - Aspen Technology, Inc\Documents\AutoTasks\auto_common_robot\General_Keywords.robot' on line 2: Processing variable file 'C:\Users\acruz\OneDrive - Aspen Technology, Inc\Documents\AutoTasks\auto_common_robot\Robot_Pass_Fail_Report_To_Jama.py' failed: Importing variable file 'C:\Users\acruz\OneDrive - Aspen Technology, Inc\Documents\AutoTasks\auto_common_robot\Robot_Pass_Fail_Report_To_Jama.py' failed: ModuleNotFoundError: No module named 'jama'
+<msg timestamp="20230228 09:00:41.750" level="ERROR">Error in file 'C:\Users\acruz\OneDrive - Aspen Technology, Inc\Documents\AutoTasks\auto_common_robot\General_Keywords.robot' on line 2: Processing variable file 'C:\Users\acruz\OneDrive - Aspen Technology, Inc\Documents\AutoTasks\auto_common_robot\Robot_Pass_Fail_Report_To_Jama.py' failed: Importing variable file 'C:\Users\acruz\OneDrive - Aspen Technology, Inc\Documents\AutoTasks\auto_common_robot\Robot_Pass_Fail_Report_To_Jama.py' failed: ModuleNotFoundError: No module named 'jama'
 Traceback (most recent call last):
   File "C:\Users\acruz\OneDrive - Aspen Technology, Inc\Documents\AutoTasks\auto_common_robot\Robot_Pass_Fail_Report_To_Jama.py", line 2, in &lt;module&gt;
     from jama import jama_proxy
@@ -1374,7 +1271,7 @@ PYTHONPATH:
   C:\Users\acruz\AppData\Local\Programs\Python\Python310\lib\site-packages\win32
   C:\Users\acruz\AppData\Local\Programs\Python\Python310\lib\site-packages\win32\lib
   C:\Users\acruz\AppData\Local\Programs\Python\Python310\lib\site-packages\Pythonwin</msg>
-<msg timestamp="20230227 17:01:48.998" level="ERROR">Error in file 'C:\Users\acruz\OneDrive - Aspen Technology, Inc\Documents\AutoTasks\auto_common_robot\General_Keywords.robot' on line 3: Importing library 'C:\Users\acruz\OneDrive - Aspen Technology, Inc\Documents\AutoTasks\auto_common_robot\Robot_Pass_Fail_Report_To_Jama.py' failed: ModuleNotFoundError: No module named 'jama'
+<msg timestamp="20230228 09:00:41.764" level="ERROR">Error in file 'C:\Users\acruz\OneDrive - Aspen Technology, Inc\Documents\AutoTasks\auto_common_robot\General_Keywords.robot' on line 3: Importing library 'C:\Users\acruz\OneDrive - Aspen Technology, Inc\Documents\AutoTasks\auto_common_robot\Robot_Pass_Fail_Report_To_Jama.py' failed: ModuleNotFoundError: No module named 'jama'
 Traceback (most recent call last):
   File "C:\Users\acruz\OneDrive - Aspen Technology, Inc\Documents\AutoTasks\auto_common_robot\Robot_Pass_Fail_Report_To_Jama.py", line 2, in &lt;module&gt;
     from jama import jama_proxy
@@ -1390,7 +1287,7 @@ PYTHONPATH:
   C:\Users\acruz\AppData\Local\Programs\Python\Python310\lib\site-packages\win32
   C:\Users\acruz\AppData\Local\Programs\Python\Python310\lib\site-packages\win32\lib
   C:\Users\acruz\AppData\Local\Programs\Python\Python310\lib\site-packages\Pythonwin</msg>
-<msg timestamp="20230227 17:01:49.176" level="ERROR">Error in file 'C:\Users\acruz\OneDrive - Aspen Technology, Inc\Documents\AutoTasks\auto_eitk3_robot\EITK3_General_Keywords.robot' on line 2: Variable file 'Robot_Pass_Fail_Report_To_Jama.py' does not exist.</msg>
-<msg timestamp="20230227 17:01:49.183" level="ERROR">Error in file 'C:\Users\acruz\OneDrive - Aspen Technology, Inc\Documents\AutoTasks\auto_eitk3_robot\EITK3_General_Keywords.robot' on line 3: Library 'Robot_Pass_Fail_Report_To_Jama.py' does not exist.</msg>
+<msg timestamp="20230228 09:00:42.095" level="ERROR">Error in file 'C:\Users\acruz\OneDrive - Aspen Technology, Inc\Documents\AutoTasks\auto_eitk3_robot\EITK3_General_Keywords.robot' on line 2: Variable file 'Robot_Pass_Fail_Report_To_Jama.py' does not exist.</msg>
+<msg timestamp="20230228 09:00:42.110" level="ERROR">Error in file 'C:\Users\acruz\OneDrive - Aspen Technology, Inc\Documents\AutoTasks\auto_eitk3_robot\EITK3_General_Keywords.robot' on line 3: Library 'Robot_Pass_Fail_Report_To_Jama.py' does not exist.</msg>
 </errors>
 </robot>

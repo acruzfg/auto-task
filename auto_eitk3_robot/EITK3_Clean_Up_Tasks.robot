@@ -32,7 +32,7 @@ ${TaskRunRequestAge}         1
 *** Test Cases ***
 Change System Settings
     [Tags]    settings
-## In the first part, we make sure there's at least one task that has run today ##
+## In the first part, we make sure there's at least one task that has run before clean up time ##
 ## Verify the task name is not occupied, if it is, then the task is deleted ##
     Create Session    Swagger                         ${Base_URL}
     Make Sure Task Does Not Exist                     ${TaskName}
@@ -75,34 +75,36 @@ Change System Settings
     ...    Log                             The values entered are the same as before. No changes made.
     ...  ELSE
     ...    Should be equal                 ${Pop_Up_Message}        Save successful
-    Restart_Proccess_Using_Site_Monitor    ${TESTSYSTEM}            osii_eitkd
+#    Restart_Proccess_Using_Site_Monitor    ${TESTSYSTEM}            osii_eitkd
     Logout_User_And_Close_Browser
-    ${Expected_Clean_Up_Time}=             Convert Date      ${Daytime}     result_format=epoch
+    ${Expected_Clean_Up_Time}=             Convert Date          ${Daytime}     result_format=epoch
+    ${Expected_Clean_Up_Time}=             Convert To Integer    ${Expected_Clean_Up_Time}
     Run    echo ${Expected_Clean_Up_Time} >> time_setup.txt            ### save to verify the cleaner run the next day
 
 Check the Clean Up ran as expected
     [Tags]   verify
-    Set Suite Variable    ${results}        0
-    ${Clean_Up_Time}=    Get File    time_setup.txt
-    Remove File          time_setup.txt
-    Log    Clean up time was expected at ${Clean_Up_Time}
-    Navigate_To_Audits_Page
-## Wait for the page to load and te download button appears
-    Wait Until Page Contains         Audits
-    Wait Until Element Is Visible    xpath=${Download_Button}
-    Wait Until Element Is Enabled    xpath=${Download_Button}
-    Click Element                    xpath=${Download_Button}
-# Wait for option in the download button and select one
-    Wait Until Element Is Visible    xpath=${Download_All_Option}
-    Wait Until Element Is Enabled    xpath=${Download_All_Option}
-    Click Element                    xpath=${Download_All_Option}
-    Wait Until Keyword Succeeds    1min    5s    File Should Exist    ${OUTPUT DIR}/audits.csv
-    # create unique folder
-    Logout_User_And_Close_Browser
-    ${Return_Code}                   ${Output}=        Run And Return Rc And Output   python .\\auto_eitk3_robot\\check_audits_file.py "audits.csv" "${Clean_Up_Time}"
-    Should Be Equal As Integers      ${Return_Code}    0
-    Should Be Equal As Strings       ${Output}         OK
-    Set Suite Variable               ${results}        1
+    Set Suite Variable    ${results}                  0 
+## We obtain expected clean up time from created file ##
+    File Should Exist                                 time_setup.txt
+    ${Clean_Up_Time}=     Get File                    time_setup.txt
+    Remove File                                       time_setup.txt
+##  Remove possible lingering white spaces ##
+    ${Clean_Up_Time}=     Remove String               ${Clean_Up_Time}    ${SPACE}
+### Add miliseconds as we ignored them in the past test ###
+    ${Miliseconds}=       Set Variable                000
+    ${Clean_Up_Time}=     Set Variable     -          ${Clean_Up_Time}${Miliseconds}
+    Create Session        Swagger                     ${Base_URL}
+    ${filter}=            Set Variable                ["startTime","<","1675261595000"]
+    ${params}=            Create Dictionary           filter=${filter}
+    ${TaskHistory}=       GET-Task Run History        ${params}
+    Status Should Be      200                         ${TaskHistory}
+    ${Body}=              Convert To String           ${TaskHistory.content}
+    Should Be Equal As Strings    ${Body}             [${SPACE}]
+    ${RunRequests}=       GET-Task Run Requests       ${params}
+    Status Should Be      200                         ${RunRequests}
+    ${Body}=              Convert To String           ${RunRequests.content}
+    Should Be Equal As Strings    ${Body}             [${SPACE}]
+    Set Suite Variable            ${results}          1
 
 Report to JAMA
     [Tags]    jama
