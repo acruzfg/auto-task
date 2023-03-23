@@ -17,7 +17,7 @@ ${Base_URL}=    https://172.17.82.129:8443/
 
 # API Authorization Token
 
-${Token}    60ddc80ae2381a658bf5d87e:e031c694fe4d499bab7730485b83ce2f02e310a5b5cd9acb13850615ec7b2657
+${Token}    6409dcafbb599748513ae6c2:8daef61841eb7040b97652850e34dc1b6ffde1307d5c0bd68368f761d0a66bc8
 
 # Site Monitor System Button
 

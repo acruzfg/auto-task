@@ -5,9 +5,8 @@ Library     OperatingSystem
 Library     String
 Resource    ../auto_common_robot/General_Variables.robot
 Resource    ../auto_common_robot/General_Keywords.robot
-Resource    ../auto_common_robot/${TESTSYSTEM}_Variables.robot
+Resource    ../auto_common_robot/${TESTSERVER}_Variables.robot
 Resource    ../auto_eitk3_endpoints/EITK3_POST_Keywords.robot
-Resource    ../auto_eitk3_endpoints/EITK3_PUT_Keywords.robot
 Resource    ../auto_eitk3_endpoints/EITK3_DELETE_Keywords.robot
 Resource    ../auto_eitk3_endpoints/EITK3_GET_Keywords.robot
 Resource    ../auto_eitk3_endpoints/EITK3_General_Endpoints_Keywords.robot
@@ -15,15 +14,16 @@ Resource    Report_to_Jama.robot
 Resource    EITK3_Task_Variables.robot
 Resource    EITK3_General_Variables.robot
 Resource    EITK3_General_Keywords.robot
+Test Teardown    Run Keyword If Test Failed     Run    jama_report_results.EXE --testplanid ${testplanid} --testcaseid ${testcaseid} --passed False --user auto_sysman --password OSISysman --notes "Test failed. Check logs for more information."
 
 *** Variables ***
-${TESTSYSTEM}=               SM5-DAC1    #Default values, can be changed during execution
-${testcycle}
+${TESTSERVER}=               SM5-DAC1    #Default values, can be changed during execution
+${testplanid}
+${testcaseid}
 ### Task variables
-${TaskName}
-${Hostname}
+${TaskName}                  Auto-Task-Clean-Up-Verification
 ### Settings variables
-${TaskCleanupTime}           1
+${TaskCleanupTime}                       #This variable would updated to the current time plus 5 minutes
 ${FileAge}                   1
 ${PayloadsStoredperTask}     100
 ${TaskHistoryAge}            1
@@ -37,11 +37,8 @@ Change System Settings
     Create Session    Swagger                         ${Base_URL}
     Make Sure Task Does Not Exist                     ${TaskName}
 ### Create task details ###
-    ${createAuditCopies}=    Set Variable             Always
-    ${task}=                 Set Variable             {"name": "${TaskName}","createAuditCopies": "${createAuditCopies}"}
-### Create file step set up ###
     ${createAuditCopies}=    Set Variable             Never
-    ${Hostname}=             Convert To Lower Case    ${TESTSYSTEM}  
+    ${Hostname}=             Convert To Lower Case    ${TESTSERVER}  
     ${steps}=                Set Variable             [{"type": "FILE","description": "","hostname": "${Hostname}","filePath": "*","disablePreserveTimestamp": false,"deletePostTransfer": "NEVER","readFile": true,"treatMissingFilesAsSuccess": true,"protocol": "MONARCH"}]
     ${task}=                 Set Variable             {"name": "${TaskName}", "createAuditCopies": "${createAuditCopies}","steps": ${steps}}
 ### Create task ###
@@ -52,7 +49,7 @@ Change System Settings
     Status Should Be    200                ${Run_request}
     Delete All Sessions
 ## Navigate to EITK Setting Page Task Tab ##
-    Open_Browser_And_Login_As_Admin    Chrome
+    Open_Browser_And_Login_As_Admin        Chrome
     Select_EITK_Tool
     Navigate_To_System_Settings_Page
     EnterpriseITK_Settings_Task_Tab
@@ -60,7 +57,7 @@ Change System Settings
 ## Entering values ##
     ${Time}=               Get Current Date                  increment=00:05:00    result_format=%H:%M:%S    ## to set up the clean up time
     ${Current_Daytime}=    Get Current Date                  increment=00:05:00    exclude_millis=True       ## to check if clean up was ran the next day
-    ${Daytime}=            Add Time To Date                  ${Current_Daytime}    1 day
+    ${CleanUpCheckTime}=   Subtract Time From Date           ${Current_Daytime}    1 day
     ${TaskCleanupTime}=    Set Variable                      ${Time}
     Set_Value              ${TaskCleanupTime}                ${EITK_Cleanup_Time_Textbox}
     Set_Value              ${FileAge}                        ${EITK_Max_File_Age_Textbox}   
@@ -75,46 +72,45 @@ Change System Settings
     ...    Log                             The values entered are the same as before. No changes made.
     ...  ELSE
     ...    Should be equal                 ${Pop_Up_Message}        Save successful
-#    Restart_Proccess_Using_Site_Monitor    ${TESTSYSTEM}            osii_eitkd
+#    Restart_Proccess_Using_Site_Monitor    ${TESTSERVER}            osii_eitkd
     Logout_User_And_Close_Browser
-    ${Expected_Clean_Up_Time}=             Convert Date          ${Daytime}     result_format=epoch
+    ${Expected_Clean_Up_Time}=             Convert Date          ${CleanUpCheckTime}        result_format=epoch
     ${Expected_Clean_Up_Time}=             Convert To Integer    ${Expected_Clean_Up_Time}
-    Run    echo ${Expected_Clean_Up_Time} >> time_setup.txt            ### save to verify the cleaner run the next day
+    Run    echo ${Expected_Clean_Up_Time} >> time_setup.txt            ### save to verify the cleaner run successfully
 
 Check the Clean Up ran as expected
-    [Tags]   verify
-    Set Suite Variable    ${results}                  0 
+    [Tags]   verify   
 ## We obtain expected clean up time from created file ##
     File Should Exist                                 time_setup.txt
     ${Clean_Up_Time}=     Get File                    time_setup.txt
     Remove File                                       time_setup.txt
 ##  Remove possible lingering white spaces ##
     ${Clean_Up_Time}=     Remove String               ${Clean_Up_Time}    ${SPACE}
+    ${Clean_Up_Time}=     Remove String               ${Clean_Up_Time}    ${\n}
 ### Add miliseconds as we ignored them in the past test ###
     ${Miliseconds}=       Set Variable                000
-    ${Clean_Up_Time}=     Set Variable     -          ${Clean_Up_Time}${Miliseconds}
+    ${Clean_Up_Time}=     Set Variable                ${Clean_Up_Time}${Miliseconds}
+##  Remove possible lingering white spaces ##
+    ${Clean_Up_Time}=     Remove String               ${Clean_Up_Time}    \n
+##  Create session to send API requests
     Create Session        Swagger                     ${Base_URL}
-    ${filter}=            Set Variable                ["startTime","<","1675261595000"]
+##  Filter for start time before the clean up date 
+    ${filter}=            Set Variable                ["startTime","<","${Clean_Up_Time}"]
     ${params}=            Create Dictionary           filter=${filter}
+##  Request for task history
     ${TaskHistory}=       GET-Task Run History        ${params}
     Status Should Be      200                         ${TaskHistory}
+##  Verify it is empty
     ${Body}=              Convert To String           ${TaskHistory.content}
     Should Be Equal As Strings    ${Body}             [${SPACE}]
+##  Request for task run requests
     ${RunRequests}=       GET-Task Run Requests       ${params}
     Status Should Be      200                         ${RunRequests}
+##  Verify it is empty
     ${Body}=              Convert To String           ${RunRequests.content}
     Should Be Equal As Strings    ${Body}             [${SPACE}]
     Delete All Sessions
-    Set Suite Variable            ${results}          1
-
-Report to JAMA
-    [Tags]    jama
-###   Report to JAMA test results ###  
-    ${jama_id}=            Run                        python .\\auto_eitk3_endpoints\\TestCaseResults.py "Automated - Clean Up Tasks" "${testcycle}" 
-    Run Keyword If         ${results} == 1            Jama-Report Passed Test    run_id=${jama_id}
-    ...  ELSE
-    ...  Jama-Report Failed Test            run_id=${jama_id}
-
+    Run    jama_report_results.EXE --testplanid ${testplanid} --testcaseid ${testcaseid} --passed True --user auto_sysman --password OSISysman
 
 *** Keywords ***
 Set_Value    [Arguments]             ${value}          ${xpath}

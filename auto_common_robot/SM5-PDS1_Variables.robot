@@ -7,10 +7,6 @@
 
 ${URL}  https://172.17.82.163:8443/platform/page/signin.html
 
-# Jama Test Plan ID Variable:
-
-${JamaPlan_ID}  7228323
-
 #Base URL for API use
 
 ${Base_URL}=    https://172.17.82.163:8443/
