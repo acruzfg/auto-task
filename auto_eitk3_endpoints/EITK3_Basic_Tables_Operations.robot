@@ -7,21 +7,26 @@ Resource    EITK3_GET_Keywords.robot
 Resource    EITK3_PUT_Keywords.robot
 Resource    EITK3_DELETE_Keywords.robot
 Resource    EITK3_PATCH_Keywords.robot
-Resource    Report_to_Jama.robot
-Resource    ../auto_common_robot/${testsystem}_Variables.robot
+Resource    ../auto_common_robot/${TESTSERVER}_Variables.robot
 Test Setup       Create Session    Swagger    ${Base_URL}
 Test Teardown    Delete All Sessions
+Suite Teardown   Run Keywords
+...              Run Keyword If All Tests Passed    Run    jama_report_results.EXE --testplanid ${testplanid} --testcaseid ${testcaseid} --passed True --user ${jamauser} --password ${jamapwd} --notes "Test passed"
+...    AND       Run Keyword If Any Tests Failed    Run    jama_report_results.EXE --testplanid ${testplanid} --testcaseid ${testcaseid} --passed False --user ${jamauser} --password ${jamapwd} --notes "Test failed. Check logs for more information"
 
 *** Variables ***
-${testsystem}=         SM5-DAC1
-${testcycle}
-${Table_ID}=           ATest1
+### VARIABLES TO REPORT IN JAMA ###
+${testplanid}
+${testcaseid}
+${jamauser}
+${jamapwd}
+### TEST CASE VARIABLES ###
+${TESTSERVER}=         SM5-DAC1        ### By default but values can be changed during execution
+${tableId}=            ATest1
 ${table_name_csv}=     ATable1
 
 *** Test Cases ***
 Basic Table Operations
-### The "results" variable will be used to report to Jama. We set to 0 so if the test fails, it will report 'FAILED' to jama ###
-    Set Suite Variable                ${results}                    0
 ### Ensure the table name isn't occupied already, if the name is used, the table will be deleted ###
     Make Sure Table Does Not Exist    ${Table_ID}
 ### Create table ###
@@ -242,11 +247,3 @@ Basic Table Operations
     Check Table Columns Attribute            ${GET_response}    c5             3            id
     Check Table Columns Attribute            ${GET_response}    None           3            type
     Check Table Columns Attribute            ${GET_response}    C 5            3            name
-    Set Suite Variable                       ${results}         1
- 
-#Report to JAMA
-### Report to JAMA test results ###   
-##    ${jama_id}=            Run                        python .\\auto_eitk3_endpoints\\TestCaseResults.py "Automated - Create, Modify & Delete EITK Table and Verify Table Elements via Endpoints" "${testcycle}" 
-#    Run Keyword If         ${results} == 1            Jama-Report Passed Test    run_id=${jama_id}
-#    ...  ELSE
-#    ...  Jama-Report Failed Test            run_id=${jama_id}

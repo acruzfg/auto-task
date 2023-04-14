@@ -6,20 +6,26 @@ Resource    EITK3_GET_Keywords.robot
 Resource    EITK3_PUT_Keywords.robot
 Resource    EITK3_DELETE_Keywords.robot
 Resource    EITK3_PATCH_Keywords.robot
-Resource    Report_to_Jama.robot
-Resource    ../auto_common_robot/${testsystem}_Variables.robot
-Test Setup    Create Session    Swagger    ${Base_URL}
+Resource    ../auto_common_robot/${TESTSERVER}_Variables.robot
+Test Setup       Create Session    Swagger    ${Base_URL}
 Test Teardown    Delete All Sessions
+Suite Teardown   Run Keywords
+...              Run Keyword If All Tests Passed    Run    jama_report_results.EXE --testplanid ${testplanid} --testcaseid ${testcaseid} --passed True --user ${jamauser} --password ${jamapwd} --notes "Test passed"
+...    AND       Run Keyword If Any Tests Failed    Run    jama_report_results.EXE --testplanid ${testplanid} --testcaseid ${testcaseid} --passed False --user ${jamauser} --password ${jamapwd} --notes "Test failed. Check logs for more information"
 
 *** Variables ***
-${testsystem}=    SM5-DAC1
+### VARIABLES TO REPORT IN JAMA ###
+${testplanid}
+${testcaseid}
+${jamauser}
+${jamapwd}
+### TEST CASE VARIABLES ###
+${TESTSERVER}=    SM5-DAC1
 ${testcycle}
 
 *** Test Cases ***
 Convert IDMap to Table
-### The "results" variable will be used to report to Jama. We set to 0 so if the test fails, it will report 'FAILED' to jama ###
-    Set Suite Variable    ${results}                           0
-### Pre-conditions###
+### Pre-conditions ###
 ### Ensure the table names aren't occupied already, if the names are used, the tables will be deleted ###
     @{names}=    Create List    Map1    Table1    MapTable    Invalid
     FOR    ${name}    IN    @{names}
@@ -158,14 +164,6 @@ Convert IDMap to Table
 ## Verify its elements ##
     ${counter}=                   Count Links that Contain ItemID             ${GET_response}
     Should Be Equal As Strings    ${counter}                                  4
-    Set Suite Variable            ${results}                                  1
-
-Report to JAMA
-### Report to JAMA test results ###   
-    ${jama_id}=                   Run                                         python .\\auto_eitk3_endpoints\\TestCaseResults.py "Automated - Convert IDMap to Table" "${testcycle}" 
-    Run Keyword If                ${results} == 1                             Jama-Report Passed Test    run_id=${jama_id}
-    ...  ELSE
-    ...                           Jama-Report Failed Test                     run_id=${jama_id}
 
 *** Keywords ***
 Unique Items    [Arguments]    ${idmap_name}                 ${enforce}=true

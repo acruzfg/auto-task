@@ -1,0 +1,184 @@
+def colors = [
+    "blueInformation" : "#0092dd", "greenSuccess" : "#00c853", "yellowWarning" : "#ffd600",
+    "orangeCritical": "#ff6d00","redError" : "#d50000","black" : "#000000"]
+
+    
+
+def emailMap = [
+      GMS_TEAM : "Matthew.tellander@osii.com" 
+]
+pipeline
+{
+    agent
+    {
+       node('gms-tc1')
+    }
+    parameters
+    {
+    string(
+            name: 'ARTIFACTORY_URL',
+            defaultValue: 'https://artifactory.osii.com',
+            description: 'URL location of Artifactory',
+            trim: true)
+    credentials(
+            name: 'REGISTRY_USER',
+            defaultValue: '00e9d953-2bfd-423a-9354-c68cf644594b',
+            description: 'Default Artifactory User',
+            credentialType: 'com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl',
+            required: true)
+    string(
+            name: 'OFFICE_CONNECT_WEBHOOK_URL',
+            defaultValue: "https://osii.webhook.office.com/webhookb2/1ea10330-67e0-4ff2-bde1-e3e71b81973b@ae4097e2-dfb9-43f3-8190-a014fe51f43d/JenkinsCI/298f3584879b4de382dbd25be8ed9aee/1ea10330-67e0-4ff2-bde1-e3e71b81973b",
+            description: 'Office Connect Plugin Webhook',
+            trim: true)
+    string(
+            name: 'REPO',
+            defaultValue: 'mtellander/PlannerPro-test',
+            description: 'test repo to run',
+            trim: true)
+    string(
+            name: 'TESTS',
+            defaultValue: 'Tests',
+            description: 'Folder containing the test cases to run. Can do a base folder like Tests that will run all robot tests within, or specify a specific folder(use 2 slashes) like Tests\\Rest or even one robot test like this: Tests\\Rest\\ScheduleRest.robot',
+            trim: true)        
+
+    string(
+            name: 'START_URL',
+            defaultValue: "https://gms-74-his1:8443/",
+            description: 'base url for backend server',
+            trim: true)
+    
+    booleanParam(
+            name: 'SEND_EMAIL',
+            defaultValue: false,
+            description: 'Determines if an email is sent once job is finished.')
+
+    }
+
+    options {
+        office365ConnectorWebhooks([
+            [name: "GMS Automated Test Systems", url: "${params.OFFICE_CONNECT_WEBHOOK_URL}", startNotification: true]
+        ])
+    }
+        stages
+        {
+            stage('Pull Test Cases') 
+            {
+            steps 
+            {
+                cleanWs()
+                checkout([$class: 'GitSCM',
+                branches: [[name: 'master']], 
+                doGenerateSubmoduleConfigurations: false,
+                extensions: [[$class: 'BuildSingleRevisionOnly'],
+                [$class: 'CleanBeforeCheckout'],
+                [$class: 'RelativeTargetDirectory',
+                relativeTargetDir: "temp"],
+                [$class: 'CloneOption', depth: 1, noTags: true, reference: '', shallow: true]],
+                submoduleCfg: [],
+                userRemoteConfigs: [[credentialsId: 'seit_user_intl', url: "https://git.osii.com/${params.REPO}"]]])  
+            }
+            }
+
+            stage('Execute tests') {
+                steps {           
+                    
+                        withCredentials([usernamePassword(credentialsId: '45734047-2754-482f-af44-e68a39310320', passwordVariable: 'PASSWD', usernameVariable: 'USER'),string(credentialsId: 'OSI_API_TOKEN', variable: 'osiApiToken')]) 
+                            {
+                            
+                            bat """
+                            set PATH=%PATH% C:\\Users\\Administrator\\AppData\\Local\\rasjani\\WebDriverManager\\bin
+                            copy C:\\Users\\Administrator\\AppData\\Local\\rasjani\\WebDriverManager\\bin\\chromedriver.exe chromedriver.exe                            
+                            @echo off
+                            echo: 
+                            echo Open Systems International  ,/
+                            echo   -SQA Test Automation-   ,'/
+                            echo                         ,' /
+                            echo                       ,'  /_____,
+                            echo                     .'____ GMS,' 
+                            echo                          /  ,'
+                            echo                         / ,'
+                            echo                        /,'
+                            echo                       /'
+                            echo:
+                            echo: Running robot tests from %TESTS% directory 
+                            python -m robot.run -v USER:${USER} -v PASSWD:${PASSWD} -v osiApiToken:${osiApiToken} -v START_URL:${env.START_URL} --reportbackground \"${colors["greenSuccess"]}:${colors["redError"]}\" --outputdir D:\\jenkins\\workspace\\India\\GMS\\gms-robot-skyfall\\temp D:\\jenkins\\workspace\\India\\GMS\\gms-robot-skyfall\\temp\\%TESTS%
+                            """
+                            }
+                                           
+                    }
+
+            }
+                
+                
+            stage('Publish Robot Tests') 
+            {
+                steps
+                {
+                    script 
+                    {
+                        
+                            [
+                                $class: 'RobotPublisher',
+                                outputPath: 'temp/',
+                                outputFileName: 'output*.xml',
+                                reportFileName: 'report*.html',
+                                logFileName: 'log*.html',
+                                otherFiles: '*.png',
+                                disableArchiveOutput: false,
+                                enableCache: true,
+                                unstableThreshold: 75,
+                                passThreshold: 95,
+                                onlyCritical: false
+                            ]
+                        
+
+                    }
+                }
+            }
+                
+                
+
+
+        }
+
+    
+post
+    {
+        always {
+            echo 'Doing nothing'
+        }
+        success {
+            office365ConnectorSend message: "$env.CONNECTOR_MESSAGE}",
+            status:"Test suite passed.",
+            color:"${colors["greenSuccess"]}",
+            webhookUrl:"${params.OFFICE_CONNECT_WEBHOOK_URL}"
+        }
+        failure {
+            office365ConnectorSend message: "${env.CONNECTOR_MESSAGE}",
+            status:"Some of the tests failed, definitely review logs.",
+            color:"${colors["redError"]}",
+            webhookUrl:"${params.OFFICE_CONNECT_WEBHOOK_URL}"
+        }
+        unstable {
+            office365ConnectorSend message: "${env.CONNECTOR_MESSAGE}",
+            status:"Detected some instabilitiy, might want to review logs.",
+            color:"${colors["orangeCritical"]}",
+            webhookUrl:"${params.OFFICE_CONNECT_WEBHOOK_URL}"
+            echo 'This will run only if the run was marked as unstable'
+        }
+        changed {
+            office365ConnectorSend message: "${env.CONNECTOR_MESSAGE}",
+            status:"The test results have changed, might want to review logs.",
+            color:"${colors["yellowWarning"]}",
+            webhookUrl:"${params.OFFICE_CONNECT_WEBHOOK_URL}"
+        }
+        cleanup {
+            office365ConnectorSend message: "Cleaning test environment.",
+            status:"Cleaing up workspace.",
+            color:"${colors["blueInformation"]}",
+            webhookUrl:"${params.OFFICE_CONNECT_WEBHOOK_URL}"
+            cleanWs notFailBuild: true
+        }
+    }
+}

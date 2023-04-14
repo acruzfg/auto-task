@@ -4,31 +4,34 @@ Resource   EITK3_General_Endpoints_Keywords.robot
 Resource   EITK3_POST_Keywords.robot
 Resource   EITK3_GET_Keywords.robot
 Resource   EITK3_PUT_Keywords.robot
-Resource   Report_to_Jama.robot
-Resource   ../auto_common_robot/${testsystem}_Variables.robot   
+Resource   ../auto_common_robot/${TESTSERVER}_Variables.robot
 Test Setup       Create Session    Swagger    ${Base_URL}
-Test Teardown    Delete All Sessions
+Test Teardown    Delete All Sessions 
+Suite Teardown   Run Keywords
+...              Run Keyword If All Tests Passed    Run    jama_report_results.EXE --testplanid ${testplanid} --testcaseid ${testcaseid} --passed True --user ${jamauser} --password ${jamapwd} --notes "Test passed"
+...    AND       Run Keyword If Any Tests Failed    Run    jama_report_results.EXE --testplanid ${testplanid} --testcaseid ${testcaseid} --passed False --user ${jamauser} --password ${jamapwd} --notes "Test failed. Check logs for more information"
 
 *** Variables ***
-### TEST CYCLE TO REPORT IN JAMA ###
-${testcycle}
+### VARIABLES TO REPORT IN JAMA ###
+${testplanid}
+${testcaseid}
+${jamauser}
+${jamapwd}
 ### BASIC TASK SET UP ###
-${name}=          Auto-Task
-${testsystem}=    SM5-DAC1      ###by default but can be changed during execution
+${name}=          Auto-Task-Basic-Verification      ##Variables by default but can be changed during execution
+${TESTSERVER}=    SM5-DAC1      
 
-### STEP SET UP ###
-${type}=               EXE
-${hostname}=           sm5-dac1
-${processName}=        osii_file_adaptor
-${args}=               -i 33 --domain CC
-${envArgs}=            33
-${expectedExitCode}=   0
-${timeout}=            5000
+### STEP SET UP ###                                 ## Default step type is EXE, that can't be changed but all the set up can be changed if needed.
+${type}=               EXE                          ## Step type
+${hostname}=           sm5-dac1                     ## Hostname
+${processName}=        osii_file_adaptor            ## whitelisted process to run
+${domain}              CC                           ## hostname's domain
+${envArgs}=            33                           ## enviroment arguments for process
+${expectedExitCode}=   0                            ## meaning the process was successful
+${timeout}=            5000                         ## in miliseconds
 
 *** Test Cases ***
 Basic Tasks Operations
-### The "results" variable will be used to report to Jama. We set to 0 so if the test fails, it will report 'FAILED' to jama ###
-    Set Suite Variable               ${results}            0    
 ### Ensure task does not exist to obtain accurate results ###
     Make Sure Task Does Not Exist    ${name}
 ### Create task details ###
@@ -40,7 +43,7 @@ Basic Tasks Operations
 ### Obtain task details ###
     ${Task_details}=                 GET-Tasks With Name    ${name}
     Status Should Be                 200                    ${Task_details}
-### Check task details are as configured for creation ###
+### Verifying task details are returned as expected
     Check Task Details    ${Task_details}    ${name}                 $.name
     Check Task Details    ${Task_details}    ${createAuditCopies}    $.createAuditCopies
 
@@ -53,12 +56,13 @@ Basic Tasks Operations
 ### Obtain task details ###
     ${Task_details}=         GET-Tasks With Name         ${name}
     Status Should Be         200                         ${Task_details}
-### Check task details are as edited ###
+### Verifying task details are returned as expected
     Check Task Details    ${Task_details}    ${name}                 $.name
     Check Task Details    ${Task_details}    ${createAuditCopies}    $.createAuditCopies
 
 ### Create step set up ###
     ${createAuditCopies}=        Set Variable        Never
+    ${args}=                     Set Variable        -i 33 --domain ${domain}
     ${steps}=                    Set Variable        [{"type": "${type}","hostname": "${hostname}","processName": "${processName}","args": "${args}","envArgs": "${envArgs}","expectedExitCode": [${expectedExitCode}],"timeout": ${timeout} }]
     ${task}=                     Set Variable        {"name": "${name}", "createAuditCopies": "${createAuditCopies}","steps": ${steps}}
 ### Add step ###
@@ -67,7 +71,7 @@ Basic Tasks Operations
 ### Obtain task details ###
     ${Task_details}=    GET-Tasks With Name          ${name}
     Status Should Be    200                          ${Task_details}
-### Verify steps exist and its details are as configured ###
+### Verify steps exist and its details are as expected ###
     Check Task Details    ${Task_details}    ${name}                 $.name
     Check Task Details    ${Task_details}    ${createAuditCopies}    $.createAuditCopies
     Check Task Details    ${Task_details}    ${type}                 $.steps[0].type
@@ -91,16 +95,6 @@ Basic Tasks Operations
     Check Task Details    ${Task_details}    ${name}                 $.name
     Check Task Details    ${Task_details}    ${createAuditCopies}    $.createAuditCopies
     Check Task Details    ${Task_details}    ${steps}                $.steps
-
-### Set Results to Successful ###
-    Set Suite Variable    ${results}         1
-
-Report to JAMA
-### Report to JAMA test results ###   
-    ${jama_id}=            Run                python .\\auto_eitk3_endpoints\\TestCaseResults.py "Automated - Basic Task Operations" "${testcycle}" 
-    Run Keyword If         ${results} == 1    Jama-Report Passed Test    run_id=${jama_id}
-    ...  ELSE
-    ...  Jama-Report Failed Test    run_id=${jama_id}
 
 *** Keywords ***
 Check Task Details        [Arguments]               ${response}             ${task_detail}    ${json_path}    

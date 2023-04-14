@@ -9,21 +9,26 @@ Resource    EITK3_GET_Keywords.robot
 Resource    EITK3_PUT_Keywords.robot
 Resource    EITK3_DELETE_Keywords.robot
 Resource    EITK3_PATCH_Keywords.robot
-Resource    Report_to_Jama.robot
-Resource    ../auto_common_robot/${testsystem}_Variables.robot
+Resource    ../auto_common_robot/${testserver}_Variables.robot
 Test Setup       Create Session    Swagger    ${Base_URL}
-Test Teardown    Delete All Sessions
+Test Teardown    Delete All Sessions 
+Suite Teardown   Run Keywords
+...              Run Keyword If All Tests Passed    Run    jama_report_results.EXE --testplanid ${testplanid} --testcaseid ${testcaseid} --passed True --user ${jamauser} --password ${jamapwd} --notes "Test passed"
+...    AND       Run Keyword If Any Tests Failed    Run    jama_report_results.EXE --testplanid ${testplanid} --testcaseid ${testcaseid} --passed False --user ${jamauser} --password ${jamapwd} --notes "Test failed. Check logs for more information"
 
 *** Variables ***
+### VARIABLES TO REPORT IN JAMA ###
+${testplanid}
+${testcaseid}
+${jamauser}
+${jamapwd}
 ### TABLES_IDS ###
-${testsystem}=    SM5-DAC1    ##By default, can be changed during execution
+${testserver}=    SM5-DAC1    ##By default, can be changed during execution
 ${testcycle}
 
 *** Test Cases ***
 Table CSV Import
 ### Small Table Operations ###
-### The "results" variable will be used to report to Jama. We set to 0 so if the test fails, it will report 'FAILED' to jama ###
-    Set Suite Variable                ${results}                           ${0}
 ### Ensure the table name isn't occupied already, if the name is used, the table will be deleted ###
     ${table_id}=                      Set Variable                         Table1_A
     Make Sure Table Does Not Exist    ${table_id}
@@ -82,8 +87,7 @@ Table CSV Import
         END    
     END
 
-
-### Large Table Operations ###
+Large Table Operations
 ### We set the name of the tables to upload using curl ###
     ${table2a}=                       Set Variable                              Table2_A
     ${table2b}=                       Set Variable                              Table2_B
@@ -96,8 +100,7 @@ Table CSV Import
     ${upload_table2b}=                Run                                       curl -X PATCH "${Base_URL}/eitk/api/v1/tables-import" -H "Content-Type: text/csv" -H "osiApiToken: ${Token}" --data-binary "@./Files/Table2_B.csv" --insecure -v --connect-timeout 900
 ### The row number must be verified directly in the test system so we continue with the test and report to JAMA the 'Passed' or 'Failed' states of this part of the test ###
 
-
-### Empty values ###
+Empty values
 ### Ensure the table name isn't occupied already, if the name is used, the table will be deleted ###
     ${table_id}=                      Set Variable                              Table3
     Make Sure Table Does Not Exist    ${table_id}
@@ -132,8 +135,7 @@ Table CSV Import
         Check Rows Have Values        ${GET_response_rows}                      1                        ${id}    
     END
 
-
-### Not values ###
+Not values
 ### Ensure the table name isn't occupied already, if the name is used, the table will be deleted ###
     ${table_id}=                      Set Variable                              Table4
     Make Sure Table Does Not Exist    ${table_id}
@@ -155,9 +157,8 @@ Table CSV Import
 ### Count the number of rows and verify it is consistent with the table, which in this case means that each row must have a key defined ###
     ${number_of_rows}=                Count Rows                                ${GET_response_rows}
     Should Be Equal As Strings        2                                         ${number_of_rows}
-        
 
-### Invalid missing keys ###
+Invalid missing keys
 ### Ensure the table name isn't occupied already, if the name is used, the table will be deleted ###
     ${table_id}=                      Set Variable                              Table5
     Make Sure Table Does Not Exist    ${table_id}
@@ -179,12 +180,3 @@ Table CSV Import
 ### Count the number of rows and verify it is consistent with the table, which in this case means the key value for a row must be unique ###
     ${number_of_rows}=                Count Rows                                ${GET_response_rows}
     Should Be Equal As Strings        1                                         ${number_of_rows}
-    Set Suite Variable                ${results}                                1
-
-
-Report to JAMA
-### Report to JAMA test results ###   
-    ${jama_id}=    Run    python .\\auto_eitk3_endpoints\\TestCaseResults.py "Automated - Table CSV Import" "${testcycle}" 
-    Run Keyword If    ${results} == 1    Jama-Report Passed Test    run_id=${jama_id}
-    ...  ELSE
-    ...    Jama-Report Failed Test    run_id=${jama_id}

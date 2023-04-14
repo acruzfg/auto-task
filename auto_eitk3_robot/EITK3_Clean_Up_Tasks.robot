@@ -10,16 +10,21 @@ Resource    ../auto_eitk3_endpoints/EITK3_POST_Keywords.robot
 Resource    ../auto_eitk3_endpoints/EITK3_DELETE_Keywords.robot
 Resource    ../auto_eitk3_endpoints/EITK3_GET_Keywords.robot
 Resource    ../auto_eitk3_endpoints/EITK3_General_Endpoints_Keywords.robot
-Resource    Report_to_Jama.robot
 Resource    EITK3_Task_Variables.robot
 Resource    EITK3_General_Variables.robot
 Resource    EITK3_General_Keywords.robot
-Test Teardown    Run Keyword If Test Failed     Run    jama_report_results.EXE --testplanid ${testplanid} --testcaseid ${testcaseid} --passed False --user auto_sysman --password OSISysman --notes "Test failed. Check logs for more information."
+Suite Teardown   Run Keywords
+...              Run Keyword If All Tests Passed    Run    jama_report_results.EXE --testplanid ${testplanid} --testcaseid ${testcaseid} --passed True --user ${jamauser} --password ${jamapwd} --notes "Test passed"
+...    AND       Run Keyword If Any Tests Failed    Run    jama_report_results.EXE --testplanid ${testplanid} --testcaseid ${testcaseid} --passed False --user ${jamauser} --password ${jamapwd} --notes "Test failed. Check logs for more information"
 
 *** Variables ***
-${TESTSERVER}=               SM5-DAC1    #Default values, can be changed during execution
+### VARIABLES TO REPORT IN JAMA ###
 ${testplanid}
 ${testcaseid}
+${jamauser}
+${jamapwd}
+### TEST CASE VARIABLES ###
+${TESTSERVER}=               SM5-DAC1    #Default values, can be changed during execution
 ### Task variables
 ${TaskName}                  Auto-Task-Clean-Up-Verification
 ### Settings variables
@@ -72,7 +77,7 @@ Change System Settings
     ...    Log                             The values entered are the same as before. No changes made.
     ...  ELSE
     ...    Should be equal                 ${Pop_Up_Message}        Save successful
-#    Restart_Proccess_Using_Site_Monitor    ${TESTSERVER}            osii_eitkd
+    Restart_Proccess_Using_Site_Monitor    ${TESTSERVER}            osii_eitkd
     Logout_User_And_Close_Browser
     ${Expected_Clean_Up_Time}=             Convert Date          ${CleanUpCheckTime}        result_format=epoch
     ${Expected_Clean_Up_Time}=             Convert To Integer    ${Expected_Clean_Up_Time}
@@ -110,7 +115,6 @@ Check the Clean Up ran as expected
     ${Body}=              Convert To String           ${RunRequests.content}
     Should Be Equal As Strings    ${Body}             [${SPACE}]
     Delete All Sessions
-    Run    jama_report_results.EXE --testplanid ${testplanid} --testcaseid ${testcaseid} --passed True --user auto_sysman --password OSISysman
 
 *** Keywords ***
 Set_Value    [Arguments]             ${value}          ${xpath}
